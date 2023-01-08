@@ -1,0 +1,25 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+	<!-- Base application theme. -->
+	<style name="Theme.MealMate"
+	       parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:windowFullscreen">true</item>
+		<!-- Primary brand color. -->
+		<item name="colorPrimary">@color/purple_200</item>
+		<item name="colorPrimaryVariant">@color/purple_500
+		</item>
+		<item name="colorOnPrimary">@color/white</item>
+		<!-- Secondary brand color. -->
+		<item name="colorSecondary">@color/red_200</item>
+		<item name="colorSecondaryVariant">@color/green_200
+		</item>
+		<item name="colorOnSecondary">@color/black</item>
+		<!-- Status bar color. -->
+		<!-- Customize your theme here. -->
+
+		<item name="android:statusBarColor">
+			?attr/colorPrimary
+		</item>
+	</style>
+</resources>
