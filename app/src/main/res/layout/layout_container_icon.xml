@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   android:id="@+id/decision_fr_container"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="@dimen/container_lg"
+                                                   android:background="@drawable/round_constraint_layout"
+                                                   android:backgroundTint="@color/purple_200"
+                                                   android:rotation="180"
+                                                   app:layout_constraintEnd_toEndOf="parent"
+                                                   app:layout_constraintHorizontal_bias="0.0"
+                                                   app:layout_constraintStart_toStartOf="parent"
+                                                   app:layout_constraintTop_toTopOf="parent">
+		<ImageView
+			android:id="@+id/imageView"
+			android:layout_width="@dimen/icon_lg_width"
+			android:layout_height="@dimen/icon_lg_height"
+			android:contentDescription="@string/icon_login_human"
+			android:rotation="180"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.496"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:srcCompat="@drawable/undraw_mobile_login" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

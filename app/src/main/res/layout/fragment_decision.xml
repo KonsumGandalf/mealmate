@@ -11,19 +11,19 @@
 
 	<ImageView
 		android:id="@+id/decision_fr_iv"
-		android:layout_width="260dp"
-		android:layout_height="224dp"
+		android:layout_width="@dimen/icon_lg_width"
+		android:layout_height="@dimen/icon_lg_height"
+		android:contentDescription="TODO"
 		android:src="@drawable/undraw_cooking"
 		app:layout_constraintBottom_toTopOf="@+id/decision_fr_container"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent"
-		android:contentDescription="TODO" />
+		app:layout_constraintTop_toTopOf="parent" />
 
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:id="@+id/decision_fr_container"
-		android:layout_width="match_parent"
-		android:layout_height="400dp"
+		android:layout_width="411dp"
+		android:layout_height="431dp"
 		android:background="@drawable/round_constraint_layout"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +36,7 @@
 			android:layout_marginStart="52dp"
 			android:layout_marginBottom="84dp"
 			android:background="@drawable/btn_quader_left"
-			android:backgroundTint="@color/ic_launcher_background"
+			android:backgroundTint="@color/white"
 			android:text="@string/decision_login"
 			android:textColor="@color/black"
 			android:textSize="48sp"
@@ -50,7 +50,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginEnd="52dp"
 			android:background="@drawable/btn_quader_right"
-			android:backgroundTint="@color/ic_launcher_background"
+			android:backgroundTint="@color/white"
 			android:text="@string/decision_btn_register"
 			android:textColor="#000000"
 			android:textSize="48sp"

@@ -22,4 +22,5 @@
 	<string name="decision_login">L</string>
 	<string name="decision_btn_register">R</string>
 	<string name="img_description_cooking_people">cooking people</string>
+	<string name="register">register</string>
 </resources>

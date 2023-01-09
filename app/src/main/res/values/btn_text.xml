@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="helper_mail">Enter your mail</string>
+	<string name="helper_password">Add a unique password</string>
+	<string name="text_mail">Email</string>
+	<string name="text_password">Password</string>
+	<string name="forget_password"><u>Forgot
+		password?</u></string>
+	<string name="forgot_password">Forgot Password</string>
+	<string name="login">Login</string>
+</resources>
