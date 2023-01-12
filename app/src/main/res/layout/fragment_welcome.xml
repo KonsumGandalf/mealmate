@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".authentication.ui.fragments.WelcomeFragment">
+
+	<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+	                                                   xmlns:tools="http://schemas.android.com/tools"
+	                                                   android:id="@+id/decision_contraint_layout"
+	                                                   android:layout_width="match_parent"
+	                                                   android:layout_height="match_parent"
+	                                                   android:background="#CE93D8"
+	                                                   android:backgroundTint="@color/white">
+
+		<ImageView
+			android:id="@+id/decision_fr_iv"
+			android:layout_width="@dimen/icon_lg_width"
+			android:layout_height="@dimen/icon_lg_height"
+			android:contentDescription="@string/img_description_cooking_people"
+			android:src="@drawable/undraw_cooking"
+			app:layout_constraintBottom_toTopOf="@+id/decision_fr_container"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:id="@+id/decision_fr_container"
+			android:layout_width="411dp"
+			android:layout_height="431dp"
+			android:background="@drawable/round_constraint_layout"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent">
+
+			<TextView
+				android:id="@+id/decision_fr_header"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/rokkitt_bold"
+				android:text="@string/activity_welcome_header"
+				android:textColor="@color/black"
+				android:textColorHighlight="#000000"
+				android:textSize="68sp"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintHorizontal_bias="0.498"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				app:layout_constraintVertical_bias="0.152" />
+
+			<com.google.android.material.button.MaterialButton
+				android:id="@+id/welcome_btn_login"
+				android:layout_width="@dimen/btn_md_width"
+				android:layout_height="56dp"
+				android:layout_marginTop="@dimen/btn_margin_top"
+				android:backgroundTint="@color/white"
+				android:text="@string/welcome_btn_login"
+				android:textColor="@color/black"
+				android:textSize="20sp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/decision_fr_header" />
+
+			<com.google.android.material.button.MaterialButton
+				android:id="@+id/welcome_btn_register"
+				android:layout_width="@dimen/btn_md_width"
+				android:layout_height="56dp"
+				android:layout_marginTop="@dimen/btn_margin_top"
+				android:backgroundTint="@color/white"
+				android:text="@string/welcome_btn_register"
+				android:textColor="@color/black"
+				android:textSize="20sp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintHorizontal_bias="0.496"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/welcome_btn_login" />
+
+		</androidx.constraintlayout.widget.ConstraintLayout>
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
