@@ -50,6 +50,9 @@
 			app:exitAnim="@anim/to_left"
 			app:popEnterAnim="@anim/from_left"
 			app:popExitAnim="@anim/to_right" />
+		<action
+			android:id="@+id/action_registerDecisionFragment_to_userUpdateFragment"
+			app:destination="@id/userUpdateFragment" />
 	</fragment>
 	<fragment
 		android:id="@+id/loginDecisionFragment"
@@ -74,6 +77,9 @@
 			app:exitAnim="@anim/to_left"
 			app:popEnterAnim="@anim/from_left"
 			app:popExitAnim="@anim/to_right" />
+		<action
+			android:id="@+id/action_loginDecisionFragment_to_userUpdateFragment"
+			app:destination="@id/userUpdateFragment" />
 	</fragment>
 	<fragment
 		android:id="@+id/loginFragment"
@@ -94,6 +100,9 @@
 			app:exitAnim="@anim/to_left"
 			app:popEnterAnim="@anim/from_left"
 			app:popExitAnim="@anim/to_right"/>
+		<action
+			android:id="@+id/action_loginFragment_to_userUpdateFragment"
+			app:destination="@id/userUpdateFragment" />
 	</fragment>
 	<fragment
 		android:id="@+id/registerFragment"
@@ -107,6 +116,9 @@
 			app:exitAnim="@anim/to_right"
 			app:popEnterAnim="@anim/from_right"
 			app:popExitAnim="@anim/to_left" />
+		<action
+			android:id="@+id/action_registerFragment_to_userUpdateFragment"
+			app:destination="@id/userUpdateFragment" />
 	</fragment>
 	<fragment
 		android:id="@+id/loginResetFragment"
@@ -124,4 +136,9 @@
 			app:popEnterAnim="@anim/from_left"
 			app:popExitAnim="@anim/to_right" />
 	</fragment>
+	<fragment
+		android:id="@+id/userUpdateFragment"
+		android:name="konsum.gandalf.mealmate.user.ui.fragments.UserUpdateFragment"
+		android:label="fragment_user_update"
+		tools:layout="@layout/fragment_user_update" />
 </navigation>

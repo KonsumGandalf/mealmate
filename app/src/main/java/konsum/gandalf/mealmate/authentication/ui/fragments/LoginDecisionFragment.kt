@@ -37,10 +37,8 @@ import kotlinx.coroutines.withContext
 @AndroidEntryPoint
 class LoginDecisionFragment : OneTapFragment() {
 	private var _binding: FragmentLoginDecisionBinding? = null
-
 	private val viewModel by viewModels<AuthViewModel>()
 
-	lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
 
 	/*private val oneTapClient: SignInClient by lazy {
 		Identity.getSignInClient(activity as Activity)

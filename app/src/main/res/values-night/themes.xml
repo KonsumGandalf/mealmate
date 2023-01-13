@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 	<!-- Base application theme. -->
 	<style name="Theme.MealMate"
-	       parent="Theme.MaterialComponents.DayNight.NoActionBar">
+	       parent="Theme.Material3.Dark.NoActionBar">
 		<!-- Primary brand color. -->
 
 		<item name="android:windowNoTitle">true</item>

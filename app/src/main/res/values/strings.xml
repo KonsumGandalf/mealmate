@@ -48,4 +48,9 @@
 	<string name="menu_gallery">Gallery</string>
 	<string name="menu_slideshow">Slideshow</string>
 	<string name="login_reset_button">Reset Password</string>
+	<string name="text_username">Username</string>
+	<string name="text_bio">Biography</string>
+	<string name="text_full_name">Full Name</string>
+	<string name="text_confirm">Confirm</string>
+	<string name="text_cancel">Cancel</string>
 </resources>
