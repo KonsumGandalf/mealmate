@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:735415876691:android:a7517fee84a7ec05c65aa6",
         "android_client_info": {
-          "package_name": "konsum.gandalf.mealmate"
+          "package_name": "konsum.gandalf.layouts"
         }
       },
       "oauth_client": [
@@ -28,7 +28,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "735415876691-m7n81m6811b4jkjtb9d8h1mq4nqqsulr.apps.googleusercontent.com",
+              "client_id": "735415876691-l5bup2h98g6masr1ckqa0me8k1hvn0b9.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -39,7 +39,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:735415876691:android:60d41b7a21f80997c65aa6",
         "android_client_info": {
-          "package_name": "konsum.gandalf.mealmate"
+          "package_name": "konsum.gandalf.layouts.section24"
         }
       },
       "oauth_client": [
@@ -65,7 +65,44 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "735415876691-m7n81m6811b4jkjtb9d8h1mq4nqqsulr.apps.googleusercontent.com",
+              "client_id": "735415876691-l5bup2h98g6masr1ckqa0me8k1hvn0b9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:735415876691:android:16810960ce7f56eac65aa6",
+        "android_client_info": {
+          "package_name": "konsum.gandalf.mealmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "735415876691-h7d1m6jobo7ba8ilbd2oi99naj1n00bm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "konsum.gandalf.mealmate",
+            "certificate_hash": "98bd62cbb787ec8e1fd08c71a3cb1bb87c26aa7a"
+          }
+        },
+        {
+          "client_id": "735415876691-m7n81m6811b4jkjtb9d8h1mq4nqqsulr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3EEDWXRcAyK6Mt_8365mnNK89FIqqoQw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "735415876691-l5bup2h98g6masr1ckqa0me8k1hvn0b9.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

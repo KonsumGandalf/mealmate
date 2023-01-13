@@ -1,6 +1,8 @@
 package konsum.gandalf.mealmate.authentication.domain.repository
 
 import com.google.android.datatransport.runtime.dagger.Provides
+import com.google.android.gms.auth.api.identity.SignInCredential
+import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.InstallIn
 
@@ -22,4 +24,6 @@ interface IAuthRepository {
 	fun getCurrentUser() : FirebaseUser?
 
 	suspend fun sendResetPassword(email : String) : Boolean
+
+	suspend fun signWithCredential(credential: AuthCredential): FirebaseUser?
 }

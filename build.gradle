@@ -40,4 +40,5 @@ ext {
     hiltVersion = "2.44.2"
     material3Version = "1.0.1"
     splashScreenVersion = "1.0.0-alpha01"
+    firebaseAuthVersion = "20.4.0"
 }

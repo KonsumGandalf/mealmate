@@ -1,7 +1,6 @@
 package konsum.gandalf.mealmate.authentication.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
 import konsum.gandalf.mealmate.R
 import konsum.gandalf.mealmate.authentication.ui.utils.ToastEvent
@@ -33,17 +32,24 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 		binding.loginResponseComponent.progressBar.isVisible = false;
 
 		listenToChannels()
+		registerButtons()
 		registerObservers()
 
+		return binding.root
+	}
+
+	private fun registerButtons() {
 		with(binding){
 			loginBtnConfirm.setOnClickListener {
 				viewModel.validateCredentialsLogin(loginTiMail.text.toString(), loginTiPassword.text.toString())
 				loginResponseComponent.progressBar.isVisible = true;
 			}
+			loginBtnForgot.setOnClickListener {
+				val mailString = loginTiMail.text.toString()
+				val toLoginReset = LoginFragmentDirections.actionLoginFragmentToLoginResetFragment(mailString);
+				Navigation.findNavController(binding.root).navigate(toLoginReset);
+			}
 		}
-
-
-		return binding.root
 	}
 
 	private fun registerObservers() {
@@ -79,9 +85,5 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 				}
 			}
 		}
-	}
-
-	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-		super.onViewCreated(view, savedInstanceState)
 	}
 }

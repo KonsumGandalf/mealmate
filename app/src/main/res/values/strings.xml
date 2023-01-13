@@ -1,4 +1,6 @@
 <resources>
+	<string name="app_id">1083851440019
+		-ts2nl7p2ti4a1igkq7mcjfcopc749ksv</string>
 	<string name="app_name">MealMate</string>
 	<string name="title_activity_login">LoginActivity
 	</string>
@@ -45,4 +47,5 @@
 	<string name="menu_home">Home</string>
 	<string name="menu_gallery">Gallery</string>
 	<string name="menu_slideshow">Slideshow</string>
+	<string name="login_reset_button">Reset Password</string>
 </resources>

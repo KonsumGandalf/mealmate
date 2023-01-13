@@ -29,16 +29,20 @@ import konsum.gandalf.mealmate.databinding.ContentNavHostLoginBinding
 import androidx.compose.material3.Surface
 import androidx.lifecycle.lifecycleScope
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import konsum.gandalf.mealmate.authentication.ui.fragments.AuthViewModel
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 	private lateinit var navController: NavController
+
+	private val viewModel: AuthViewModel by viewModels()
 
 	private lateinit var _binding: ContentNavHostLoginBinding
 	private val binding

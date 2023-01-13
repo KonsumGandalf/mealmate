@@ -1,5 +1,6 @@
 package konsum.gandalf.mealmate.authentication.data.repository.firebase
 
+import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -27,5 +28,10 @@ class FirebaseAuthenticator : IAuthenticator {
 
 	override suspend fun sendPasswordReset(email: String) {
 		Firebase.auth.sendPasswordResetEmail(email).await()
+	}
+
+	override suspend fun signingWithCredential(credential: AuthCredential): FirebaseUser? {
+		Firebase.auth.signInWithCredential(credential).await()
+		return Firebase.auth.currentUser;
 	}
 }

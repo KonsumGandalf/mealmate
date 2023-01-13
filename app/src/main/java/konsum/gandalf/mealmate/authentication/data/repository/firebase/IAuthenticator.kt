@@ -1,5 +1,7 @@
 package konsum.gandalf.mealmate.authentication.data.repository.firebase
 
+import com.google.android.gms.auth.api.identity.SignInCredential
+import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseUser
 
 interface IAuthenticator {
@@ -20,4 +22,6 @@ interface IAuthenticator {
 	fun getUser() : FirebaseUser?
 
 	suspend fun sendPasswordReset(email :String)
+
+	suspend fun signingWithCredential(credential: AuthCredential): FirebaseUser?
 }

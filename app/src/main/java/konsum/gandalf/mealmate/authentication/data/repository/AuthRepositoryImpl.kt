@@ -1,5 +1,6 @@
 package konsum.gandalf.mealmate.authentication.repositories
 
+import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseUser
 import konsum.gandalf.mealmate.authentication.domain.repository.IAuthRepository
 import konsum.gandalf.mealmate.authentication.data.repository.firebase.IAuthenticator
@@ -28,5 +29,11 @@ class AuthRepositoryImpl @Inject constructor(
 		authenticator.sendPasswordReset(email)
 		return true
 	}
+
+	override suspend fun signWithCredential(credential: AuthCredential): FirebaseUser? {
+		return authenticator.signingWithCredential(credential)
+	}
+
+
 }
 

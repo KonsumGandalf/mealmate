@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".authentication.ui.fragments.LoginResetFragment">
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:id="@+id/login_constraint_layout"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:id="@+id/login_reset_image_container"
+			android:layout_width="0dp"
+			android:layout_height="422dp"
+			android:background="@drawable/round_constraint_layout"
+			android:backgroundTint="@color/blue_200"
+			android:rotation="180"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent">
+
+			<ImageView
+				android:id="@+id/login_reset_iv"
+				android:layout_width="370dp"
+				android:layout_height="319dp"
+				android:contentDescription="@string/icon_login_human"
+				android:rotation="180"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintHorizontal_bias="0.496"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				app:srcCompat="@drawable/undraw_forgot_password" />
+		</androidx.constraintlayout.widget.ConstraintLayout>
+
+		<com.google.android.material.textfield.TextInputLayout
+			android:id="@+id/login_reset_ti_mail_container"
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+			android:layout_width="331dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="40dp"
+			android:layout_marginTop="60dp"
+			android:layout_marginEnd="40dp"
+			app:endIconMode="clear_text"
+			app:helperText="Please check your Mail for instructions"
+			app:helperTextTextColor="@color/light_blue_900"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/login_reset_image_container"
+			app:startIconDrawable="@drawable/ic_twotone_mail_outline_24">
+
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/login_reset_ti_mail"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="@string/text_mail" />
+		</com.google.android.material.textfield.TextInputLayout>
+
+
+		<Button
+			android:id="@+id/login_reset_btn"
+			android:layout_width="@dimen/btn_lg_width"
+			android:layout_height="@dimen/btn_lg_height"
+			android:layout_marginTop="60dp"
+			android:backgroundTint="#90CAF9"
+			android:text="@string/login_reset_button"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/login_reset_ti_mail_container" />
+
+		<include
+			android:id="@+id/login_response_component"
+			layout="@layout/progess_err_component"
+			android:layout_width="411dp"
+			android:layout_height="37dp"
+			android:layout_marginTop="24dp"
+			android:visibility="visible"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/login_reset_btn" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+	<include
+		android:id="@+id/login_include_design"
+		layout="@layout/layout_container_icon"
+		android:layout_width="0dp"
+		android:layout_height="414dp"
+		android:layout_marginBottom="50dp"
+		app:layout_constraintBottom_toTopOf="@+id/login_reset_ti_mail_container"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<include
+		android:id="@+id/login_reset_response_component"
+		layout="@layout/progess_err_component"
+		android:layout_width="0dp"
+		android:layout_height="37dp"
+		android:layout_marginTop="24dp"
+		android:layout_marginBottom="76dp"
+		android:visibility="visible"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/login_btn_forgot" />
+</FrameLayout>

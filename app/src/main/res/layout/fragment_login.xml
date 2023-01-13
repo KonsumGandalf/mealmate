@@ -12,6 +12,17 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 
+		<include
+			android:id="@+id/login_include_design"
+			layout="@layout/layout_container_icon"
+			android:layout_width="0dp"
+			android:layout_height="414dp"
+			android:layout_marginBottom="50dp"
+			app:layout_constraintBottom_toTopOf="@+id/login_ti_mail_container"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.0"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
 
 		<com.google.android.material.textfield.TextInputLayout
 			android:id="@+id/login_ti_mail_container"
@@ -25,7 +36,7 @@
 			app:layout_constraintBottom_toTopOf="@+id/login_ti_password_container"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/include"
+			app:layout_constraintTop_toBottomOf="@+id/login_include_design"
 			app:startIconDrawable="@drawable/ic_twotone_mail_outline_24">
 
 			<com.google.android.material.textfield.TextInputEditText
@@ -85,17 +96,7 @@
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@+id/login_btn_confirm" />
 
-		<include
-			android:id="@+id/include"
-			layout="@layout/layout_container_icon"
-			android:layout_width="0dp"
-			android:layout_height="414dp"
-			android:layout_marginBottom="50dp"
-			app:layout_constraintBottom_toTopOf="@+id/login_ti_mail_container"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintHorizontal_bias="0.0"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent" />
+
 
 		<include
 			android:id="@+id/login_response_component"

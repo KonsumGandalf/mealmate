@@ -87,6 +87,13 @@
 			app:exitAnim="@anim/to_right"
 			app:popEnterAnim="@anim/from_right"
 			app:popExitAnim="@anim/to_left" />
+		<action
+			android:id="@+id/action_loginFragment_to_loginResetFragment"
+			app:destination="@id/loginResetFragment"
+			app:enterAnim="@anim/from_right"
+			app:exitAnim="@anim/to_left"
+			app:popEnterAnim="@anim/from_left"
+			app:popExitAnim="@anim/to_right"/>
 	</fragment>
 	<fragment
 		android:id="@+id/registerFragment"
@@ -100,5 +107,21 @@
 			app:exitAnim="@anim/to_right"
 			app:popEnterAnim="@anim/from_right"
 			app:popExitAnim="@anim/to_left" />
+	</fragment>
+	<fragment
+		android:id="@+id/loginResetFragment"
+		android:name="konsum.gandalf.mealmate.authentication.ui.fragments.LoginResetFragment"
+		android:label="fragment_password_forgot"
+		tools:layout="@layout/fragment_login_reset" >
+		<argument
+			android:name="loginMail"
+			app:argType="string" />
+		<action
+			android:id="@+id/action_loginResetFragment_to_welcomeFragment"
+			app:destination="@id/welcomeFragment"
+			app:enterAnim="@anim/from_right"
+			app:exitAnim="@anim/to_left"
+			app:popEnterAnim="@anim/from_left"
+			app:popExitAnim="@anim/to_right" />
 	</fragment>
 </navigation>
