@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.gms.google-services'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -14,9 +16,14 @@ android {
         minSdk 28
         targetSdk 33
         versionCode 1
-        versionName "1.0"
+        versionName "1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+
+        buildConfigField "String", "GOOGLE_SERVER_ID", "\"${properties.getProperty("GOOGLE_SERVER_ID")}\""
     }
 
     packagingOptions {
@@ -24,6 +31,7 @@ android {
     }
 
     buildFeatures {
+        // TODO enable minify in the latest version minifyEnabled true
         viewBinding true
         compose true
     }
@@ -69,14 +77,15 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.compose.ui:ui-tooling-preview:1.1.1'
-    implementation 'com.google.firebase:firebase-database-ktx:20.0.4'
+    implementation "com.google.firebase:firebase-database-ktx:20.1.0"
+    implementation "com.google.android.gms:play-services-auth:$rootProject.firebaseAuthVersion"
     implementation platform('com.google.firebase:firebase-bom:31.1.1')
 
     implementation 'com.squareup.picasso:picasso:2.8'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
-    implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
+    implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.firebase:firebase-messaging-ktx:23.1.1'
     implementation 'com.google.firebase:firebase-storage-ktx:20.1.0'
     testImplementation 'junit:junit:4.13.2'
@@ -119,9 +128,26 @@ dependencies {
     })
     androidTestImplementation "androidx.test.ext:junit:$rootProject.androidxJunitVersion"
 
-    implementation "androidx.navigation:navigation-compose:2.5.3"
-    implementation "androidx.compose.material3:material3:1.0.1"
-    implementation "androidx.compose.material3:material3-window-size-class:1.0.1"
+    
+    implementation "androidx.navigation:navigation-compose:$rootProject.navVersion"
+    // Jetpack Compose Integration
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:$rootProject.navVersion")
+    implementation("androidx.navigation:navigation-compose:$rootProject.navVersion")
+    implementation("androidx.navigation:navigation-fragment-ktx:$rootProject.navVersion")
+    implementation("androidx.navigation:navigation-ui-ktx:$rootProject.navVersion")
 
+    implementation 'com.airbnb.android:lottie-compose:5.2.0'
 
+    implementation "androidx.compose.material3:material3:$rootProject.material3Version"
+    implementation "androidx.compose.material3:material3-window-size-class:$rootProject.material3Version"
+
+    implementation "com.google.dagger:hilt-android:$rootProject.hiltVersion"
+    kapt "com.google.dagger:hilt-compiler:$rootProject.hiltVersion"
+    kapt "androidx.hilt:hilt-compiler:1.0.0"
+
+    implementation "androidx.core:core-splashscreen:$rootProject.splashScreenVersion"
+}
+
+kapt {
+    correctErrorTypes true
 }

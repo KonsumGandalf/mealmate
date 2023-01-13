@@ -4,10 +4,10 @@
                                                    xmlns:tools="http://schemas.android.com/tools"
                                                    android:layout_width="match_parent"
                                                    android:layout_height="match_parent"
-                                                   tools:context=".ui.views.RegisterActivity">
+                                                   tools:context=".deprecated.views.RegisterActivity">
 
 	<include
-		android:id="@+id/include2"
+		android:id="@+id/include_layout_container_icon"
 		layout="@layout/layout_container_icon"
 		android:layout_width="0dp"
 		android:layout_height="@dimen/container_lg"
@@ -29,7 +29,7 @@
 		app:helperTextTextColor="@color/purple_200"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@+id/include2"
+		app:layout_constraintTop_toBottomOf="@+id/include_layout_container_icon"
 		app:startIconDrawable="@drawable/ic_twotone_mail_outline_24">
 
 		<com.google.android.material.textfield.TextInputEditText

@@ -17,9 +17,19 @@
 		<item name="colorOnSecondary">@color/black</item>
 		<!-- Status bar color. -->
 		<!-- Customize your theme here. -->
+		<item name="windowSplashScreenBackground">@color/purple_200</item>
+		<item
+			name="windowSplashScreenAnimatedIcon">@drawable/meal_mate_icon
+		</item>
+		<item name="windowSplashScreenAnimationDuration">300</item>
+	</style>
 
-		<item name="android:statusBarColor">
-			?attr/colorPrimary
+	<style name="ThemeOverlay.MealMate.FullscreenContainer" parent="">
+		<item name="fullscreenBackgroundColor">
+			@color/light_blue_600
+		</item>
+		<item name="fullscreenTextColor">
+			@color/light_blue_A200
 		</item>
 	</style>
 </resources>
