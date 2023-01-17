@@ -33,6 +33,16 @@
 				app:layout_constraintTop_toTopOf="parent"
 				app:layout_constraintVertical_bias="0.509">
 
+				<ProgressBar
+					android:id="@+id/progressBar3"
+					style="?android:attr/progressBarStyle"
+					android:layout_width="0dp"
+					android:layout_height="0dp"
+					app:layout_constraintBottom_toBottomOf="@+id/user_update_iv"
+					app:layout_constraintEnd_toEndOf="@+id/user_update_iv"
+					app:layout_constraintStart_toStartOf="@+id/user_update_iv"
+					app:layout_constraintTop_toTopOf="@+id/user_update_iv" />
+
 				<de.hdodenhof.circleimageview.CircleImageView
 					android:id="@+id/user_update_iv"
 					android:layout_width="200dp"
@@ -40,12 +50,14 @@
 					android:layout_marginStart="24dp"
 					android:layout_marginEnd="24dp"
 					android:src="@drawable/splash_panda"
+					android:visibility="visible"
 					app:civ_border_color="#FF000000"
 					app:civ_border_width="2dp"
 					app:layout_constraintBottom_toBottomOf="parent"
 					app:layout_constraintEnd_toEndOf="parent"
 					app:layout_constraintStart_toStartOf="parent"
 					app:layout_constraintTop_toTopOf="parent" />
+
 			</androidx.constraintlayout.widget.ConstraintLayout>
 
 		</androidx.constraintlayout.widget.ConstraintLayout>
@@ -56,10 +68,10 @@
 			android:layout_width="@dimen/widthInputText"
 			android:layout_height="wrap_content"
 			android:layout_marginStart="16dp"
-			android:layout_marginTop="@dimen/btn_margin_lg"
+			android:layout_marginTop="@dimen/til_margin_lg"
 			android:layout_marginEnd="16dp"
 			app:counterEnabled="true"
-			app:counterMaxLength="24"
+			app:counterMaxLength="@integer/username_max"
 			app:counterTextColor="@color/black_soft"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +82,7 @@
 				android:id="@+id/user_update_username_ti"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:hint="@string/text_full_name"
+				android:hint="@string/text_username"
 				android:maxLines="1" />
 		</com.google.android.material.textfield.TextInputLayout>
 
@@ -80,7 +92,7 @@
 			android:layout_width="@dimen/widthInputText"
 			android:layout_height="wrap_content"
 			android:layout_marginStart="16dp"
-			android:layout_marginTop="@dimen/btn_margin_md"
+			android:layout_marginTop="@dimen/til_margin_md"
 			android:layout_marginEnd="16dp"
 			app:counterEnabled="true"
 			app:counterMaxLength="24"
@@ -94,7 +106,7 @@
 				android:id="@+id/user_update_name_ti"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:hint="@string/text_username"
+				android:hint="@string/text_full_name"
 				android:maxLines="1" />
 		</com.google.android.material.textfield.TextInputLayout>
 
@@ -104,7 +116,7 @@
 			android:layout_width="@dimen/widthInputText"
 			android:layout_height="wrap_content"
 			android:layout_marginStart="16dp"
-			android:layout_marginTop="@dimen/btn_margin_md"
+			android:layout_marginTop="@dimen/til_margin_md"
 			android:layout_marginEnd="16dp"
 			app:counterEnabled="true"
 			app:counterMaxLength="250"
@@ -119,31 +131,41 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:hint="@string/text_bio"
-				android:maxLength="250"
-				android:maxLines="5" />
+				android:maxLength="@integer/bio_max"
+				android:maxLines="1" />
 		</com.google.android.material.textfield.TextInputLayout>
-
-		<com.google.android.material.button.MaterialButton
-			android:id="@+id/user_update_btn_confirm"
-			style="@style/Widget.Material3.Button.TonalButton"
-			android:layout_width="@dimen/btn_width_sm"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="52dp"
-			android:text="@string/text_cancel"
-			app:layout_constraintEnd_toStartOf="@+id/user_update_btn_cancel"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/user_update_description_container" />
 
 		<com.google.android.material.button.MaterialButton
 			android:id="@+id/user_update_btn_cancel"
 			style="@style/Widget.Material3.Button.TonalButton"
 			android:layout_width="@dimen/btn_width_sm"
 			android:layout_height="wrap_content"
-			android:layout_marginTop="52dp"
+			android:layout_marginTop="@dimen/btn_margin_lg"
+			android:text="@string/text_cancel"
+			app:layout_constraintEnd_toStartOf="@+id/user_update_btn_confirm"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/user_update_description_container" />
+
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/user_update_btn_confirm"
+			style="@style/Widget.Material3.Button.TonalButton"
+			android:layout_width="@dimen/btn_width_sm"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/btn_margin_lg"
 			android:text="@string/text_confirm"
 			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toEndOf="@+id/user_update_btn_confirm"
+			app:layout_constraintStart_toEndOf="@+id/user_update_btn_cancel"
 			app:layout_constraintTop_toBottomOf="@+id/user_update_description_container" />
+
+		<include
+			android:id="@+id/user_update_response_component"
+			layout="@layout/progess_err_component"
+			android:layout_width="0dp"
+			android:layout_height="40dp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/user_update_btn_cancel" />
+
 	</androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
