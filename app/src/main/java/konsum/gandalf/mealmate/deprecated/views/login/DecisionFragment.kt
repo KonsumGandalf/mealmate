@@ -4,18 +4,13 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import konsum.gandalf.mealmate.deprecated.views.buttons.IntentButton
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 data class DecisionFragmentInformation(
-	val curContext: Context,
-	val leftSign: IntentButton,
-	val rightSign: IntentButton,
-	val containerFrColor: Int?,
-	val fragmentImage: Int?,
-	val header: String?
+    val curContext: Context,
+    val leftSign: IntentButton,
+    val rightSign: IntentButton,
+    val containerFrColor: Int?,
+    val fragmentImage: Int?,
+    val header: String?
 )
 
 class DecisionFragment(var builder: DecisionFragmentInformation) : Fragment() {

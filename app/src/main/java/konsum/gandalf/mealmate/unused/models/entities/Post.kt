@@ -1,7 +1,5 @@
 package konsum.gandalf.mealmate.unused.models.entities
 
-import java.time.LocalDateTime
-
 data class Post(
     val userId: String,
     val postId: String,

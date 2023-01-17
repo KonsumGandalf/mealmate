@@ -24,7 +24,7 @@
 		android:id="@+id/decision_fr_container"
 		android:layout_width="411dp"
 		android:layout_height="431dp"
-		android:background="@drawable/round_constraint_layout"
+		android:background="@drawable/shape_rectangle_round_upper"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent">

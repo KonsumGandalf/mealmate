@@ -13,4 +13,14 @@
 	<dimen name="nav_header_height">176dp</dimen>
 	<dimen name="fab_margin">16dp</dimen>
 	<dimen name="btn_lg_height">60dp</dimen>
+	<dimen name="corner_radius_md">35dp</dimen>
+	<dimen name="btn_margin_lg">48dp</dimen>
+	<dimen name="btn_margin_md">32dp</dimen>
+	<dimen name="btn_width_sm">150dp</dimen>
+	<dimen name="til_margin_md">24dp</dimen>
+	<dimen name="til_margin_lg">48dp</dimen>
+	<dimen name="text_margin">16dp</dimen>
+	<dimen name="btn_font_md">23sp</dimen>
+	<dimen name="btn_font_lg">30sp</dimen>
+	<dimen name="profile_user_text_field">95dp</dimen>
 </resources>

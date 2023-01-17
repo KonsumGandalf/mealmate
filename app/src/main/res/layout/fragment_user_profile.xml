@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".user.ui.fragments.UserProfileFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/user_profile_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/user_profile_head"
+            android:layout_width="417dp"
+            android:layout_height="271dp"
+            android:background="@drawable/shape_rectangle_purpil"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout2"
+                android:layout_width="292dp"
+                android:layout_height="168dp"
+                android:layout_marginEnd="120dp"
+                android:layout_marginBottom="100dp"
+                android:background="@drawable/shape_rectangle_one_corner"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout4"
+                android:layout_width="180dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="152dp"
+                android:background="@drawable/shape_rectangle_round_upper"
+                app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/user_profile_card"
+            android:layout_width="0dp"
+            android:layout_height="180dp"
+            android:layout_marginStart="33dp"
+            android:layout_marginTop="130dp"
+            android:layout_marginEnd="33dp"
+            android:background="@drawable/shape_round_rectangle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:id="@+id/progressBar2"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/user_profile_iv"
+                app:layout_constraintEnd_toEndOf="@+id/user_profile_iv"
+                app:layout_constraintStart_toStartOf="@+id/user_profile_iv"
+                app:layout_constraintTop_toTopOf="@+id/user_profile_iv" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_profile_iv"
+                android:layout_width="131dp"
+                android:layout_height="143dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/splash_panda"
+                android:visibility="visible"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="2dp"
+                app:layout_constraintBottom_toBottomOf="@+id/user_profile_follower_label_tv"
+                app:layout_constraintEnd_toStartOf="@+id/user_profile_follower_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/user_profile_username_tv" />
+
+            <TextView
+                android:id="@+id/user_profile_username_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/rokkitt_bold"
+                android:text="@string/text_username"
+                android:textSize="@dimen/btn_font_lg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/user_profile_iv"
+                app:layout_constraintStart_toStartOf="@+id/user_profile_follower_tv"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/user_profile_follower_tv"
+                android:layout_width="@dimen/profile_user_text_field"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rokkitt_bold"
+                android:text="3200"
+                android:textSize="@dimen/btn_font_md"
+                app:layout_constraintEnd_toStartOf="@+id/user_profile_rating_tv"
+                app:layout_constraintStart_toEndOf="@+id/user_profile_iv"
+                app:layout_constraintTop_toBottomOf="@+id/user_profile_username_tv" />
+
+            <TextView
+                android:id="@+id/user_profile_follower_label_tv"
+                android:layout_width="@dimen/profile_user_text_field"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rokkitt_thin"
+                android:text="Followers"
+                android:textSize="@dimen/btn_font_md"
+                app:layout_constraintStart_toStartOf="@+id/user_profile_follower_tv"
+                app:layout_constraintTop_toBottomOf="@+id/user_profile_follower_tv" />
+
+
+            <TextView
+                android:id="@+id/user_profile_rating_tv"
+                android:layout_width="@dimen/profile_user_text_field"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rokkitt_bold"
+                android:text="3.8"
+                android:textSize="@dimen/btn_font_md"
+                app:layout_constraintStart_toStartOf="@+id/user_profile_rating_label_tv"
+                app:layout_constraintTop_toBottomOf="@+id/user_profile_username_tv" />
+
+            <TextView
+                android:id="@+id/user_profile_rating_label_tv"
+                android:layout_width="@dimen/profile_user_text_field"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:fontFamily="@font/rokkitt_thin"
+                android:text="Rating"
+                android:textSize="@dimen/btn_font_md"
+                app:layout_constraintBottom_toBottomOf="@+id/user_profile_follower_label_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/user_profile_follower_label_tv"
+                app:layout_constraintTop_toBottomOf="@+id/user_profile_rating_tv" />
+
+            <TextView
+                android:id="@+id/user_profile_bio_tv"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/rokkitt_thin"
+                android:lines="8"
+                android:text="@string/large_text"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/user_profile_bio_label_tv" />
+
+            <TextView
+                android:id="@+id/user_profile_bio_label_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/rokkitt_semibold"
+                android:text="Biography"
+                android:textSize="@dimen/btn_font_md"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="@id/user_profile_bio_tv"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/user_profile_btn_edit"
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_width="@dimen/btn_width_sm"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/til_margin_md"
+            android:text="Edit Profile"
+            app:layout_constraintEnd_toStartOf="@+id/user_profile_btn_logout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_profile_card" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/user_profile_btn_logout"
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_width="@dimen/btn_width_sm"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/user_profile_btn_edit"
+            app:layout_constraintTop_toTopOf="@+id/user_profile_btn_edit" />
+
+        <TextView
+            android:id="@+id/user_profile_recipes_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/rokkitt_bold"
+            android:text="Recipes"
+            android:textSize="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_profile_btn_edit" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="409dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/user_profile_recipes_tv"
+            app:layout_constraintTop_toBottomOf="@+id/user_profile_recipes_tv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

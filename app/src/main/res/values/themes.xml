@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 	<!-- Base application theme. -->
 	<style name="Theme.MealMate"
-	       parent="Theme.MaterialComponents.DayNight.NoActionBar">
+	       parent="Theme.Material3.Light.NoActionBar">
 
 		<item name="android:windowNoTitle">true</item>
 		<item name="android:windowFullscreen">true</item>
@@ -22,6 +22,11 @@
 			name="windowSplashScreenAnimatedIcon">@drawable/meal_mate_icon
 		</item>
 		<item name="windowSplashScreenAnimationDuration">300</item>
+		<item name="enterAnim">@anim/from_right</item>
+		<item name="exitAnim">@anim/to_left</item>
+		<item name="popEnterAnim">@anim/from_left</item>
+		<item name="popExitAnim">@anim/to_right</item>
+
 	</style>
 
 	<style name="ThemeOverlay.MealMate.FullscreenContainer" parent="">
