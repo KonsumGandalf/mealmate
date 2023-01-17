@@ -30,52 +30,56 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 sealed class Screen(val route: String) {
-  object Splash : Screen("splash_screen")
-  object Welcome : Screen("welcome_screen")
+    object Splash : Screen("splash_screen")
+    object Welcome : Screen("welcome_screen")
 }
 
 class SplashHost : AppCompatActivity() {
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    lifecycleScope.launch {
-      setContent {
-        Surface(color = Color(R.color.white), modifier = Modifier.fillMaxSize()) { Navigation() }
-      }
-      delay(1500)
-      startActivity(Intent(this@SplashHost, MainActivity::class.java))
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        lifecycleScope.launch {
+            setContent {
+                Surface(color = Color(R.color.white), modifier = Modifier.fillMaxSize()) { Navigation() }
+            }
+            delay(1500)
+            startActivity(Intent(this@SplashHost, MainActivity::class.java))
+        }
     }
-  }
 }
 
 @Composable()
 fun Navigation() {
-  val navController = rememberNavController()
-  NavHost(navController = navController, startDestination = Screen.Splash.route) {
-    composable(Screen.Splash.route) { SplashScreen(navController = navController) }
-    composable(Screen.Welcome.route) { return@composable }
-  }
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = Screen.Splash.route) {
+        composable(Screen.Splash.route) { SplashScreen(navController = navController) }
+        composable(Screen.Welcome.route) { return@composable }
+    }
 }
 
 @Composable()
 fun SplashScreen(navController: NavController) {
-  val scale = remember { Animatable(0f) }
-  LaunchedEffect(key1 = true) {
-    scale.animateTo(
-      targetValue = 1f,
-      animationSpec =
-      tween(
-        durationMillis = 1000, easing = { OvershootInterpolator(2f).getInterpolation(it) }))
-    navController.navigate(Screen.Welcome.route)
-  }
+    val scale = remember { Animatable(0f) }
+    LaunchedEffect(key1 = true) {
+        scale.animateTo(
+            targetValue = 1f,
+            animationSpec =
+            tween(
+                durationMillis = 1000,
+                easing = { OvershootInterpolator(2f).getInterpolation(it) }
+            )
+        )
+        navController.navigate(Screen.Welcome.route)
+    }
 
-
-  Box(
-    contentAlignment = Alignment.Center,
-    modifier = Modifier.fillMaxSize()) {
-    Image(
-      painter = painterResource(id = R.drawable.splash_panda),
-      contentDescription = "Logo",
-      modifier = Modifier.scale(scale.value))
-  }
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.splash_panda),
+            contentDescription = "Logo",
+            modifier = Modifier.scale(scale.value)
+        )
+    }
 }
