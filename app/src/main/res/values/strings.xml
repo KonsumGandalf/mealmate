@@ -202,4 +202,6 @@
     <string name="menu_profile">Profile</string>
     <string name="menu_add">Add</string>
     <string name="menu_search">Search</string>
+    <string name="description_category_iv">an image of an category</string>
+    <string name="text_category">Category Name</string>
 </resources>
