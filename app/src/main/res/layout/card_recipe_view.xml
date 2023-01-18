@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="380dp"
+    android:layout_height="400dp"
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginVertical="25dp"
+    android:backgroundTint="@color/yellow_soft"
+    app:cardCornerRadius="30dp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/card_recipe_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/card_recipe_iv"
+                android:layout_width="471dp"
+                android:layout_height="427dp"
+                android:layout_marginBottom="50dp"
+                app:layout_constraintBottom_toTopOf="@+id/recipe_difficulty"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/recipe_name_cv"
+                android:layout_width="304dp"
+                android:layout_height="63dp"
+                android:layout_marginBottom="9dp"
+                android:background="@drawable/shape_round_rectangle"
+                android:fontFamily="@font/krona_one"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="Recipe long name placeholder"
+                app:layout_constraintBottom_toBottomOf="@+id/card_recipe_iv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/recipe_difficulty_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:fontFamily="@font/rokkitt"
+                android:text="Difficulty"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recipe_difficulty" />
+
+            <TextView
+                android:id="@+id/recipe_rating_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/rokkitt"
+                android:text="Rating"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.849"
+                app:layout_constraintStart_toEndOf="@+id/recipe_difficulty_label" />
+
+            <TextView
+                android:id="@+id/recipe_difficulty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/rokkitt_bold"
+                android:text="4.8"
+                android:textSize="@dimen/text_lg"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/card_recipe_iv" />
+
+            <TextView
+                android:id="@+id/recipe_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/rokkitt_bold"
+                android:text="2.1"
+                android:textSize="@dimen/text_lg"
+                app:layout_constraintBottom_toTopOf="@+id/recipe_rating_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.87"
+                app:layout_constraintStart_toEndOf="@+id/recipe_difficulty"
+                app:layout_constraintTop_toBottomOf="@+id/card_recipe_iv"
+                app:layout_constraintVertical_bias="1.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
