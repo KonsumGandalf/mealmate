@@ -53,7 +53,9 @@ fun Navigation() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = Screen.Splash.route) {
         composable(Screen.Splash.route) { SplashScreen(navController = navController) }
-        composable(Screen.Welcome.route) { return@composable }
+        composable(Screen.Welcome.route) {
+            return@composable
+        }
     }
 }
 
@@ -72,10 +74,7 @@ fun SplashScreen(navController: NavController) {
         navController.navigate(Screen.Welcome.route)
     }
 
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
-    ) {
+    Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
         Image(
             painter = painterResource(id = R.drawable.splash_panda),
             contentDescription = "Logo",

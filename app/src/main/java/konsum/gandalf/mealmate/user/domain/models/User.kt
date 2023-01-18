@@ -13,8 +13,8 @@ class User(
     @PropertyName("imageUrl") var imageUrl: String? = null,
     @PropertyName("rating") var bio: String? = null,
     @PropertyName("rating") val rating: Double? = null
-	/*val posts: List<Post>?,
-	val recipes: List<Recipe>,
-	val friends: List<User>,
-	val conversations: List<Conversation>*/
+/*val posts: List<Post>?,
+val recipes: List<Recipe>,
+val friends: List<User>,
+val conversations: List<Conversation>*/
 ) : FirebaseEntity()

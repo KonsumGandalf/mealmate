@@ -209,10 +209,11 @@
             app:layout_constraintTop_toBottomOf="@+id/user_profile_btn_edit" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="409dp"
             android:layout_height="0dp"
             android:layout_marginTop="1dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/user_profile_recipes_tv"
             app:layout_constraintTop_toBottomOf="@+id/user_profile_recipes_tv" />
 

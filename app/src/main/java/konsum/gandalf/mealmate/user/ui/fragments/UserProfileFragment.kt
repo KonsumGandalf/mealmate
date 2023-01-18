@@ -26,11 +26,6 @@ class UserProfileFragment : Fragment() {
         get() = _binding!!
     private val userViewModel by viewModels<UserViewModel>()
     private val authViewModel by viewModels<AuthViewModel>()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -60,8 +55,8 @@ class UserProfileFragment : Fragment() {
     }
 
     private fun registerObserver() {
-        userViewModel.currentUser.observe(viewLifecycleOwner) { user ->
-            user?.let { user ->
+        userViewModel.currentUser.observe(viewLifecycleOwner) { it ->
+            it?.let { user ->
                 binding.apply {
                     userProfileUsernameTv.text = user.username
                     userProfileBioTv.text = user.bio
@@ -71,7 +66,8 @@ class UserProfileFragment : Fragment() {
                         authViewModel.signOut()
                     }
                     userProfileBtnEdit.setOnClickListener {
-                        val action = UserProfileFragmentDirections.actionUserProfileFragmentToUserUpdateFragment(user.id)
+                        val action =
+                            UserProfileFragmentDirections.actionUserProfileFragmentToUserUpdateFragment(user.id)
                         Navigation.findNavController(binding.root).navigate(action)
                     }
                 }
@@ -79,7 +75,7 @@ class UserProfileFragment : Fragment() {
         }
     }
 
-    fun registerChange() {
+    private fun registerChange() {
         val fadeIn = AlphaAnimation(0f, 1f)
         fadeIn.interpolator = DecelerateInterpolator() // add this
         fadeIn.duration = 1000

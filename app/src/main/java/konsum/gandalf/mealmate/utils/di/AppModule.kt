@@ -18,7 +18,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    /**All of our application dependencies shall be provided here*/
+    /** All of our application dependencies shall be provided here */
 
     // this means that anytime we need an authenticator Dagger will provide a Firebase authenticator.
     // in future if you want to swap out Firebase authentication for your own custom authenticator

@@ -25,26 +25,28 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AuthViewModel @Inject constructor(
-    private val repository: IAuthRepository
-) : ViewModel() {
+class AuthViewModel @Inject constructor(private val repository: IAuthRepository) : ViewModel() {
 
     private val TAG = "AuthViewModel"
 
-    /**This is a ViewModel class and is responsible for the logic of all ui.
-     * It shall be shared with the three fragments.
-     * Only share ViewModels when the fragments share a feature or functionality */
+    /**
+     * This is a ViewModel class and is responsible for the logic of all ui. It shall be shared with
+     * the three fragments. Only share ViewModels when the fragments share a feature or functionality
+     */
 
     // create the auth state livedata object that will be passed to
     // the home fragment and shall be used to control the ui i.e show authentication state
     // control behaviour of sign in and sign up button
     private val _firebaseUser = MutableLiveData<FirebaseUser?>()
-    val currentUser get() = _firebaseUser
+    val currentUser
+        get() = _firebaseUser
 
     private lateinit var _oneTapClient: SignInClient
-    val configuredClient get() = _oneTapClient
+    val configuredClient
+        get() = _oneTapClient
     private lateinit var _signUpRequest: BeginSignInRequest
-    val configuredRequest get() = _signUpRequest
+    val configuredRequest
+        get() = _signUpRequest
 
     // create our channels that will be used to pass messages to the main ui
     // create event channel
@@ -55,139 +57,148 @@ class AuthViewModel @Inject constructor(
     val toastEventFlow = eventsChannel.receiveAsFlow()
 
     // validate all fields first before performing any sign in operations
-    fun validateCredentialsLogin(email: String, password: String) = viewModelScope.launch {
-        when {
-            email.isEmpty() -> {
-                eventsChannel.send(CustomEvent.ErrorCode(1))
-            }
-            password.isEmpty() -> {
-                eventsChannel.send(CustomEvent.ErrorCode(2))
-            }
-            else -> {
-                signInUserMail(email, password)
-            }
-        }
-    }
-
-    // validate all fields before performing any sign up operations
-    fun validateCredentialsRegister(email: String, password: String, confirmPass: String) = viewModelScope.launch {
-        when {
-            email.isEmpty() -> {
-                eventsChannel.send(CustomEvent.ErrorCode(1))
-            }
-            password.isEmpty() -> {
-                eventsChannel.send(CustomEvent.ErrorCode(2))
-            }
-            password != confirmPass -> {
-                eventsChannel.send(CustomEvent.ErrorCode(3))
-            }
-            else -> {
-                registerUserMail(email, password)
-            }
-        }
-    }
-
-    private fun signInUserMail(email: String, password: String) = viewModelScope.launch {
-        try {
-            val user = repository.signInWithEmailPassword(email, password)
-            user?.let {
-                _firebaseUser.postValue(it)
-                eventsChannel.send(CustomEvent.Message("login success"))
-            }
-        } catch (e: Exception) {
-            val error = e.toString().split(":").toTypedArray()
-            Log.d(TAG, "signInUser: ${error[1]}")
-            eventsChannel.send(CustomEvent.Error(error[1]))
-        }
-    }
-
-    private fun registerUserMail(email: String, password: String) = viewModelScope.launch {
-        try {
-            val user = repository.signUpWithEmailPassword(email, password)
-            user?.let {
-                _firebaseUser.postValue(it)
-                eventsChannel.send(CustomEvent.Message("sign up success"))
-            }
-        } catch (e: Exception) {
-            val error = e.toString().split(":").toTypedArray()
-            Log.d(TAG, "signInUser: ${error[1]}")
-            eventsChannel.send(CustomEvent.Error(error[1]))
-        }
-    }
-
-    fun configureOneClickClient(activity: FragmentActivity?) = viewModelScope.launch {
-        activity?.let {
-            _oneTapClient = Identity.getSignInClient(it as Activity)
-            _signUpRequest =
-                BeginSignInRequest.builder()
-                    .setGoogleIdTokenRequestOptions(
-                        BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
-                            .setSupported(true)
-                            .setServerClientId(BuildConfig.GOOGLE_SERVER_ID)
-                            .setFilterByAuthorizedAccounts(false)
-                            .build()
-                    )
-                    .build()
-        }
-    }
-
-    fun signingWithGoogle(data: Intent?) = viewModelScope.launch {
-        try {
-            val signInCredential: SignInCredential = configuredClient.getSignInCredentialFromIntent(data)
+    fun validateCredentialsLogin(email: String, password: String) =
+        viewModelScope.launch {
             when {
-                signInCredential.googleIdToken != null -> {
-                    val authCredential: AuthCredential = GoogleAuthProvider.getCredential(signInCredential.googleIdToken, null)
-                    val user = repository.signWithCredential(authCredential)
-                    _firebaseUser.postValue(user)
-                    eventsChannel.send(CustomEvent.Message("sign up success"))
+                email.isEmpty() -> {
+                    eventsChannel.send(CustomEvent.ErrorCode(1))
+                }
+                password.isEmpty() -> {
+                    eventsChannel.send(CustomEvent.ErrorCode(2))
                 }
                 else -> {
-                    eventsChannel.send(CustomEvent.Message("No googleId was provided!"))
+                    signInUserMail(email, password)
                 }
             }
-        } catch (e: ApiException) {
-            eventsChannel.send(CustomEvent.Message(e.localizedMessage!!.toString()))
         }
-    }
 
-    fun signOut() = viewModelScope.launch {
-        try {
-            repository.signOut()
-            getCurrentUser()
-        } catch (e: Exception) {
-            val error = e.toString().split(":").toTypedArray()
-            Log.d(TAG, "signInUser: ${error[1]}")
-            eventsChannel.send(CustomEvent.Error(error[1]))
+    // validate all fields before performing any sign up operations
+    fun validateCredentialsRegister(email: String, password: String, confirmPass: String) =
+        viewModelScope.launch {
+            when {
+                email.isEmpty() -> {
+                    eventsChannel.send(CustomEvent.ErrorCode(1))
+                }
+                password.isEmpty() -> {
+                    eventsChannel.send(CustomEvent.ErrorCode(2))
+                }
+                password != confirmPass -> {
+                    eventsChannel.send(CustomEvent.ErrorCode(3))
+                }
+                else -> {
+                    registerUserMail(email, password)
+                }
+            }
         }
-    }
 
-    fun getCurrentUser() = viewModelScope.launch {
-        val user = repository.getCurrentUserAuth()
-        _firebaseUser.postValue(user)
-    }
+    private fun signInUserMail(email: String, password: String) =
+        viewModelScope.launch {
+            try {
+                val user = repository.signInWithEmailPassword(email, password)
+                user?.let {
+                    _firebaseUser.postValue(it)
+                    eventsChannel.send(CustomEvent.Message("login success"))
+                }
+            } catch (e: Exception) {
+                val error = e.toString().split(":").toTypedArray()
+                Log.d(TAG, "signInUser: ${error[1]}")
+                eventsChannel.send(CustomEvent.Error(error[1]))
+            }
+        }
+
+    private fun registerUserMail(email: String, password: String) =
+        viewModelScope.launch {
+            try {
+                val user = repository.signUpWithEmailPassword(email, password)
+                user?.let {
+                    _firebaseUser.postValue(it)
+                    eventsChannel.send(CustomEvent.Message("sign up success"))
+                }
+            } catch (e: Exception) {
+                val error = e.toString().split(":").toTypedArray()
+                Log.d(TAG, "signInUser: ${error[1]}")
+                eventsChannel.send(CustomEvent.Error(error[1]))
+            }
+        }
+
+    fun configureOneClickClient(activity: FragmentActivity?) =
+        viewModelScope.launch {
+            activity?.let {
+                _oneTapClient = Identity.getSignInClient(it as Activity)
+                _signUpRequest =
+                    BeginSignInRequest.builder()
+                        .setGoogleIdTokenRequestOptions(
+                            BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
+                                .setSupported(true)
+                                .setServerClientId(BuildConfig.GOOGLE_SERVER_ID)
+                                .setFilterByAuthorizedAccounts(false)
+                                .build()
+                        )
+                        .build()
+            }
+        }
+
+    fun signingWithGoogle(data: Intent?) =
+        viewModelScope.launch {
+            try {
+                val signInCredential: SignInCredential =
+                    configuredClient.getSignInCredentialFromIntent(data)
+                when {
+                    signInCredential.googleIdToken != null -> {
+                        val authCredential: AuthCredential =
+                            GoogleAuthProvider.getCredential(signInCredential.googleIdToken, null)
+                        val user = repository.signWithCredential(authCredential)
+                        _firebaseUser.postValue(user)
+                        eventsChannel.send(CustomEvent.Message("sign up success"))
+                    }
+                    else -> {
+                        eventsChannel.send(CustomEvent.Message("No googleId was provided!"))
+                    }
+                }
+            } catch (e: ApiException) {
+                eventsChannel.send(CustomEvent.Message(e.localizedMessage!!.toString()))
+            }
+        }
+
+    fun signOut() =
+        viewModelScope.launch {
+            try {
+                repository.signOut()
+                getCurrentUser()
+            } catch (e: Exception) {
+                val error = e.toString().split(":").toTypedArray()
+                Log.d(TAG, "signInUser: ${error[1]}")
+                eventsChannel.send(CustomEvent.Error(error[1]))
+            }
+        }
+
+    fun getCurrentUser() =
+        viewModelScope.launch {
+            val user = repository.getCurrentUserAuth()
+            _firebaseUser.postValue(user)
+        }
 
     fun verifySendPasswordReset(email: String) {
         if (email.isEmpty()) {
-            viewModelScope.launch {
-                eventsChannel.send(CustomEvent.ErrorCode(1))
-            }
+            viewModelScope.launch { eventsChannel.send(CustomEvent.ErrorCode(1)) }
         } else {
             sendPasswordResetEmail(email)
         }
     }
 
-    private fun sendPasswordResetEmail(email: String) = viewModelScope.launch {
-        try {
-            val result = repository.sendResetPassword(email)
-            if (result) {
-                eventsChannel.send(CustomEvent.Message("reset email sent"))
-            } else {
-                eventsChannel.send(CustomEvent.Error("could not send password reset"))
+    private fun sendPasswordResetEmail(email: String) =
+        viewModelScope.launch {
+            try {
+                val result = repository.sendResetPassword(email)
+                if (result) {
+                    eventsChannel.send(CustomEvent.Message("reset email sent"))
+                } else {
+                    eventsChannel.send(CustomEvent.Error("could not send password reset"))
+                }
+            } catch (e: Exception) {
+                val error = e.toString().split(":").toTypedArray()
+                Log.d(TAG, "signInUser: ${error[1]}")
+                eventsChannel.send(CustomEvent.Error(error[1]))
             }
-        } catch (e: Exception) {
-            val error = e.toString().split(":").toTypedArray()
-            Log.d(TAG, "signInUser: ${error[1]}")
-            eventsChannel.send(CustomEvent.Error(error[1]))
         }
-    }
 }

@@ -26,7 +26,7 @@ class RegisterFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         binding.registerResponseComponent.progressBar.isVisible = false
@@ -51,7 +51,7 @@ class RegisterFragment : Fragment() {
                 registerResponseComponent.errorTxtHelper.isVisible = false
                 viewModel.currentUser.observe(viewLifecycleOwner) { user ->
                     user?.let {
-                        binding?.apply { Toast.makeText(context, "hi $it.email", Toast.LENGTH_LONG).show() }
+                        binding.apply { Toast.makeText(context, "hi $it.email", Toast.LENGTH_LONG).show() }
                     }
                 }
             }
@@ -61,10 +61,7 @@ class RegisterFragment : Fragment() {
     private fun registerObservers() {
         viewModel.currentUser.observe(viewLifecycleOwner) { user ->
             user?.let {
-                val action =
-                    RegisterFragmentDirections.actionRegisterFragmentToUserUpdateFragment(
-                        user.uid
-                    )
+                val action = RegisterFragmentDirections.actionRegisterFragmentToUserUpdateFragment(user.uid)
                 Navigation.findNavController(binding.root).navigate(action)
             }
         }
@@ -75,7 +72,7 @@ class RegisterFragment : Fragment() {
             viewModel.toastEventFlow.collect { event ->
                 when (event) {
                     is CustomEvent.Error -> {
-                        binding?.apply { registerResponseComponent.errorTxtHelper.text = event.error }
+                        binding.apply { registerResponseComponent.errorTxtHelper.text = event.error }
                     }
                     is CustomEvent.Message -> {
                         Toast.makeText(requireContext(), event.message, Toast.LENGTH_SHORT).show()
@@ -83,15 +80,15 @@ class RegisterFragment : Fragment() {
                     is CustomEvent.ErrorCode -> {
                         when (event.code) {
                             1 -> {
-                                binding?.apply { registerTiMailContainer.error = "email should not be empty" }
+                                binding.apply { registerTiMailContainer.error = "email should not be empty" }
                             }
                             2 -> {
-                                binding?.apply {
+                                binding.apply {
                                     registerTiPasswordContainer.error = "password should not be empty"
                                 }
                             }
                             3 -> {
-                                binding?.apply {
+                                binding.apply {
                                     registerTiPasswordContainerConfirm.error = "passwords do not match"
                                 }
                             }

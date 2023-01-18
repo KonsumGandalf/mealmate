@@ -1,117 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:id="@+id/login_fr_layout"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".authentication.ui.fragments.LoginFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_fr_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".authentication.ui.fragments.LoginFragment">
 
-	<androidx.constraintlayout.widget.ConstraintLayout
-		android:id="@+id/login_constraint_layout"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/login_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-		<include
-			android:id="@+id/login_include_design"
-			layout="@layout/layout_container_icon"
-			android:layout_width="0dp"
-			android:layout_height="414dp"
-			android:layout_marginBottom="50dp"
-			app:layout_constraintBottom_toTopOf="@+id/login_ti_mail_container"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintHorizontal_bias="0.0"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent" />
+        <include
+            android:id="@+id/login_include_design"
+            layout="@layout/layout_container_icon"
+            android:layout_width="0dp"
+            android:layout_height="414dp"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/login_ti_mail_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-		<com.google.android.material.textfield.TextInputLayout
-			android:id="@+id/login_ti_mail_container"
-			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="40dp"
-			android:layout_marginEnd="40dp"
-			android:layout_marginBottom="24dp"
-			app:endIconMode="clear_text"
-			app:layout_constraintBottom_toTopOf="@+id/login_ti_password_container"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/login_include_design"
-			app:startIconDrawable="@drawable/ic_twotone_mail_outline_24">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_ti_mail_container"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="24dp"
+            app:endIconMode="clear_text"
+            app:layout_constraintBottom_toTopOf="@+id/login_ti_password_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_include_design"
+            app:startIconDrawable="@drawable/ic_twotone_mail_outline_24">
 
-			<com.google.android.material.textfield.TextInputEditText
-				android:id="@+id/login_ti_mail"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:hint="@string/text_mail" />
-		</com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_ti_mail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/text_mail" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-		<com.google.android.material.textfield.TextInputLayout
-			android:id="@+id/login_ti_password_container"
-			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="40dp"
-			android:layout_marginEnd="40dp"
-			android:layout_marginBottom="24dp"
-			app:layout_constraintBottom_toTopOf="@+id/login_btn_confirm"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/login_ti_mail_container"
-			app:passwordToggleEnabled="true"
-			app:startIconDrawable="@drawable/ic_twotone_vpn_key_24">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_ti_password_container"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/login_btn_confirm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_ti_mail_container"
+            app:passwordToggleEnabled="true"
+            app:startIconDrawable="@drawable/ic_twotone_vpn_key_24">
 
-			<com.google.android.material.textfield.TextInputEditText
-				android:id="@+id/login_ti_password"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:hint="@string/text_password" />
-		</com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_ti_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/text_password" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-		<Button
-			android:id="@+id/login_btn_confirm"
-			android:layout_width="@dimen/btn_lg_width"
-			android:layout_height="@dimen/btn_lg_height"
-			android:layout_marginStart="25dp"
-			android:layout_marginEnd="25dp"
-			android:layout_marginBottom="23dp"
-			android:backgroundTint="@color/purple_200"
-			android:text="@string/login"
-			app:layout_constraintBottom_toTopOf="@+id/login_btn_forgot"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/login_ti_password_container" />
+        <Button
+            android:id="@+id/login_btn_confirm"
+            android:layout_width="@dimen/btn_lg_width"
+            android:layout_height="@dimen/btn_lg_height"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="23dp"
+            android:backgroundTint="@color/purple_200"
+            android:text="@string/login"
+            app:layout_constraintBottom_toTopOf="@+id/login_btn_forgot"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_ti_password_container" />
 
-		<Button
-			android:id="@+id/login_btn_forgot"
-			style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-			android:layout_width="@dimen/btn_lg_width"
-			android:layout_height="@dimen/btn_lg_height"
-			android:layout_marginStart="25dp"
-			android:layout_marginTop="16dp"
-			android:layout_marginEnd="25dp"
-			android:text="@string/forgot_password"
-			android:textColor="@color/purple_200"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/login_btn_confirm" />
+        <Button
+            android:id="@+id/login_btn_forgot"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="@dimen/btn_lg_width"
+            android:layout_height="@dimen/btn_lg_height"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="25dp"
+            android:text="@string/forgot_password"
+            android:textColor="@color/purple_200"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_btn_confirm" />
 
 
+        <include
+            android:id="@+id/login_response_component"
+            layout="@layout/progess_err_component"
+            android:layout_width="0dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="76dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_btn_forgot" />
 
-		<include
-			android:id="@+id/login_response_component"
-			layout="@layout/progess_err_component"
-			android:layout_width="0dp"
-			android:layout_height="37dp"
-			android:layout_marginTop="24dp"
-			android:layout_marginBottom="76dp"
-			android:visibility="visible"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintHorizontal_bias="0.0"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/login_btn_forgot" />
-
-	</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

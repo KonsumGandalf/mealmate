@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<integer name="username_max">10</integer>
-	<integer name="bio_max">250</integer>
-	<integer name="name_max">20</integer>
+    <integer name="username_max">10</integer>
+    <integer name="bio_max">250</integer>
+    <integer name="name_max">20</integer>
 </resources>
