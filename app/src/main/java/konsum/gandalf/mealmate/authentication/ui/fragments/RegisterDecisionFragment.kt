@@ -12,8 +12,8 @@ import konsum.gandalf.mealmate.authentication.ui.constants.FragmentNames
 import konsum.gandalf.mealmate.databinding.FragmentRegisterDecisionBinding
 
 /**
- * An example full-screen fragment that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
+ * An example full-screen fragment that shows and hides the system UI (i.e. status bar and
+ * navigation/system bar) with user interaction.
  */
 @AndroidEntryPoint
 class RegisterDecisionFragment : OneTapFragment() {
@@ -22,12 +22,13 @@ class RegisterDecisionFragment : OneTapFragment() {
 
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
+    private val binding
+        get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentRegisterDecisionBinding.inflate(inflater, container, false)
         fillContent()
@@ -39,9 +40,7 @@ class RegisterDecisionFragment : OneTapFragment() {
 
     private fun registerButtons() {
         with(binding.registerMethod) {
-            decisionFrBtnLeft.setOnClickListener {
-                super.injectOneTap()
-            }
+            decisionFrBtnLeft.setOnClickListener { super.injectOneTap() }
             decisionFrBtnRight.setOnClickListener {
                 Navigation.findNavController(binding.root)
                     .navigate(R.id.action_registerDecisionFragment_to_registerFragment)

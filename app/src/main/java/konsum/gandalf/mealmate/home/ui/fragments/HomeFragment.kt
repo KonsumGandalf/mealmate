@@ -10,7 +10,8 @@ import konsum.gandalf.mealmate.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
 
     private lateinit var _binding: FragmentHomeBinding
-    private val binding get() = _binding
+    private val binding
+        get() = _binding
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<dimen name="constraint_radius">50dp</dimen>
-	<color name="constraint_border_color">#707070</color>
+    <dimen name="constraint_radius">50dp</dimen>
+    <color name="constraint_border_color">#707070</color>
 </resources>

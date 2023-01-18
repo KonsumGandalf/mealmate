@@ -17,12 +17,13 @@ import kotlinx.coroutines.withContext
 import java.util.UUID
 import javax.inject.Inject
 
-class UserRepositoryImpl @Inject constructor(
+class UserRepositoryImpl
+@Inject
+constructor(
     private val authRepo: IAuthRepository,
     private val ioDispatchers: CoroutineDispatcher = Dispatchers.IO,
-    private val userCollection: CollectionReference = FirebaseFirestore.getInstance().collection(
-        FirebaseReferenceEnum.USER
-    )
+    private val userCollection: CollectionReference =
+        FirebaseFirestore.getInstance().collection(FirebaseReferenceEnum.USER)
 ) : IUserRepository {
     private var _currentUser: User? = null
     private val TAG = "UserRepositoryImpl"
@@ -39,11 +40,12 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun updateUser(user: User): User? {
         return withContext(ioDispatchers) {
-            userCollection.document(user.id).set(user, SetOptions.merge()).addOnSuccessListener {
-                _currentUser = user
-            }.addOnFailureListener {
-                Log.d(TAG, it.localizedMessage!!.toString())
-            }.await()
+            userCollection
+                .document(user.id)
+                .set(user, SetOptions.merge())
+                .addOnSuccessListener { _currentUser = user }
+                .addOnFailureListener { Log.d(TAG, it.localizedMessage!!.toString()) }
+                .await()
             getCurrentUser()
         }
     }
@@ -54,19 +56,22 @@ class UserRepositoryImpl @Inject constructor(
             val uniqueId = UUID.randomUUID().toString()
             val randomName = "${authUser?.displayName + "-"}$uniqueId".substring(0, 24)
 
-            val blankUser = User(
-                randomName,
-                authUser?.displayName,
-                authUser!!.uid,
-                authUser.email,
-                MealMateStaticData.ICON_LINK,
-                "",
-                0.0
-            )
-            userCollection.document(authUser.uid).set(blankUser).addOnSuccessListener {
-            }.addOnFailureListener {
-                Log.d(TAG, it.localizedMessage!!.toString())
-            }.await()
+            val blankUser =
+                User(
+                    randomName,
+                    authUser?.displayName,
+                    authUser!!.uid,
+                    authUser.email,
+                    MealMateStaticData.ICON_LINK,
+                    "",
+                    0.0
+                )
+            userCollection
+                .document(authUser.uid)
+                .set(blankUser)
+                .addOnSuccessListener {}
+                .addOnFailureListener { Log.d(TAG, it.localizedMessage!!.toString()) }
+                .await()
             _currentUser = blankUser
             getCurrentUser()
         }
@@ -75,19 +80,23 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun getUser(uid: String): User? {
         return withContext(ioDispatchers) {
             var user: User? = null
-            userCollection.document(uid).get().addOnSuccessListener { document ->
-                _currentUser = document.toObject<User>()
-                user = getCurrentUser()
-            }.addOnFailureListener {
-                Log.d(TAG, it.localizedMessage!!.toString())
-            }.await()
+            userCollection
+                .document(uid)
+                .get()
+                .addOnSuccessListener { document ->
+                    _currentUser = document.toObject<User>()
+                    user = getCurrentUser()
+                }
+                .addOnFailureListener { Log.d(TAG, it.localizedMessage!!.toString()) }
+                .await()
             user
         }
     }
 
     override suspend fun deleteUser(uid: String) {
         withContext(ioDispatchers) {
-            userCollection.document(uid)
+            userCollection
+                .document(uid)
                 .delete()
                 .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
                 .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }

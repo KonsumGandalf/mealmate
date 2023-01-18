@@ -6,9 +6,8 @@ import konsum.gandalf.mealmate.authentication.data.repository.firebase.IAuthenti
 import konsum.gandalf.mealmate.authentication.domain.repository.IAuthRepository
 import javax.inject.Inject
 
-class AuthRepositoryImpl @Inject constructor(
-    private val authenticator: IAuthenticator
-) : IAuthRepository {
+class AuthRepositoryImpl @Inject constructor(private val authenticator: IAuthenticator) :
+    IAuthRepository {
     override suspend fun signInWithEmailPassword(email: String, password: String): FirebaseUser? {
         return authenticator.signInWithEmailPassword(email, password)
     }

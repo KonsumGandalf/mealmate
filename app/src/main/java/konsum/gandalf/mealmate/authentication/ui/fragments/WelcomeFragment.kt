@@ -33,7 +33,8 @@ class WelcomeFragment : Fragment() {
                 Navigation.findNavController(binding.root).navigate(action)
             }
             welcomeBtnRegister.setOnClickListener {
-                Navigation.findNavController(binding.root).navigate(R.id.action_welcomeFragment_to_registerDecisionFragment)
+                Navigation.findNavController(binding.root)
+                    .navigate(R.id.action_welcomeFragment_to_registerDecisionFragment)
             }
         }
         return binding.root

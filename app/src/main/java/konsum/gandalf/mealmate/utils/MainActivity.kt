@@ -1,6 +1,7 @@
 package konsum.gandalf.mealmate.utils
 
 import android.os.Bundle
+import android.view.View
 import android.view.animation.OvershootInterpolator
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +24,9 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import konsum.gandalf.mealmate.R
 import konsum.gandalf.mealmate.databinding.ContentNavHostLoginBinding
@@ -40,15 +44,41 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ContentNavHostLoginBinding.inflate(layoutInflater)
-
         lifecycleScope.launch {
             setContent {
                 Surface(color = Color(R.color.white), modifier = Modifier.fillMaxSize()) { Navigation() }
             }
             delay(1500)
             setContentView(binding.root)
-            // val hostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-            // val navController = hostFragment.findNavController();
+            registerNavigationBar()
+        }
+    }
+
+    private fun registerNavigationBar() {
+        val hostFragment =
+            supportFragmentManager.findFragmentById(R.id.main_activity_fragment_container)
+                as NavHostFragment
+        val navController = hostFragment.findNavController()
+
+        binding.appNavigationBar.setupWithNavController(navController)
+
+        val noNavBarList =
+            listOf(
+                R.id.welcomeFragment,
+                R.id.loginDecisionFragment,
+                R.id.registerDecisionFragment,
+                R.id.loginFragment,
+                R.id.registerFragment,
+                R.id.loginResetFragment,
+                R.id.userUpdateFragment
+            )
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            binding.appNavigationBar.visibility =
+                if (noNavBarList.contains(destination.id)) {
+                    View.GONE
+                } else {
+                    View.VISIBLE
+                }
         }
     }
 
@@ -67,7 +97,9 @@ fun Navigation() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = Screen.Splash.route) {
         composable(Screen.Splash.route) { SplashScreen(navController = navController) }
-        composable(Screen.Welcome.route) { return@composable }
+        composable(Screen.Welcome.route) {
+            return@composable
+        }
     }
 }
 
@@ -80,18 +112,13 @@ fun SplashScreen(navController: NavController) {
             animationSpec =
             tween(
                 durationMillis = 1000,
-                easing = {
-                    OvershootInterpolator(2f).getInterpolation(it)
-                }
+                easing = { OvershootInterpolator(2f).getInterpolation(it) }
             )
         )
         navController.navigate(Screen.Welcome.route)
     }
 
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
-    ) {
+    Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
         Image(
             painter = painterResource(id = R.drawable.splash_panda),
             contentDescription = "Logo",

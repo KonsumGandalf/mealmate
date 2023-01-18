@@ -35,9 +35,7 @@ class LoginDecisionFragment : OneTapFragment() {
 
     private fun registerButtons() {
         with(binding.loginMethod) {
-            decisionFrBtnLeft.setOnClickListener {
-                super.injectOneTap()
-            }
+            decisionFrBtnLeft.setOnClickListener { super.injectOneTap() }
             decisionFrBtnRight.setOnClickListener {
                 Navigation.findNavController(binding.root)
                     .navigate(R.id.action_loginDecisionFragment_to_loginFragment)

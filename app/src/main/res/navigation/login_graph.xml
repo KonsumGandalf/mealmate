@@ -121,4 +121,19 @@
             android:id="@+id/action_userProfileFragment_to_userUpdateFragment"
             app:destination="@id/userUpdateFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/recipeAddFragment"
+        android:name="konsum.gandalf.mealmate.recipe.ui.fragments.RecipeAddFragment"
+        android:label="fragment_recipe_add"
+        tools:layout="@layout/fragment_recipe_add" />
+    <fragment
+        android:id="@+id/recipeSearchFragment"
+        android:name="konsum.gandalf.mealmate.recipe.ui.fragments.RecipeSearchFragment"
+        android:label="fragment_recipe_search"
+        tools:layout="@layout/fragment_recipe_search" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="konsum.gandalf.mealmate.home.ui.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
 </navigation>
