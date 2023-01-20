@@ -15,4 +15,5 @@
     <color name="black_overlay">#66000000</color>
     <color name="black_soft">#353839</color>
     <color name="yellow_soft">#FDF3E6</color>
+    <color name="yellow_highlighted">#f9dcb7</color>
 </resources>
