@@ -20,6 +20,7 @@
                 android:layout_width="471dp"
                 android:layout_height="427dp"
                 android:layout_marginBottom="50dp"
+                android:contentDescription="@string/dummy_content"
                 app:layout_constraintBottom_toTopOf="@+id/recipe_difficulty"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +35,7 @@
                 android:fontFamily="@font/krona_one"
                 android:gravity="center"
                 android:padding="3dp"
-                android:text="Recipe long name placeholder"
+                android:text="@string/text_placeholder_md"
                 app:layout_constraintBottom_toBottomOf="@+id/card_recipe_iv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -45,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
                 android:fontFamily="@font/rokkitt"
-                android:text="Difficulty"
+                android:text="@string/text_difficulty"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recipe_difficulty" />
 
@@ -55,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/rokkitt"
-                android:text="Rating"
+                android:text="@string/text_rating"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.849"
@@ -68,7 +69,7 @@
                 android:layout_marginStart="36dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/rokkitt_bold"
-                android:text="4.8"
+                android:text="@string/text_null"
                 android:textSize="@dimen/text_lg"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/card_recipe_iv" />
@@ -79,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/rokkitt_bold"
-                android:text="2.1"
+                android:text="@string/text_null"
                 android:textSize="@dimen/text_lg"
                 app:layout_constraintBottom_toTopOf="@+id/recipe_rating_label"
                 app:layout_constraintEnd_toEndOf="parent"

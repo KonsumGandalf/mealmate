@@ -6,79 +6,118 @@
     android:layout_height="match_parent"
     tools:context=".recipe.ui.fragments.RecipeSearchFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/recipe_search_container"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/recipe_search_search_bar"
-            style="@style/ThemeOverlay.Material3.Button.TonalButton"
-            android:layout_width="0dp"
-            android:layout_height="57dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="24dp"
-            android:background="@drawable/shape_round_rectangle"
-            android:tooltipText="awdawdawd"
-            app:defaultQueryHint="awdawd"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:queryHint="awdawd"
-            app:searchHintIcon="@drawable/ph_search"
-            app:searchIcon="@drawable/ph_search_black">
-
-        </androidx.appcompat.widget.SearchView>
-
-        <TextView
-            android:id="@+id/recipe_search_categories_label_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="21dp"
-            android:layout_marginBottom="3dp"
-            android:fontFamily="@font/rokkitt_semibold"
-            android:text="Categories"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/recipe_search_categories_rv"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recipe_search_search_bar" />
-
-        <TextView
-            android:id="@+id/recipe_search_random_recipe_label_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/rokkitt_semibold"
-            android:text="Random Recipes"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recipe_search_categories_rv" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recipe_search_categories_rv"
-            android:layout_width="0dp"
-            android:layout_height="250dp"
-            android:layout_marginTop="3dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recipe_search_categories_label_tv"
-            tools:itemCount="8"
-            tools:listitem="@layout/card_category_view" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recipe_search_random_recipe_rv"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/recipe_search_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            app:layout_constraintTop_toBottomOf="@+id/recipe_search_random_recipe_label_tv"
-            tools:itemCount="7"
-            tools:listitem="@layout/card_recipe_view" />
+            android:layout_height="wrap_content">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/recipe_search_search_bar"
+                style="@style/ThemeOverlay.Material3.Button.TonalButton"
+                android:layout_width="0dp"
+                android:layout_height="57dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/shape_round_rectangle"
+                android:tooltipText="awdawdawd"
+                app:defaultQueryHint="awdawd"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:queryHint="awdawd"
+                app:searchHintIcon="@drawable/ph_search"
+                app:searchIcon="@drawable/ph_search_black">
+
+            </androidx.appcompat.widget.SearchView>
+
+            <TextView
+                android:id="@+id/recipe_search_areas_label_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="21dp"
+                android:fontFamily="@font/rokkitt_semibold"
+                android:text="@string/text_area"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recipe_search_search_bar" />
+
+            <TextView
+                android:id="@+id/recipe_search_categories_label_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="21dp"
+                android:fontFamily="@font/rokkitt_semibold"
+                android:text="@string/text_categories"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@+id/recipe_search_categories_rv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recipe_search_area_container" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recipe_search_categories_rv"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recipe_search_categories_label_tv"
+                tools:itemCount="8"
+                tools:listitem="@layout/card_category_view" />
+
+            <TextView
+                android:id="@+id/recipe_search_random_recipe_label_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/rokkitt_semibold"
+                android:text="@string/text_random_recipe"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recipe_search_categories_rv" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recipe_search_random_recipe_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recipe_search_random_recipe_label_tv"
+                tools:listitem="@layout/card_recipe_view" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recipe_search_area_container"
+                android:layout_width="407dp"
+                android:layout_height="335dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginBottom="1dp"
+
+                app:layout_constraintBottom_toTopOf="@+id/recipe_search_categories_label_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recipe_search_areas_label_tv"
+                tools:listitem="@layout/chip_area_view" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </FrameLayout>

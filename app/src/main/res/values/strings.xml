@@ -204,4 +204,11 @@
     <string name="menu_search">Search</string>
     <string name="description_category_iv">an image of an category</string>
     <string name="text_category">Category Name</string>
+    <string name="text_null">N/A</string>
+    <string name="text_area">Pick Areas</string>
+    <string name="text_categories">Pick Category</string>
+    <string name="text_random_recipe">Random Recipes</string>
+    <string name="text_placeholder_md">Recipe long name placeholder</string>
+    <string name="text_rating">Rating</string>
+    <string name="text_difficulty">Difficulty</string>
 </resources>

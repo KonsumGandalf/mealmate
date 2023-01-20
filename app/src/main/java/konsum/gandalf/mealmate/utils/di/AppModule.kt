@@ -8,6 +8,9 @@ import konsum.gandalf.mealmate.authentication.data.repository.AuthRepositoryImpl
 import konsum.gandalf.mealmate.authentication.data.repository.firebase.FirebaseAuthenticator
 import konsum.gandalf.mealmate.authentication.data.repository.firebase.IAuthenticator
 import konsum.gandalf.mealmate.authentication.domain.repository.IAuthRepository
+import konsum.gandalf.mealmate.recipe.data.api.MealDBApi
+import konsum.gandalf.mealmate.recipe.data.repository.RecipeRepositoryImpl
+import konsum.gandalf.mealmate.recipe.domain.repository.IRecipeRepository
 import konsum.gandalf.mealmate.user.data.repository.UserRepositoryImpl
 import konsum.gandalf.mealmate.user.domain.repository.IUserRepository
 import konsum.gandalf.mealmate.utils.repository.IImageRepository
@@ -47,5 +50,11 @@ object AppModule {
     @Provides
     fun provideUserRepository(authRepo: IAuthRepository): IUserRepository {
         return UserRepositoryImpl(authRepo)
+    }
+
+    @Singleton
+    @Provides
+    fun provideRecipeRepository(dbApi: MealDBApi): IRecipeRepository {
+        return RecipeRepositoryImpl(dbApi)
     }
 }
