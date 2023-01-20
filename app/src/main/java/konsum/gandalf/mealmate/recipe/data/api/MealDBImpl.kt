@@ -3,8 +3,6 @@ package konsum.gandalf.mealmate.recipe.data.api
 import konsum.gandalf.mealmate.recipe.data.api.models.AreaResponse
 import konsum.gandalf.mealmate.recipe.data.api.models.CategoryResponse
 import konsum.gandalf.mealmate.recipe.data.api.models.RecipeResponse
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import retrofit2.Call
 import javax.inject.Inject
 
