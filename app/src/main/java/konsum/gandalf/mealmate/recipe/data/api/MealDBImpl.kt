@@ -9,7 +9,7 @@ import retrofit2.Call
 import javax.inject.Inject
 
 class MealDBImpl @Inject constructor(
-    private val mealDBApi: MealDBApi,
+    private val mealDBApi: MealDBApi
 ) : MealDBApi {
 
     override fun getCategories(): Call<Map<String, List<CategoryResponse>>> {
