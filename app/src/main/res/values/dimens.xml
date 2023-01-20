@@ -25,5 +25,5 @@
     <dimen name="profile_user_text_field">95dp</dimen>
     <dimen name="nav_bar_height">80dp</dimen>
     <dimen name="card_width_md">280dp</dimen>
-    <dimen name="text_lg">24dp</dimen>
+    <dimen name="text_lg">24sp</dimen>
 </resources>
