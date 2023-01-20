@@ -5,57 +5,90 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import konsum.gandalf.mealmate.R
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
+import dagger.hilt.android.AndroidEntryPoint
+import konsum.gandalf.mealmate.databinding.FragmentRecipeSearchBinding
+import konsum.gandalf.mealmate.recipe.ui.adapter.AreaAdapter
+import konsum.gandalf.mealmate.recipe.ui.adapter.CategoryAdapter
+import konsum.gandalf.mealmate.recipe.ui.adapter.RecipeAdapter
+import konsum.gandalf.mealmate.recipe.ui.viewmodels.RecipeViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass. Use the [RecipeSearchFragment.newInstance] factory method to create
- * an instance of this fragment.
- */
+@AndroidEntryPoint
 class RecipeSearchFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentRecipeSearchBinding
+
+    private val recipeViewModel by viewModels<RecipeViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        recipeViewModel.getCategories()
+        recipeViewModel.getRandomRecipes()
+        recipeViewModel.getAreas()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recipe_search, container, false)
+        binding = FragmentRecipeSearchBinding.inflate(inflater, container, false)
+
+        registerAreas()
+        registerCategories()
+        registerRandomRecipes()
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of this fragment using the provided
-         * parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment RecipeSearchFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RecipeSearchFragment().apply {
-                arguments =
-                    Bundle().apply {
-                        putString(ARG_PARAM1, param1)
-                        putString(ARG_PARAM2, param2)
-                    }
+    private fun registerAreas() {
+        recipeViewModel.currentAreas.observe(viewLifecycleOwner) { areas ->
+            areas?.let {
+                val layoutManager = FlexboxLayoutManager(context)
+                layoutManager.flexDirection = FlexDirection.ROW
+                layoutManager.justifyContent = JustifyContent.CENTER
+                binding.recipeSearchAreaContainer.layoutManager = layoutManager
+                binding.recipeSearchAreaContainer.adapter = AreaAdapter(
+                    it,
+                    recipeViewModel.currentSelectedAreas
+                )
             }
+        }
+    }
+
+    private fun registerCategories() {
+        recipeViewModel.currentCategories.observe(viewLifecycleOwner) { categories ->
+            categories?.let {
+                binding.recipeSearchCategoriesRv.layoutManager =
+                    LinearLayoutManager(
+                        context,
+                        LinearLayoutManager.HORIZONTAL,
+                        false
+                    )
+                binding.recipeSearchCategoriesRv.adapter = CategoryAdapter(
+                    requireContext(),
+                    it,
+                    recipeViewModel.currentSelectedCategories
+                )
+            }
+        }
+    }
+
+    private fun registerRandomRecipes() {
+        recipeViewModel.currentRandomRecipes.observe(viewLifecycleOwner) { recipes ->
+            recipes?.let {
+                binding.recipeSearchRandomRecipeRv.layoutManager =
+                    LinearLayoutManager(
+                        context,
+                        LinearLayoutManager.HORIZONTAL,
+                        false
+                    )
+                binding.recipeSearchRandomRecipeRv.adapter = RecipeAdapter(it)
+            }
+        }
     }
 }

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
-import konsum.gandalf.mealmate.databinding.BtnAreaViewBinding
+import konsum.gandalf.mealmate.databinding.ChipAreaViewBinding
 import konsum.gandalf.mealmate.recipe.data.api.models.AreaResponse
 
 class AreaAdapter(
@@ -12,11 +12,11 @@ class AreaAdapter(
     private var selectedData: MutableLiveData<MutableList<AreaResponse>>
 ) : RecyclerView.Adapter<AreaAdapter.ButtonAdapterHolder>() {
 
-    inner class ButtonAdapterHolder(val binding: BtnAreaViewBinding) :
+    inner class ButtonAdapterHolder(val binding: ChipAreaViewBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ButtonAdapterHolder {
-        val binding = BtnAreaViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ChipAreaViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ButtonAdapterHolder(binding)
     }
 
