@@ -8,12 +8,11 @@ import konsum.gandalf.mealmate.recipe.data.api.models.AreaResponse
 import konsum.gandalf.mealmate.recipe.data.api.models.CategoryResponse
 import konsum.gandalf.mealmate.recipe.domain.models.Recipe
 import konsum.gandalf.mealmate.recipe.domain.repository.IRecipeRepository
-import konsum.gandalf.mealmate.user.domain.repository.IUserRepository
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RecipeViewModel
+class RecipeSearchViewModel
 @Inject
 constructor(
     private val recipeRepository: IRecipeRepository
