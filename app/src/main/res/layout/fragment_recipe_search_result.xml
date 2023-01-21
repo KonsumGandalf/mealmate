@@ -8,5 +8,5 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/card_recipe_view" />
+        tools:listitem="@layout/card_recipe_overview" />
 </FrameLayout>
