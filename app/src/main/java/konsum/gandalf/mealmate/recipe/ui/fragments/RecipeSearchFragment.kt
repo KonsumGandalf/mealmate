@@ -7,21 +7,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.flexbox.FlexDirection
-import com.google.android.flexbox.FlexboxLayoutManager
-import com.google.android.flexbox.JustifyContent
 import dagger.hilt.android.AndroidEntryPoint
 import konsum.gandalf.mealmate.databinding.FragmentRecipeSearchBinding
 import konsum.gandalf.mealmate.recipe.ui.adapter.AreaAdapter
 import konsum.gandalf.mealmate.recipe.ui.adapter.CategoryAdapter
 import konsum.gandalf.mealmate.recipe.ui.adapter.RecipeAdapter
-import konsum.gandalf.mealmate.recipe.ui.viewmodels.RecipeViewModel
+import konsum.gandalf.mealmate.recipe.ui.viewmodels.RecipeSearchViewModel
+import konsum.gandalf.mealmate.utils.ui.ChipsGridBuilder
 
 @AndroidEntryPoint
 class RecipeSearchFragment : Fragment() {
     private lateinit var binding: FragmentRecipeSearchBinding
 
-    private val recipeViewModel by viewModels<RecipeViewModel>()
+    private val recipeViewModel by viewModels<RecipeSearchViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,10 +46,7 @@ class RecipeSearchFragment : Fragment() {
     private fun registerAreas() {
         recipeViewModel.currentAreas.observe(viewLifecycleOwner) { areas ->
             areas?.let {
-                val layoutManager = FlexboxLayoutManager(context)
-                layoutManager.flexDirection = FlexDirection.ROW
-                layoutManager.justifyContent = JustifyContent.CENTER
-                binding.recipeSearchAreaContainer.layoutManager = layoutManager
+                binding.recipeSearchAreaContainer.layoutManager = ChipsGridBuilder.buildLayout(requireContext())
                 binding.recipeSearchAreaContainer.adapter = AreaAdapter(
                     it,
                     recipeViewModel.currentSelectedAreas

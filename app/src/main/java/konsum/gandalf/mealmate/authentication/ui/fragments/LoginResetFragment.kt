@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class LoginResetFragment : Fragment() {
     private val authViewModel: AuthViewModel by activityViewModels()
-    val navArgs: LoginResetFragmentArgs by navArgs()
+    private val navArgs: LoginResetFragmentArgs by navArgs()
     private lateinit var _binding: FragmentLoginResetBinding
     val binding
         get() = _binding

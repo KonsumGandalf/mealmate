@@ -8,7 +8,6 @@ data class Ingredient(
     val name: String = "",
     @SerializedName("measure")
     val measure: String = "",
-    @SerializedName("imageUrl")
-    val imageUrl: String = "",
+    val imageUrl: String = "https://www.themealdb.com/images/ingredients/${name.replace(" ","%20")}.png",
     val uniqueId: String = ""
 ) : FirebaseEntity(id = uniqueId)

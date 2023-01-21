@@ -2,8 +2,10 @@ package konsum.gandalf.mealmate.recipe.domain.models
 
 import com.google.gson.annotations.SerializedName
 import konsum.gandalf.mealmate.utils.models.FirebaseEntity
+import kotlinx.parcelize.Parcelize
 import java.util.UUID
 
+@Parcelize
 data class Recipe(
     val recipeId: String = UUID.randomUUID().toString(),
     @SerializedName("title")

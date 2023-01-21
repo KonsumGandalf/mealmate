@@ -130,10 +130,23 @@
         android:id="@+id/recipeSearchFragment"
         android:name="konsum.gandalf.mealmate.recipe.ui.fragments.RecipeSearchFragment"
         android:label="fragment_recipe_search"
-        tools:layout="@layout/fragment_recipe_search" />
+        tools:layout="@layout/fragment_recipe_search" >
+        <action
+            android:id="@+id/action_recipeSearchFragment_to_recipeDetailFragment2"
+            app:destination="@id/recipeDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="konsum.gandalf.mealmate.home.ui.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/recipeDetailFragment"
+        android:name="konsum.gandalf.mealmate.recipe.ui.fragments.RecipeDetailFragment"
+        android:label="fragment_recipe_detail"
+        tools:layout="@layout/fragment_recipe_detail" >
+        <argument
+            android:name="argRecipe"
+            app:argType="konsum.gandalf.mealmate.recipe.domain.models.Recipe" />
+    </fragment>
 </navigation>

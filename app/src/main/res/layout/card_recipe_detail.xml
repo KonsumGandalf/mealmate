@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="355dp"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/yellow_soft"
+    app:cardCornerRadius="30dp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/recipe_detail"
+        android:layout_width="match_parent"
+        android:layout_height="190dp">
+
+        <TextView
+            android:id="@+id/recipe_detail_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/rokkitt_semibold"
+            android:gravity="center"
+            android:text="@string/text_placeholder_md"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.533"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/recipe_detail_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/rokkitt_semibold"
+            android:gravity="center"
+            android:text="@string/text_null"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toStartOf="@+id/recipe_detail_owner"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/recipe_detail_title"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_detail_title" />
+
+        <TextView
+            android:id="@+id/recipe_detail_difficulty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/rokkitt_semibold"
+            android:gravity="center"
+            android:text="@string/text_null"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="@+id/recipe_detail_title"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/recipe_detail_owner"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_detail_title" />
+
+        <TextView
+            android:id="@+id/recipe_detail_owner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/rokkitt"
+            android:text="@string/placeholder"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/recipe_detail_title"
+            app:layout_constraintStart_toStartOf="@+id/recipe_detail_title"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_detail_title" />
+
+        <TextView
+            android:id="@+id/recipe_detail_difficulty_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/rokkitt"
+            app:layout_constraintEnd_toEndOf="@+id/recipe_detail_difficulty"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/recipe_detail_difficulty"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_detail_difficulty"
+            tools:text="@string/text_difficulty" />
+
+        <TextView
+            android:id="@+id/recipe_detail_rating_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/rokkitt"
+            app:layout_constraintEnd_toEndOf="@+id/recipe_detail_rating"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/recipe_detail_rating"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_detail_rating"
+            tools:text="@string/text_rating" />
+
+        <include
+            android:id="@+id/recipe_detail_interaction"
+            layout="@layout/card_interaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:padding="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/recipe_detail_difficulty_label"
+            app:layout_constraintStart_toEndOf="@+id/recipe_detail_rating_label"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_detail_owner" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

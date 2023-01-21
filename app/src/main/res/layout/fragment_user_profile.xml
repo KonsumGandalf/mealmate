@@ -216,7 +216,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/user_profile_recipes_tv"
             app:layout_constraintTop_toBottomOf="@+id/user_profile_recipes_tv"
-            tools:listitem="@layout/card_recipe_view" />
+            tools:listitem="@layout/card_recipe_overview" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
