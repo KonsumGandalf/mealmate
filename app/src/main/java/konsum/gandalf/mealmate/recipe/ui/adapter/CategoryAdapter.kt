@@ -7,11 +7,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.view.isVisible
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import konsum.gandalf.mealmate.R
-import konsum.gandalf.mealmate.databinding.CardCategoryViewBinding
+import konsum.gandalf.mealmate.databinding.CardCategoryOverviewBinding
 import konsum.gandalf.mealmate.recipe.data.api.models.CategoryResponse
 
 class CategoryAdapter(
@@ -26,11 +27,11 @@ class CategoryAdapter(
         context.getColor(R.color.red_200)
     )*/
 
-    inner class CategoryAdapterHolder(val binding: CardCategoryViewBinding) :
+    inner class CategoryAdapterHolder(val binding: CardCategoryOverviewBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryAdapterHolder {
-        val binding = CardCategoryViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = CardCategoryOverviewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CategoryAdapterHolder(binding)
     }
 
@@ -38,7 +39,16 @@ class CategoryAdapter(
         with(holder) {
             with(categorys[position]) {
                 binding.categoryName.text = name
-                Picasso.get().load(imageUrl).into(binding.categoryIv)
+                Picasso.get().load(imageUrl).into(
+                    binding.categoryIv,
+                    object : com.squareup.picasso.Callback {
+                        override fun onSuccess() {
+                            binding.categoryProgess.isVisible = false
+                        }
+                        override fun onError(e: java.lang.Exception?) {
+                        }
+                    }
+                )
 
                 if (selectedData.value?.contains(this) == false) {
                     unhighlight(binding.categoryCard, binding.categoryName)
