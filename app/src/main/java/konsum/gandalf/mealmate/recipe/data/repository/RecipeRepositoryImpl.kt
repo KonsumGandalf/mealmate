@@ -36,6 +36,19 @@ constructor(
         return randomRecipeList
     }
 
+    override suspend fun filterRecipes(
+        recipeName: String,
+        filterAreas: List<AreaResponse>,
+        filterCategories: List<CategoryResponse>
+    ): List<Recipe> {
+        val response = mealDb.filterRecipes(recipeName).await()
+        val filteredResponseList = response["meals"] as List<RecipeResponse>
+        filteredResponseList.filter { recipe -> filterAreas.any { it.name == recipe.area } }
+        filteredResponseList.filter { recipe -> filterCategories.any { it.name == recipe.category } }
+        return filteredResponseList.map { recipeResponseToRecipe(it) }.toList()
+    }
+
+
     private fun recipeResponseToRecipe(response: RecipeResponse): Recipe {
         var splitList: List<String> = listOf()
         try {
@@ -105,4 +118,5 @@ constructor(
             list
         }
     }
+
 }

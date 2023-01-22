@@ -21,4 +21,8 @@ class MealDBImpl @Inject constructor(
     override fun getAreas(): Call<Map<String, List<AreaResponse>>> {
         return mealDBApi.getAreas()
     }
+
+    override fun filterRecipes(recipeName: String): Call<Map<String, List<RecipeResponse>>> {
+        return mealDBApi.filterRecipes(recipeName);
+    }
 }

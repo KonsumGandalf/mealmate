@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import konsum.gandalf.mealmate.R
 import konsum.gandalf.mealmate.databinding.FragmentRecipeSearchBinding
 import konsum.gandalf.mealmate.recipe.ui.adapter.AreaAdapter
 import konsum.gandalf.mealmate.recipe.ui.adapter.CategoryAdapter
 import konsum.gandalf.mealmate.recipe.ui.adapter.RecipeAdapter
+import konsum.gandalf.mealmate.recipe.ui.viewmodels.RecipeSearchResultViewModel
 import konsum.gandalf.mealmate.recipe.ui.viewmodels.RecipeSearchViewModel
 import konsum.gandalf.mealmate.utils.ui.ChipsGridBuilder
 
@@ -20,6 +23,7 @@ class RecipeSearchFragment : Fragment() {
     private lateinit var binding: FragmentRecipeSearchBinding
 
     private val recipeViewModel by viewModels<RecipeSearchViewModel>()
+    private val recipeResultViewModel by viewModels<RecipeSearchResultViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +43,7 @@ class RecipeSearchFragment : Fragment() {
         registerAreas()
         registerCategories()
         registerRandomRecipes()
+        registerSearchView()
 
         return binding.root
     }
@@ -46,11 +51,10 @@ class RecipeSearchFragment : Fragment() {
     private fun registerAreas() {
         recipeViewModel.currentAreas.observe(viewLifecycleOwner) { areas ->
             areas?.let {
-                binding.recipeSearchAreaContainer.layoutManager = ChipsGridBuilder.buildLayout(requireContext())
-                binding.recipeSearchAreaContainer.adapter = AreaAdapter(
-                    it,
-                    recipeViewModel.currentSelectedAreas
-                )
+                binding.recipeSearchAreaContainer.layoutManager =
+                    ChipsGridBuilder.buildLayout(requireContext())
+                binding.recipeSearchAreaContainer.adapter =
+                    AreaAdapter(it, recipeViewModel.currentSelectedAreas)
             }
         }
     }
@@ -59,16 +63,9 @@ class RecipeSearchFragment : Fragment() {
         recipeViewModel.currentCategories.observe(viewLifecycleOwner) { categories ->
             categories?.let {
                 binding.recipeSearchCategoriesRv.layoutManager =
-                    LinearLayoutManager(
-                        context,
-                        LinearLayoutManager.HORIZONTAL,
-                        false
-                    )
-                binding.recipeSearchCategoriesRv.adapter = CategoryAdapter(
-                    requireContext(),
-                    it,
-                    recipeViewModel.currentSelectedCategories
-                )
+                    LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                binding.recipeSearchCategoriesRv.adapter =
+                    CategoryAdapter(requireContext(), it, recipeViewModel.currentSelectedCategories)
             }
         }
     }
@@ -77,13 +74,21 @@ class RecipeSearchFragment : Fragment() {
         recipeViewModel.currentRandomRecipes.observe(viewLifecycleOwner) { recipes ->
             recipes?.let {
                 binding.recipeSearchRandomRecipeRv.layoutManager =
-                    LinearLayoutManager(
-                        context,
-                        LinearLayoutManager.HORIZONTAL,
-                        false
-                    )
+                    LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 binding.recipeSearchRandomRecipeRv.adapter = RecipeAdapter(it)
             }
         }
+    }
+
+    private fun registerSearchView() {
+        binding.recipeSearchSearchView
+            .editText
+            .setOnEditorActionListener { v, actionId, event ->
+                binding.recipeSearchSearchBar.setText(binding.recipeSearchSearchView.text)
+                binding.recipeSearchSearchView.hide()
+                false
+            }
+
+
     }
 }

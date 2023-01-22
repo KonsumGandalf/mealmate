@@ -15,25 +15,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/recipe_search_search_bar"
-                style="@style/ThemeOverlay.Material3.Button.TonalButton"
-                android:layout_width="0dp"
-                android:layout_height="57dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="24dp"
-                android:background="@drawable/shape_round_rectangle"
-                android:tooltipText="awdawdawd"
-                app:defaultQueryHint="awdawd"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:queryHint="awdawd"
-                app:searchHintIcon="@drawable/ph_search"
-                app:searchIcon="@drawable/ph_search_black">
-
-            </androidx.appcompat.widget.SearchView>
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:id="@+id/recipe_search_search_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/recipe_search_search_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+                    <com.google.android.material.search.SearchBar
+                        android:id="@+id/recipe_search_search_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="awdawd" />
+                </com.google.android.material.appbar.AppBarLayout>
+                <com.google.android.material.search.SearchView
+                    android:id="@+id/recipe_search_search_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="element"
+                    app:layout_anchor="@id/recipe_search_search_bar">
+                    <!-- Search suggestions/results go here (ScrollView, RecyclerView, etc.). -->
+                </com.google.android.material.search.SearchView>
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
             <TextView
                 android:id="@+id/recipe_search_areas_label_tv"
@@ -46,7 +53,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recipe_search_search_bar" />
+                app:layout_constraintTop_toBottomOf="@+id/recipe_search_search_container" />
 
             <TextView
                 android:id="@+id/recipe_search_categories_label_tv"

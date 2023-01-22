@@ -134,6 +134,9 @@
         <action
             android:id="@+id/action_recipeSearchFragment_to_recipeDetailFragment2"
             app:destination="@id/recipeDetailFragment" />
+        <action
+            android:id="@+id/action_recipeSearchFragment_to_recipeSearchResultFragment"
+            app:destination="@id/recipeSearchResultFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -148,5 +151,20 @@
         <argument
             android:name="argRecipe"
             app:argType="konsum.gandalf.mealmate.recipe.domain.models.Recipe" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeSearchResultFragment"
+        android:name="konsum.gandalf.mealmate.recipe.ui.fragments.RecipeSearchResultFragment"
+        android:label="fragment_recipe_search_result"
+        tools:layout="@layout/fragment_recipe_search_result" >
+        <argument
+            android:name="recipeName"
+            app:argType="string" />
+        <argument
+            android:name="areaArray"
+            app:argType="konsum.gandalf.mealmate.recipe.data.api.models.AreaResponse[]" />
+        <argument
+            android:name="categoryArray"
+            app:argType="konsum.gandalf.mealmate.recipe.data.api.models.CategoryResponse[]" />
     </fragment>
 </navigation>

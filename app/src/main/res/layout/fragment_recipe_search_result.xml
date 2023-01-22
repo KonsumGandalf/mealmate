@@ -6,6 +6,7 @@
     tools:context=".recipe.ui.fragments.RecipeSearchResultFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recipe_search_result_container_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/card_recipe_overview" />
