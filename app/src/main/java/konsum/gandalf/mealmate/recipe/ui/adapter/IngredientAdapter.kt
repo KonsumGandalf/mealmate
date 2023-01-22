@@ -25,7 +25,7 @@ class IngredientAdapter(
         with(holder.binding) {
             categorys[position].apply {
                 Picasso.get().load(imageUrl).into(
-                    recipeDetailIv,
+                    recipePreviewIv,
                     object : com.squareup.picasso.Callback {
                         override fun onSuccess() {
                             cardIngredientProgress.isVisible = false

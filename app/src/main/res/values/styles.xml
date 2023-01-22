@@ -8,4 +8,8 @@
             ?android:attr/buttonBarStyle
         </item>
     </style>
+
+    <style name="ThemeOverlay.App.MaterialDivider" parent="">
+        <item name="colorOutline">@color/red_200</item>
+    </style>
 </resources>

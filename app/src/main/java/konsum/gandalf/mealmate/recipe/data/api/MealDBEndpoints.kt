@@ -5,4 +5,5 @@ object MealDBEndpoints {
     const val CATEGORIES = "categories.php"
     const val RANDOM_RECIPE = "random.php"
     const val AREAS = "list.php?a=list"
+    const val SEARCH = "search.php"
 }

@@ -24,7 +24,7 @@
         <item name="exitAnim">@anim/to_left</item>
         <item name="popEnterAnim">@anim/from_left</item>
         <item name="popExitAnim">@anim/to_right</item>
-
+        <item name="materialDividerStyle">@style/Widget.App.MaterialDivider</item>
     </style>
 
     <style name="ThemeOverlay.MealMate.FullscreenContainer" parent="">
@@ -34,5 +34,9 @@
         <item name="fullscreenTextColor">
             @color/light_blue_A200
         </item>
+    </style>
+
+    <style name="Widget.App.MaterialDivider" parent="Widget.Material3.MaterialDivider">
+        <item name="dividerColor">@color/purple_200</item>
     </style>
 </resources>

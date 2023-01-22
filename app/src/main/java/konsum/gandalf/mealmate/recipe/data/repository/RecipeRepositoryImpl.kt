@@ -36,6 +36,22 @@ constructor(
         return randomRecipeList
     }
 
+    override suspend fun filterRecipes(
+        recipeName: String,
+        filterAreas: List<AreaResponse>,
+        filterCategories: List<CategoryResponse>
+    ): List<Recipe> {
+        val response = mealDb.filterRecipes(recipeName).await()
+        var filteredResponseList = response["meals"] as List<RecipeResponse>
+        if (filterAreas.isNotEmpty()) {
+            filteredResponseList = filteredResponseList.filter { recipe -> filterAreas.any { it.name == recipe.area } }
+        }
+        if (filterCategories.isNotEmpty()) {
+            filteredResponseList = filteredResponseList.filter { recipe -> filterCategories.any { it.name == recipe.category } }
+        }
+        return filteredResponseList.map { recipeResponseToRecipe(it) }.toList()
+    }
+
     private fun recipeResponseToRecipe(response: RecipeResponse): Recipe {
         var splitList: List<String> = listOf()
         try {

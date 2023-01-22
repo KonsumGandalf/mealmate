@@ -214,4 +214,5 @@
     <string name="text_difficulty">Difficulty</string>
     <string name="text_ingredients">Ingredients</string>
     <string name="text_instructions">Instructions</string>
+    <string name="text_search_recipes">Search Recipes</string>
 </resources>

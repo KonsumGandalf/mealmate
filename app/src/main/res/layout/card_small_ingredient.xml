@@ -25,7 +25,7 @@
             app:layout_constraintVertical_bias="1.0" />
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/recipe_detail_iv"
+            android:id="@+id/recipe_preview_iv"
             android:layout_width="130dp"
             android:layout_height="130dp"
 
@@ -45,8 +45,8 @@
             android:maxLines="2"
             android:text="@string/placeholder"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="@+id/recipe_detail_iv"
-            app:layout_constraintStart_toStartOf="@+id/recipe_detail_iv"
+            app:layout_constraintEnd_toEndOf="@+id/recipe_preview_iv"
+            app:layout_constraintStart_toStartOf="@+id/recipe_preview_iv"
             app:layout_constraintTop_toBottomOf="@+id/card_ingredient_progress" />
 
         <TextView
