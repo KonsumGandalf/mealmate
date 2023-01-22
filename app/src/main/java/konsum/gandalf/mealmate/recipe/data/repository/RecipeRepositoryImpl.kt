@@ -42,12 +42,15 @@ constructor(
         filterCategories: List<CategoryResponse>
     ): List<Recipe> {
         val response = mealDb.filterRecipes(recipeName).await()
-        val filteredResponseList = response["meals"] as List<RecipeResponse>
-        filteredResponseList.filter { recipe -> filterAreas.any { it.name == recipe.area } }
-        filteredResponseList.filter { recipe -> filterCategories.any { it.name == recipe.category } }
+        var filteredResponseList = response["meals"] as List<RecipeResponse>
+        if (filterAreas.isNotEmpty()) {
+            filteredResponseList = filteredResponseList.filter { recipe -> filterAreas.any { it.name == recipe.area } }
+        }
+        if (filterCategories.isNotEmpty()) {
+            filteredResponseList = filteredResponseList.filter { recipe -> filterCategories.any { it.name == recipe.category } }
+        }
         return filteredResponseList.map { recipeResponseToRecipe(it) }.toList()
     }
-
 
     private fun recipeResponseToRecipe(response: RecipeResponse): Recipe {
         var splitList: List<String> = listOf()
@@ -118,5 +121,4 @@ constructor(
             list
         }
     }
-
 }

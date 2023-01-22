@@ -28,13 +28,11 @@ constructor(
         selectedCategories: List<CategoryResponse>
     ) =
         viewModelScope.launch {
-            if (_filteredRecipes.value == null) {
-                val recipes = recipeRepository.filterRecipes(
-                    recipeName,
-                    selectedAreas,
-                    selectedCategories
-                )
-                _filteredRecipes.postValue(recipes)
-            }
+            val recipes = recipeRepository.filterRecipes(
+                recipeName,
+                selectedAreas,
+                selectedCategories
+            )
+            _filteredRecipes.postValue(recipes)
         }
 }
