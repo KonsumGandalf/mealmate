@@ -103,7 +103,6 @@ class RecipeSearchFragment : Fragment() {
             }
 
         binding.recipeSearchSearchBar.setOnMenuItemClickListener { menuItem ->
-
             true
         }
     }

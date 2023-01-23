@@ -1,29 +1,34 @@
 package konsum.gandalf.mealmate.recipe.data.repository
 
 import konsum.gandalf.mealmate.recipe.data.api.MealDBApi
-import konsum.gandalf.mealmate.recipe.data.api.models.AreaResponse
-import konsum.gandalf.mealmate.recipe.data.api.models.CategoryResponse
 import konsum.gandalf.mealmate.recipe.data.api.models.RecipeResponse
+import konsum.gandalf.mealmate.recipe.data.firebaseRecipe.IFirebaseRecipeRepository
+import konsum.gandalf.mealmate.recipe.domain.models.Area
+import konsum.gandalf.mealmate.recipe.domain.models.Category
 import konsum.gandalf.mealmate.recipe.domain.models.Ingredient
 import konsum.gandalf.mealmate.recipe.domain.models.Recipe
 import konsum.gandalf.mealmate.recipe.domain.repository.IRecipeRepository
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import retrofit2.await
 import javax.inject.Inject
 
 class RecipeRepositoryImpl
 @Inject
 constructor(
-    private val mealDb: MealDBApi
+    private val mealDb: MealDBApi,
+    private val firebaseDb: IFirebaseRecipeRepository
 ) : IRecipeRepository {
 
-    override suspend fun getCategories(): List<CategoryResponse> {
+    override suspend fun getCategories(): List<Category> {
         val response = mealDb.getCategories().await()
-        return response["categories"] as List<CategoryResponse>
+        return response["categories"] as List<Category>
     }
 
-    override suspend fun getAreas(): List<AreaResponse> {
+    override suspend fun getAreas(): List<Area> {
         val response = mealDb.getAreas().await()
-        return response["meals"] as List<AreaResponse>
+        return response["meals"] as List<Area>
     }
 
     override suspend fun getRandomRecipes(): List<Recipe> {
@@ -38,18 +43,42 @@ constructor(
 
     override suspend fun filterRecipes(
         recipeName: String,
-        filterAreas: List<AreaResponse>,
-        filterCategories: List<CategoryResponse>
-    ): List<Recipe> {
-        val response = mealDb.filterRecipes(recipeName).await()
-        var filteredResponseList = response["meals"] as List<RecipeResponse>
-        if (filterAreas.isNotEmpty()) {
-            filteredResponseList = filteredResponseList.filter { recipe -> filterAreas.any { it.name == recipe.area } }
-        }
-        if (filterCategories.isNotEmpty()) {
-            filteredResponseList = filteredResponseList.filter { recipe -> filterCategories.any { it.name == recipe.category } }
-        }
-        return filteredResponseList.map { recipeResponseToRecipe(it) }.toList()
+        filterAreas: List<Area>,
+        filterCategories: List<Category>
+    ): List<Recipe> = coroutineScope {
+        lateinit var apiList: List<Recipe>
+        lateinit var firebaseList: List<Recipe>
+        awaitAll(
+            async {
+                val apiResponse: Map<String, List<RecipeResponse>> = mealDb.filterRecipes(recipeName).await()
+                var filteredApiResponseList = apiResponse["meals"] as List<RecipeResponse>
+                if (filterAreas.isNotEmpty()) {
+                    filteredApiResponseList = filteredApiResponseList.filter { recipe -> filterAreas.any { it.name == recipe.area } }
+                }
+                if (filterCategories.isNotEmpty()) {
+                    filteredApiResponseList = filteredApiResponseList.filter { recipe -> filterCategories.any { it.name == recipe.category } }
+                }
+                apiList = filteredApiResponseList.map { recipeResponseToRecipe(it) }.toList()
+            },
+            async {
+                firebaseList = firebaseDb.getRecipeByFilter(recipeName)
+                if (filterAreas.isNotEmpty()) {
+                    firebaseList = firebaseList.filter { recipe -> filterAreas.any { it.name == recipe.area } }
+                }
+                if (filterCategories.isNotEmpty()) {
+                    firebaseList = firebaseList.filter { recipe -> filterCategories.any { it.name == recipe.category } }
+                }
+            }
+        )
+        apiList.plus(firebaseList)
+    }
+
+    override suspend fun updateRecipe(recipe: Recipe): Recipe {
+        return firebaseDb.createRecipe(recipe)
+    }
+
+    override suspend fun createRecipe(recipe: Recipe): Recipe {
+        return firebaseDb.createRecipe(recipe)
     }
 
     private fun recipeResponseToRecipe(response: RecipeResponse): Recipe {

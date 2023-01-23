@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import konsum.gandalf.mealmate.databinding.ChipAreaBinding
-import konsum.gandalf.mealmate.recipe.data.api.models.AreaResponse
+import konsum.gandalf.mealmate.recipe.domain.models.Area
 
 class AreaAdapter(
-    private var categorys: List<AreaResponse> = ArrayList<AreaResponse>(),
-    private var selectedData: MutableLiveData<MutableList<AreaResponse>>
+    private var categorys: List<Area> = ArrayList<Area>(),
+    private var selectedData: MutableLiveData<MutableList<Area>>
 ) : RecyclerView.Adapter<AreaAdapter.ButtonAdapterHolder>() {
 
     inner class ButtonAdapterHolder(val binding: ChipAreaBinding) :

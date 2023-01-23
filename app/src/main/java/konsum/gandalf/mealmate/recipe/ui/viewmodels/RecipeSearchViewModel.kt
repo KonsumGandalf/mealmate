@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import konsum.gandalf.mealmate.recipe.data.api.models.AreaResponse
-import konsum.gandalf.mealmate.recipe.data.api.models.CategoryResponse
+import konsum.gandalf.mealmate.recipe.domain.models.Area
+import konsum.gandalf.mealmate.recipe.domain.models.Category
 import konsum.gandalf.mealmate.recipe.domain.models.Recipe
 import konsum.gandalf.mealmate.recipe.domain.repository.IRecipeRepository
 import kotlinx.coroutines.launch
@@ -18,19 +18,19 @@ constructor(
     private val recipeRepository: IRecipeRepository
 ) : ViewModel() {
 
-    private val _areas = MutableLiveData<List<AreaResponse>?>()
+    private val _areas = MutableLiveData<List<Area>?>()
     val currentAreas
         get() = _areas
 
-    private val _selectedAreas = MutableLiveData<MutableList<AreaResponse>>()
+    private val _selectedAreas = MutableLiveData<MutableList<Area>>()
     val currentSelectedAreas
         get() = _selectedAreas
 
-    private val _categories = MutableLiveData<List<CategoryResponse>?>()
+    private val _categories = MutableLiveData<List<Category>?>()
     val currentCategories
         get() = _categories
 
-    private val _selectedCategories = MutableLiveData<MutableList<CategoryResponse>>()
+    private val _selectedCategories = MutableLiveData<MutableList<Category>>()
     val currentSelectedCategories
         get() = _selectedCategories
 
@@ -39,8 +39,8 @@ constructor(
         get() = _recipes
 
     init {
-        _selectedAreas.postValue(mutableListOf<AreaResponse>())
-        _selectedCategories.postValue(mutableListOf<CategoryResponse>())
+        _selectedAreas.postValue(mutableListOf<Area>())
+        _selectedCategories.postValue(mutableListOf<Category>())
         /**
          * The following could lead to performance improvements
          * this.getCategories()
