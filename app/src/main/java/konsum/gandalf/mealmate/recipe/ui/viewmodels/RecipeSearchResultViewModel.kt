@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import konsum.gandalf.mealmate.recipe.data.api.models.AreaResponse
-import konsum.gandalf.mealmate.recipe.data.api.models.CategoryResponse
+import konsum.gandalf.mealmate.recipe.domain.models.Area
+import konsum.gandalf.mealmate.recipe.domain.models.Category
 import konsum.gandalf.mealmate.recipe.domain.models.Recipe
 import konsum.gandalf.mealmate.recipe.domain.repository.IRecipeRepository
 import kotlinx.coroutines.launch
@@ -24,8 +24,8 @@ constructor(
 
     fun getFilteredRecipes(
         recipeName: String,
-        selectedAreas: List<AreaResponse>,
-        selectedCategories: List<CategoryResponse>
+        selectedAreas: List<Area>,
+        selectedCategories: List<Category>
     ) =
         viewModelScope.launch {
             val recipes = recipeRepository.filterRecipes(

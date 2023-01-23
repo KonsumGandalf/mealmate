@@ -13,12 +13,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import konsum.gandalf.mealmate.R
 import konsum.gandalf.mealmate.databinding.CardCategoryOverviewBinding
-import konsum.gandalf.mealmate.recipe.data.api.models.CategoryResponse
+import konsum.gandalf.mealmate.recipe.domain.models.Category
 
 class CategoryAdapter(
     private val context: Context,
-    private var categorys: List<CategoryResponse> = ArrayList<CategoryResponse>(),
-    private var selectedData: MutableLiveData<MutableList<CategoryResponse>>
+    private var categorys: List<Category> = ArrayList<Category>(),
+    private var selectedData: MutableLiveData<MutableList<Category>>
 ) : RecyclerView.Adapter<CategoryAdapter.CategoryAdapterHolder>() {
     /*private val colorArray: List<Int> = listOf(
         context.getColor(R.color.blue_200),

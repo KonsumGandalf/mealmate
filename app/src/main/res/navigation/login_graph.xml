@@ -123,9 +123,18 @@
     </fragment>
     <fragment
         android:id="@+id/recipeAddFragment"
-        android:name="konsum.gandalf.mealmate.recipe.ui.fragments.RecipeAddFragment"
+        android:name="konsum.gandalf.mealmate.recipe.ui.fragments.RecipeEditFragment"
         android:label="fragment_recipe_add"
-        tools:layout="@layout/fragment_recipe_add" />
+        tools:layout="@layout/fragment_recipe_edit" >
+        <argument
+            android:name="recipe"
+            app:argType="konsum.gandalf.mealmate.recipe.domain.models.Recipe"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_recipeAddFragment_to_recipeSearchFragment"
+            app:destination="@id/recipeSearchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/recipeSearchFragment"
         android:name="konsum.gandalf.mealmate.recipe.ui.fragments.RecipeSearchFragment"
@@ -134,9 +143,6 @@
         <action
             android:id="@+id/action_recipeSearchFragment_to_recipeDetailFragment2"
             app:destination="@id/recipeDetailFragment" />
-        <action
-            android:id="@+id/action_recipeSearchFragment_to_recipeSearchResultFragment"
-            app:destination="@id/recipeSearchResultFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -151,20 +157,6 @@
         <argument
             android:name="argRecipe"
             app:argType="konsum.gandalf.mealmate.recipe.domain.models.Recipe" />
-    </fragment>
-    <fragment
-        android:id="@+id/recipeSearchResultFragment"
-        android:name="konsum.gandalf.mealmate.recipe.ui.fragments.RecipeSearchResultFragment"
-        android:label="fragment_recipe_search_result"
-        tools:layout="@layout/fragment_recipe_search_result" >
-        <argument
-            android:name="recipeName"
-            app:argType="string" />
-        <argument
-            android:name="areaArray"
-            app:argType="konsum.gandalf.mealmate.recipe.data.api.models.AreaResponse[]" />
-        <argument
-            android:name="categoryArray"
-            app:argType="konsum.gandalf.mealmate.recipe.data.api.models.CategoryResponse[]" />
+
     </fragment>
 </navigation>
