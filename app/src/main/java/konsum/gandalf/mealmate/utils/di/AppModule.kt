@@ -9,6 +9,8 @@ import konsum.gandalf.mealmate.authentication.data.repository.firebase.FirebaseA
 import konsum.gandalf.mealmate.authentication.data.repository.firebase.IAuthenticator
 import konsum.gandalf.mealmate.authentication.domain.repository.IAuthRepository
 import konsum.gandalf.mealmate.recipe.data.api.MealDBApi
+import konsum.gandalf.mealmate.recipe.data.firebaseRecipe.FirebaseRecipeRepositoryImpl
+import konsum.gandalf.mealmate.recipe.data.firebaseRecipe.IFirebaseRecipeRepository
 import konsum.gandalf.mealmate.recipe.data.repository.RecipeRepositoryImpl
 import konsum.gandalf.mealmate.recipe.domain.repository.IRecipeRepository
 import konsum.gandalf.mealmate.user.data.repository.UserRepositoryImpl
@@ -38,6 +40,12 @@ object AppModule {
         return ImageRepositoryImpl()
     }
 
+    @Singleton
+    @Provides
+    fun provideFirebaseRecipeRepo(): IFirebaseRecipeRepository {
+        return FirebaseRecipeRepositoryImpl()
+    }
+
     // this just takes the same idea as the authenticator. If we create another repository class
     // we can simply just swap here
     @Singleton
@@ -54,7 +62,9 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideRecipeRepository(dbApi: MealDBApi): IRecipeRepository {
-        return RecipeRepositoryImpl(dbApi)
+    fun provideRecipeRepository(dbApi: MealDBApi, firebaseDb: IFirebaseRecipeRepository): IRecipeRepository {
+        return RecipeRepositoryImpl(dbApi, firebaseDb)
     }
+
+
 }

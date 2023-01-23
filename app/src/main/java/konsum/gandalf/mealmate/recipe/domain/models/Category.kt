@@ -1,11 +1,11 @@
-package konsum.gandalf.mealmate.recipe.data.api.models
+package konsum.gandalf.mealmate.recipe.domain.models
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class CategoryResponse(
+data class Category(
     @SerializedName("idCategory")
     val id: Int,
     @SerializedName("strCategory")

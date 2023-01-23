@@ -8,7 +8,7 @@ import java.util.*
 
 @Parcelize
 open class FirebaseEntity(
-    @PropertyName("id") open val id: String? = UUID.randomUUID().toString(),
+    @PropertyName("id") open var id: String = UUID.randomUUID().toString(),
     @PropertyName("createdAt")
     val createdAt: String =
         SimpleDateFormat.getDateTimeInstance().format(Calendar.getInstance().time)

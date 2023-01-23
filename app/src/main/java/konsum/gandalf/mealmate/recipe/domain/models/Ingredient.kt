@@ -5,9 +5,15 @@ import konsum.gandalf.mealmate.utils.models.FirebaseEntity
 
 data class Ingredient(
     @SerializedName("name")
-    val name: String = "",
+    var name: String = "",
     @SerializedName("measure")
-    val measure: String = "",
-    val imageUrl: String = "https://www.themealdb.com/images/ingredients/${name.replace(" ","%20")}.png",
+    var measure: String = "",
+    var imageUrl: String = getImageUrl(name),
     val uniqueId: String = ""
-) : FirebaseEntity(id = uniqueId)
+) : FirebaseEntity(id = uniqueId) {
+    companion object{
+        fun getImageUrl(name: String): String {
+            return "https://www.themealdb.com/images/ingredients/${name.replace(" ","%20")}.png"
+        }
+    }
+}
