@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -79,17 +78,16 @@ class UserUpdateFragment : Fragment() {
     private fun registerActivityForResult() {
         activityResultLauncher =
             registerForActivityResult(
-                ActivityResultContracts.StartActivityForResult(),
-                ActivityResultCallback { result ->
-                    if (result.data != null && result.resultCode == AppCompatActivity.RESULT_OK) {
-                        lifecycleScope.launch {
-                            _imageUri = result.data!!.data!!
+                ActivityResultContracts.StartActivityForResult()
+            ) { result ->
+                if (result.data != null && result.resultCode == AppCompatActivity.RESULT_OK) {
+                    lifecycleScope.launch {
+                        _imageUri = result.data!!.data!!
 
-                            Picasso.get().load(imageUri).into(binding.userUpdateIv)
-                        }
+                        Picasso.get().load(imageUri).into(binding.userUpdateIv)
                     }
                 }
-            )
+            }
     }
 
     private fun createLaunchIntent() {

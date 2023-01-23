@@ -205,7 +205,7 @@
     <string name="description_category_iv">an image of an category</string>
     <string name="text_category">Category</string>
     <string name="text_null">N/A</string>
-    <string name="text_area">Areas</string>
+    <string name="text_area">Area</string>
     <string name="text_area_pick">Pick Area</string>
     <string name="text_categories_pick">Pick Category</string>
     <string name="text_random_recipe">Random Recipes</string>
@@ -215,4 +215,5 @@
     <string name="text_ingredients">Ingredients</string>
     <string name="text_instructions">Instructions</string>
     <string name="text_search_recipes">Search Recipes</string>
+    <string name="text_recipes_title">Recipes Title</string>
 </resources>
