@@ -12,19 +12,21 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import konsum.gandalf.mealmate.R
 import konsum.gandalf.mealmate.authentication.ui.fragments.AuthViewModel
 import konsum.gandalf.mealmate.databinding.FragmentUserProfileBinding
-import konsum.gandalf.mealmate.user.ui.viewmodels.UserViewModel
+import konsum.gandalf.mealmate.user.ui.adapter.RecipeUserAdapter
+import konsum.gandalf.mealmate.user.ui.viewmodels.UserProfileViewModel
 
 @AndroidEntryPoint
 class UserProfileFragment : Fragment() {
     private var _binding: FragmentUserProfileBinding? = null
     private val binding
         get() = _binding!!
-    private val userViewModel by viewModels<UserViewModel>()
+    private val userViewModel by viewModels<UserProfileViewModel>()
     private val authViewModel by viewModels<AuthViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,10 +34,12 @@ class UserProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentUserProfileBinding.inflate(inflater, container, false)
-        // registerSwiping();
+
         registerChange()
         registerFirebaseAccount()
-        registerObserver()
+        registerUser()
+        registerUserRecipes()
+        userViewModel.getRecipes()
 
         return binding.root
     }
@@ -54,7 +58,7 @@ class UserProfileFragment : Fragment() {
         }
     }
 
-    private fun registerObserver() {
+    private fun registerUser() {
         userViewModel.currentUser.observe(viewLifecycleOwner) { it ->
             it?.let { user ->
                 binding.apply {
@@ -71,6 +75,16 @@ class UserProfileFragment : Fragment() {
                         Navigation.findNavController(binding.root).navigate(action)
                     }
                 }
+            }
+        }
+    }
+
+    private fun registerUserRecipes() {
+        userViewModel.userRecipes.observe(viewLifecycleOwner) { recipes ->
+            recipes?.let {
+                binding.userProfileRecipesRv.layoutManager =
+                    LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                binding.userProfileRecipesRv.adapter = RecipeUserAdapter(it)
             }
         }
     }
