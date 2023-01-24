@@ -11,13 +11,10 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class FirebaseRecipeRepositoryImpl
-constructor(
+class FirebaseRecipeRepositoryImpl(
     private val ioDispatchers: CoroutineDispatcher = Dispatchers.IO,
     private val recipeCollection: CollectionReference =
-        FirebaseFirestore.getInstance().collection(FirebaseReferenceEnum.RECIPE),
-    private val postCollection: CollectionReference =
-        FirebaseFirestore.getInstance().collection(FirebaseReferenceEnum.POST)
+        FirebaseFirestore.getInstance().collection(FirebaseReferenceEnum.RECIPE)
 ) : IFirebaseRecipeRepository {
     private val TAG = "FirebaseRecipeRepositoryImpl"
 
@@ -68,8 +65,11 @@ constructor(
             recipeCollection
                 .document(id)
                 .delete()
-                .addOnSuccessListener {}
-                .addOnFailureListener { Log.d(TAG, it.localizedMessage!!.toString()) }
+                .addOnSuccessListener {
+                }
+                .addOnFailureListener {
+                    Log.d(TAG, it.localizedMessage!!.toString())
+                }
                 .await()
         }
 
@@ -97,5 +97,29 @@ constructor(
                     Log.d(TAG, it.localizedMessage!!.toString())
                 }.await()
             filteredList
+        }
+
+    override suspend fun getUserRecipes(
+        userId: String
+    ): List<Recipe> =
+        withContext(ioDispatchers) {
+            val filteredList = ArrayList<Recipe>()
+            recipeCollection
+                .get()
+                .addOnSuccessListener { query ->
+                    if (!query.isEmpty) {
+                        query.documents.all { document ->
+                            val recipe = document.toObject<Recipe>()
+                            if (recipe != null) {
+                                filteredList.add(recipe)
+                            }
+                            true
+                        }
+                    }
+                }
+                .addOnFailureListener {
+                    Log.d(TAG, it.localizedMessage!!.toString())
+                }.await()
+            filteredList.filter { it.owner?.uid == userId }
         }
 }

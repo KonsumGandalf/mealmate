@@ -11,4 +11,6 @@ interface IRecipeRepository {
     suspend fun filterRecipes(recipeName: String, filterAreas: List<Area>, filterCategories: List<Category>): List<Recipe>
     suspend fun updateRecipe(recipe: Recipe): Recipe
     suspend fun createRecipe(recipe: Recipe): Recipe
+    suspend fun deleteRecipe(recipeId: String)
+    suspend fun getUserRecipes(userId: String): List<Recipe>
 }
