@@ -136,25 +136,14 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/user_update_btn_cancel"
-            style="@style/Widget.Material3.Button.TonalButton"
-            android:layout_width="@dimen/btn_width_sm"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/btn_margin_lg"
-            android:text="@string/text_cancel"
-            app:layout_constraintEnd_toStartOf="@+id/user_update_btn_confirm"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/user_update_description_container" />
-
-        <com.google.android.material.button.MaterialButton
             android:id="@+id/user_update_btn_confirm"
             style="@style/Widget.Material3.Button.TonalButton"
-            android:layout_width="@dimen/btn_width_sm"
-            android:layout_height="wrap_content"
+            android:layout_width="222dp"
+            android:layout_height="43dp"
             android:layout_marginTop="@dimen/btn_margin_lg"
             android:text="@string/text_confirm"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/user_update_btn_cancel"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_update_description_container" />
 
         <include
@@ -164,7 +153,7 @@
             android:layout_height="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/user_update_btn_cancel" />
+            app:layout_constraintTop_toBottomOf="@+id/user_update_btn_confirm" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
