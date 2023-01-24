@@ -80,56 +80,83 @@ constructor(
     val currentIngredients
         get() = _ingredients
 
-    fun validateCredentialInput(imageUri: Uri?, title: String, area: String, category: String, ingredients: List<Ingredient>, instructions: String, recipeId: String?) = viewModelScope.launch {
-        when {
-            (imageUri == null) -> {
-                eventsChannel.send(CustomEvent.Error("No Images was set!"))
-            }
-            title.isEmpty() -> {
-                eventsChannel.send(CustomEvent.ErrorCode(1))
-            }
-            area.isEmpty() -> {
-                eventsChannel.send(CustomEvent.ErrorCode(2))
-            }
-            category.isEmpty() -> {
-                eventsChannel.send(CustomEvent.ErrorCode(3))
-            }
-            instructions.isEmpty() -> {
-                eventsChannel.send(CustomEvent.ErrorCode(4))
-            }
-            else -> {
-                editUser(imageUri, title, area, category, instructions, ingredients, recipeId)
+    fun validateCredentialInput(
+        imageUri: Uri?,
+        title: String,
+        area: String,
+        category: String,
+        ingredients: List<Ingredient>,
+        instructions: String,
+        isCreateMode: Boolean
+    ) =
+        viewModelScope.launch {
+            when {
+                (imageUri == null && recipe.value?.imageUrl!!.isBlank()) -> {
+                    eventsChannel.send(CustomEvent.Error("No Images was set!"))
+                }
+                title.isEmpty() -> {
+                    eventsChannel.send(CustomEvent.ErrorCode(1))
+                }
+                area.isEmpty() -> {
+                    eventsChannel.send(CustomEvent.ErrorCode(2))
+                }
+                category.isEmpty() -> {
+                    eventsChannel.send(CustomEvent.ErrorCode(3))
+                }
+                instructions.isEmpty() -> {
+                    eventsChannel.send(CustomEvent.ErrorCode(4))
+                }
+                else -> {
+                    editUser(imageUri, title, area, category, instructions, ingredients, isCreateMode)
+                }
             }
         }
-    }
 
-    private fun editUser(uri: Uri?, title: String, area: String, category: String, instructions: String, ingredients: List<Ingredient>, recipeId: String?) = viewModelScope.launch {
-        val localUser = userRepo.getCurrentUser()
-        localUser?.let { _ -> // TODO if user becomes to owner
-            _recipe.value?.let { recipe ->
-                withContext(Dispatchers.IO) {
-                    uri?.let {
-                        val urlOfUploadedImage = imageRepo.uploadImg(recipe.id, it)
-                        if (urlOfUploadedImage != null) {
-                            recipe.imageUrl = urlOfUploadedImage
+    private fun editUser(
+        uri: Uri?,
+        title: String,
+        area: String,
+        category: String,
+        instructions: String,
+        ingredients: List<Ingredient>,
+        isCreateMode: Boolean
+    ) =
+        viewModelScope.launch {
+            val localUser = userRepo.getCurrentUser()
+            localUser?.let { _ -> // TODO if user becomes to owner
+                _recipe.value?.let { recipe ->
+                    withContext(Dispatchers.IO) {
+                        uri?.let {
+                            val urlOfUploadedImage = imageRepo.uploadImg(recipe.id, it)
+                            if (urlOfUploadedImage != null) {
+                                recipe.imageUrl = urlOfUploadedImage
+                            }
                         }
-                    }
 
-                    recipe.title = title.trim()
-                    recipe.area = area.trim()
-                    recipe.category = category.trim()
-                    recipe.ingredients = ingredients
-                    recipe.instructions = instructions
+                        recipe.title = title.trim()
+                        recipe.area = area.trim()
+                        recipe.category = category.trim()
+                        recipe.ingredients = ingredients
+                        recipe.instructions = instructions
+                        recipe.owner = localUser
 
-                    if (recipeId != null) {
-                        recipeRepo.updateRecipe(recipe)
-                        eventsChannel.send(CustomEvent.Message("Updated successfully"))
-                    } else {
-                        recipeRepo.createRecipe(recipe)
-                        eventsChannel.send(CustomEvent.Message("Created successfully"))
+                        if (isCreateMode) {
+                            recipeRepo.createRecipe(recipe)
+                            eventsChannel.send(CustomEvent.Message("Created successfully"))
+                        } else {
+                            recipeRepo.updateRecipe(recipe)
+                            eventsChannel.send(CustomEvent.Message("Updated successfully"))
+                        }
                     }
                 }
             }
         }
-    }
+
+    fun deleteRecipe(recipeId: String) =
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                recipeRepo.deleteRecipe(recipeId)
+                eventsChannel.send(CustomEvent.Message("Recipe was deleted"))
+            }
+        }
 }
