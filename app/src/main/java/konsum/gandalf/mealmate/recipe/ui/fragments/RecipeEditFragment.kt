@@ -10,9 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -59,14 +59,13 @@ class RecipeEditFragment : Fragment() {
         registerActivityForResult()
         initButtons()
         listenToChannels()
+
         return binding.root
     }
 
     private fun fillContent() {
-        if (navArgs.recipe == null) {
-            viewModel.getCategories()
-            viewModel.getAreas()
-        }
+        viewModel.getCategories()
+        viewModel.getAreas()
         viewModel.getOrCreateRecipe(navArgs.recipe)
 
         registerAreas()
@@ -74,6 +73,7 @@ class RecipeEditFragment : Fragment() {
         registerIngredients()
         registerRecipe()
         binding.recipeEditProgress.progressBar.isVisible = false
+        // you can just delete a recipe if you have already created it
     }
 
     private fun initButtons() {
@@ -88,18 +88,42 @@ class RecipeEditFragment : Fragment() {
                     binding.recipeAddCategory.text.toString(),
                     ingredientAdapter.getIngredients(),
                     binding.recipeAddInstructions.text.toString(),
-                    navArgs.recipe?.recipeId
+                    navArgs.createMode
                 )
             }
-            recipeAddDelete.setOnClickListener {}
+            if (!navArgs.createMode) {
+                recipeAddDelete.setOnClickListener {
+                    navArgs.recipe?.let { recipe ->
+                        val alertDialog = AlertDialog.Builder(requireContext())
+                        alertDialog
+                            .setTitle("Delete Recipe")
+                            .setMessage(
+                                "You are about to delete this recipe, do you want to proceed? This change is permanent and cannot be revised"
+                            )
+                            .setIcon(R.drawable.ph_trash)
+                            .setCancelable(false)
+                            .setNegativeButton("No") { dialogInterface, _ -> dialogInterface.cancel() }
+                            .setPositiveButton("Yes") { _, _ -> viewModel.deleteRecipe(recipe.id) }
+
+                        alertDialog.create().show()
+                    }
+                }
+            } else {
+                recipeAddDelete.setOnClickListener {
+                    Toast.makeText(
+                        requireContext(),
+                        "Recipe has not been created yet, hence the recipe can not be deleted",
+                        Toast.LENGTH_SHORT
+                    )
+                        .show()
+                }
+            }
         }
     }
 
     private fun registerActivityForResult() {
         activityResultLauncher =
-            registerForActivityResult(
-                ActivityResultContracts.StartActivityForResult()
-            ) { result ->
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.data != null && result.resultCode == AppCompatActivity.RESULT_OK) {
                     lifecycleScope.launch {
                         _imageUri = result.data!!.data!!
@@ -212,7 +236,7 @@ class RecipeEditFragment : Fragment() {
                     is CustomEvent.Message -> {
                         Toast.makeText(requireContext(), event.message, Toast.LENGTH_SHORT).show()
                         Navigation.findNavController(binding.root)
-                            .navigate(R.id.action_recipeAddFragment_to_recipeSearchFragment)
+                            .navigate(R.id.action_recipeAddFragment_to_userProfileFragment)
                     }
                     is CustomEvent.Error -> {
                         Toast.makeText(requireContext(), event.error, Toast.LENGTH_SHORT).show()

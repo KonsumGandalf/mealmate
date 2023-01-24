@@ -1,7 +1,7 @@
 package konsum.gandalf.mealmate.recipe.domain.models
 
 import com.google.gson.annotations.SerializedName
-import konsum.gandalf.mealmate.recipe.domain.models.FilterFirebaseNamespace
+import konsum.gandalf.mealmate.user.domain.models.User
 import konsum.gandalf.mealmate.utils.models.FirebaseEntity
 import kotlinx.parcelize.Parcelize
 import java.util.UUID
@@ -23,6 +23,8 @@ data class Recipe(
     val tags: List<String> = ArrayList<String>(),
     @SerializedName("ingredients")
     var ingredients: List<Ingredient> = ArrayList<Ingredient>(),
+    @SerializedName(FilterFirebaseNamespace.OWNER)
+    var owner: User? = null,
     /**
      * Not provided by the MealDB
      *
@@ -34,7 +36,6 @@ data class Recipe(
      val cookTime: Int = 0
      */
 ) : FirebaseEntity(id = recipeId)
-
 
 /*val servingSize: Int? = 0,
 val ingredients: ArrayList<Ingredient> = ArrayList<Ingredient>(),

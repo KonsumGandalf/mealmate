@@ -4,4 +4,5 @@ object FilterFirebaseNamespace {
     const val TITLE = "title"
     const val AREA = "area"
     const val CATEGORY = "category"
+    const val OWNER = "owner"
 }

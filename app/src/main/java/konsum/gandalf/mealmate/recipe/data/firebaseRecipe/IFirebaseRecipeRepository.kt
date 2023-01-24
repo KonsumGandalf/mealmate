@@ -8,4 +8,5 @@ interface IFirebaseRecipeRepository {
     suspend fun updateRecipe(recipe: Recipe): Recipe
     suspend fun deleteRecipe(id: String)
     suspend fun getRecipeByFilter(name: String): List<Recipe>
+    suspend fun getUserRecipes(userId: String): List<Recipe>
 }

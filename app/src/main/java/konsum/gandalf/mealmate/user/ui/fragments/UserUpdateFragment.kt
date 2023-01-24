@@ -23,7 +23,6 @@ import androidx.navigation.fragment.navArgs
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import konsum.gandalf.mealmate.R
-import konsum.gandalf.mealmate.authentication.ui.fragments.AuthViewModel
 import konsum.gandalf.mealmate.databinding.FragmentUserUpdateBinding
 import konsum.gandalf.mealmate.user.ui.viewmodels.UserViewModel
 import konsum.gandalf.mealmate.utils.events.CustomEvent
@@ -37,7 +36,6 @@ class UserUpdateFragment : Fragment() {
         get() = _binding!!
 
     private val userViewModel: UserViewModel by activityViewModels()
-    private val authViewModel: AuthViewModel by activityViewModels()
     private val navArgs: UserUpdateFragmentArgs by navArgs()
 
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
@@ -134,12 +132,6 @@ class UserUpdateFragment : Fragment() {
                     binding.userUpdateNameTi.text.toString(),
                     binding.userUpdateDescriptionTi.text.toString()
                 )
-            }
-            this.userUpdateBtnCancel.setOnClickListener {
-                authViewModel.signOut()
-                userViewModel.signOut()
-                Navigation.findNavController(binding.root)
-                    .navigate(R.id.action_userUpdateFragment_to_welcomeFragment)
             }
         }
     }

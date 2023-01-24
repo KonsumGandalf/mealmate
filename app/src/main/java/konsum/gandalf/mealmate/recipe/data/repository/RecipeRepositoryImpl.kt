@@ -8,6 +8,7 @@ import konsum.gandalf.mealmate.recipe.domain.models.Category
 import konsum.gandalf.mealmate.recipe.domain.models.Ingredient
 import konsum.gandalf.mealmate.recipe.domain.models.Recipe
 import konsum.gandalf.mealmate.recipe.domain.repository.IRecipeRepository
+import konsum.gandalf.mealmate.user.domain.models.User
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
@@ -46,19 +47,24 @@ constructor(
         filterAreas: List<Area>,
         filterCategories: List<Category>
     ): List<Recipe> = coroutineScope {
-        lateinit var apiList: List<Recipe>
-        lateinit var firebaseList: List<Recipe>
+        var apiList: List<Recipe> = ArrayList<Recipe>()
+        var firebaseList: List<Recipe> = ArrayList<Recipe>()
         awaitAll(
             async {
                 val apiResponse: Map<String, List<RecipeResponse>> = mealDb.filterRecipes(recipeName).await()
-                var filteredApiResponseList = apiResponse["meals"] as List<RecipeResponse>
-                if (filterAreas.isNotEmpty()) {
-                    filteredApiResponseList = filteredApiResponseList.filter { recipe -> filterAreas.any { it.name == recipe.area } }
+                if (apiResponse.containsKey("meals")) {
+                    try {
+                        var filteredApiResponseList = apiResponse["meals"] as List<RecipeResponse>
+                        if (filterAreas.isNotEmpty()) {
+                            filteredApiResponseList = filteredApiResponseList.filter { recipe -> filterAreas.any { it.name == recipe.area } }
+                        }
+                        if (filterCategories.isNotEmpty()) {
+                            filteredApiResponseList = filteredApiResponseList.filter { recipe -> filterCategories.any { it.name == recipe.category } }
+                        }
+                        apiList = filteredApiResponseList.map { recipeResponseToRecipe(it) }.toList()
+                    } catch (_: java.lang.Exception) {
+                    }
                 }
-                if (filterCategories.isNotEmpty()) {
-                    filteredApiResponseList = filteredApiResponseList.filter { recipe -> filterCategories.any { it.name == recipe.category } }
-                }
-                apiList = filteredApiResponseList.map { recipeResponseToRecipe(it) }.toList()
             },
             async {
                 firebaseList = firebaseDb.getRecipeByFilter(recipeName)
@@ -74,11 +80,23 @@ constructor(
     }
 
     override suspend fun updateRecipe(recipe: Recipe): Recipe {
-        return firebaseDb.createRecipe(recipe)
+        return firebaseDb.updateRecipe(recipe)
     }
 
     override suspend fun createRecipe(recipe: Recipe): Recipe {
         return firebaseDb.createRecipe(recipe)
+    }
+
+    override suspend fun deleteRecipe(recipeId: String) {
+        firebaseDb.deleteRecipe(recipeId)
+    }
+
+    override suspend fun getUserRecipes(userId: String): List<Recipe> {
+        return if (userId == mealDbUser.uid) {
+            filterRecipes("", ArrayList<Area>(), ArrayList<Category>())
+        } else {
+            firebaseDb.getUserRecipes(userId)
+        }
     }
 
     private fun recipeResponseToRecipe(response: RecipeResponse): Recipe {
@@ -95,7 +113,8 @@ constructor(
             instructions = response.instructions,
             imageUrl = response.imageUrl,
             tags = splitList,
-            ingredients = ingredientResponseToIngredients(response)
+            ingredients = ingredientResponseToIngredients(response),
+            owner = mealDbUser
         )
     }
 
@@ -149,5 +168,14 @@ constructor(
             }
             list
         }
+    }
+
+    companion object {
+        val mealDbUser = User(
+            "Themealdb",
+            "TheMealDB",
+            "TheMealDB-1234567",
+            imageUrl = "https://www.themealdb.com/images/meal-icon.png"
+        )
     }
 }
