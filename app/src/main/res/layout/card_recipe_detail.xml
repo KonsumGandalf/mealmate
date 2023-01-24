@@ -11,12 +11,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/recipe_detail"
         android:layout_width="match_parent"
-        android:layout_height="190dp">
+        android:layout_height="200dp">
 
         <TextView
             android:id="@+id/recipe_detail_title"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
@@ -96,7 +96,7 @@
             layout="@layout/card_interaction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="72dp"
             android:padding="10dp"
             app:layout_constraintEnd_toStartOf="@+id/recipe_detail_difficulty_label"
             app:layout_constraintStart_toEndOf="@+id/recipe_detail_rating_label"
