@@ -69,41 +69,41 @@ class RecipeSearchFragment : Fragment() {
     }
 
     private fun registerRandomRecipes() {
-        recipeViewModel.currentRandomRecipes.observe(viewLifecycleOwner) { recipes ->
-            recipes?.let {
+        recipeViewModel.randomRecipesEvaluations.observe(viewLifecycleOwner) { evaluations ->
+            evaluations?.let { evals ->
                 binding.recipeSearchRandomRecipeRv.layoutManager =
                     LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                binding.recipeSearchRandomRecipeRv.adapter = RecipeAdapter(it)
+                recipeViewModel.currentRandomRecipes.value?.let { recipes ->
+                    binding.recipeSearchRandomRecipeRv.adapter = RecipeAdapter(recipes, evals)
+                }
             }
         }
     }
 
     private fun registerResultRv() {
-        recipeResultViewModel.currentFilteredRecipes.observe(viewLifecycleOwner) { filteredRecipes ->
-            filteredRecipes?.let {
+        recipeResultViewModel.filteredRecipesEvaluations.observe(viewLifecycleOwner) { evaluations ->
+            evaluations?.let { evals ->
                 binding.recipeSearchPreviewRv.layoutManager =
                     LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                binding.recipeSearchPreviewRv.adapter = RecipeAdapter(it)
+                recipeResultViewModel.currentFilteredRecipes.value?.let { recipes ->
+                    binding.recipeSearchPreviewRv.adapter = RecipeAdapter(recipes, evals)
+                }
                 binding.recipeSearchPreviewRv.setBackgroundColor(android.graphics.Color.WHITE)
             }
         }
     }
 
     private fun registerSearchView() {
-        binding.recipeSearchSearchView
-            .editText
-            .setOnEditorActionListener { v, actionId, event ->
-                binding.recipeSearchSearchBar.text = binding.recipeSearchSearchView.text
-                recipeResultViewModel.getFilteredRecipes(
-                    binding.recipeSearchSearchBar.text.toString(),
-                    recipeViewModel.currentSelectedAreas.value!!,
-                    recipeViewModel.currentSelectedCategories.value!!
-                )
-                false
-            }
-
-        binding.recipeSearchSearchBar.setOnMenuItemClickListener { menuItem ->
-            true
+        binding.recipeSearchSearchView.editText.setOnEditorActionListener { v, actionId, event ->
+            binding.recipeSearchSearchBar.text = binding.recipeSearchSearchView.text
+            recipeResultViewModel.getFilteredRecipes(
+                binding.recipeSearchSearchBar.text.toString(),
+                recipeViewModel.currentSelectedAreas.value!!,
+                recipeViewModel.currentSelectedCategories.value!!
+            )
+            false
         }
+
+        binding.recipeSearchSearchBar.setOnMenuItemClickListener { menuItem -> true }
     }
 }

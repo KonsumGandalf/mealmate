@@ -8,9 +8,11 @@ import com.squareup.picasso.Picasso
 import konsum.gandalf.mealmate.databinding.CardRecipeOverviewBinding
 import konsum.gandalf.mealmate.recipe.domain.models.Recipe
 import konsum.gandalf.mealmate.recipe.ui.fragments.RecipeSearchFragmentDirections
+import konsum.gandalf.mealmate.utils.models.DifRat
 
 class RecipeAdapter(
-    private var categorys: List<Recipe> = ArrayList<Recipe>()
+    private var categorys: List<Recipe> = ArrayList<Recipe>(),
+    private var difRats: List<DifRat> = ArrayList<DifRat>()
 ) : RecyclerView.Adapter<RecipeAdapter.RecipeAdapterHolder>() {
 
     inner class RecipeAdapterHolder(val binding: CardRecipeOverviewBinding) :
@@ -27,8 +29,15 @@ class RecipeAdapter(
                 binding.recipeNameCv.text = title
                 Picasso.get().load(imageUrl).into(binding.cardRecipeIv)
 
+                var difRat: DifRat? = null
+                if (difRats.isNotEmpty() && position < difRats.size) {
+                    binding.recipeRating.text = difRats[position].rating.toString()
+                    binding.recipeDifficulty.text = difRats[position].difficulty.toString()
+                    difRat = difRats[position]
+                }
+
                 binding.root.setOnClickListener {
-                    val action = RecipeSearchFragmentDirections.actionRecipeSearchFragmentToRecipeDetailFragment2(this)
+                    val action = RecipeSearchFragmentDirections.actionRecipeSearchFragmentToRecipeDetailFragment2(this, difRat)
                     Navigation.findNavController(binding.root).navigate(action)
                 }
             }

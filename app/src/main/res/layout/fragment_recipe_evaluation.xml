@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".evaluation.ui.fragments.RecipeEvaluationFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/recipe_evaluation_card_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/recipe_evaluation_iv"
+                android:layout_width="476dp"
+                android:layout_height="423dp"
+                android:layout_marginTop="-100dp"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintHorizontal_bias="0.507"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="@style/ShapeBottomCornerRounded"
+                app:srcCompat="@mipmap/ic_launcher"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <include
+                android:id="@+id/recipe_evaluation_add_card"
+                layout="@layout/card_evaluate_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recipe_evaluation_iv" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recipe_evaluation_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recipe_evaluation_add_card"
+                tools:listitem="@layout/card_evaluation_view" />
+
+            <ProgressBar
+                android:id="@+id/recipe_evalutaion_progress"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:backgroundTint="@color/yellow_soft"
+                android:indeterminateTint="@color/icon_gmail_background"
+                app:layout_constraintBottom_toBottomOf="@+id/recipe_evaluation_iv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</FrameLayout>

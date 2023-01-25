@@ -1,5 +1,6 @@
 package konsum.gandalf.mealmate.recipe.ui.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -46,18 +47,26 @@ class RecipeDetailFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     private fun fillContent(ingredientsPar: List<Ingredient>) {
         with(binding) {
             recipe.apply {
                 Picasso.get().load(imageUrl).into(recipeDetailIv)
 
                 recipeDetailCard.recipeDetailTitle.text = recipe.title
+                recipeDetailCard.recipeDetailDifficultyLabel.text = "Difficulty"
+                recipeDetailCard.recipeDetailRatingLabel.text = "Rating"
                 recipe.owner?.username.let {
                     recipeDetailCard.recipeDetailOwner.text = it
                 }
 
                 recipeDetailArea.areaChip.text = area
                 recipeDetailCategory.areaChip.text = category
+
+                navArgs.difRat?.let {
+                    recipeDetailCard.recipeDetailRating.text = it.rating.toString()
+                    recipeDetailCard.recipeDetailDifficulty.text = it.difficulty.toString()
+                }
 
                 recipeDetailIngredientRv.layoutManager =
                     LinearLayoutManager(
@@ -115,6 +124,10 @@ class RecipeDetailFragment : Fragment() {
                             Navigation.findNavController(binding.root).navigate(action)
                         }
                     }
+                }
+                cardInteractionChat.setOnClickListener {
+                    val action = RecipeDetailFragmentDirections.actionRecipeDetailFragmentToRecipeEvaluationFragment(recipe)
+                    Navigation.findNavController(binding.root).navigate(action)
                 }
             }
         }
