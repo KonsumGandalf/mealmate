@@ -167,6 +167,13 @@
         <action
             android:id="@+id/action_recipeDetailFragment_to_ratingRecipeFragment"
             app:destination="@id/ratingRecipeFragment" />
+        <action
+            android:id="@+id/action_recipeDetailFragment_to_recipeEvaluationFragment"
+            app:destination="@id/recipeEvaluationFragment" />
+        <argument
+            android:name="difRat"
+            app:argType="konsum.gandalf.mealmate.utils.models.DifRat"
+            app:nullable="true" />
 
     </fragment>
     <fragment
@@ -174,4 +181,36 @@
         android:name="konsum.gandalf.mealmate.recipe.ui.fragments.RatingRecipeFragment"
         android:label="fragment_rating_recipe"
         tools:layout="@layout/fragment_rating_recipe" />
+    <fragment
+        android:id="@+id/recipeEvaluationFragment"
+        android:name="konsum.gandalf.mealmate.evaluation.ui.fragments.RecipeEvaluationFragment"
+        android:label="fragment_recipe_evaluation"
+        tools:layout="@layout/fragment_recipe_evaluation" >
+        <argument
+            android:name="recipe"
+            app:argType="konsum.gandalf.mealmate.recipe.domain.models.Recipe" />
+        <action
+            android:id="@+id/action_recipeEvaluationFragment_to_recipeEvaluationAddFragment"
+            app:destination="@id/recipeEvaluationAddFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeEvaluationAddFragment"
+        android:name="konsum.gandalf.mealmate.evaluation.ui.fragments.RecipeEvaluationAddFragment"
+        android:label="fragment_recipe_evaluation_add"
+        tools:layout="@layout/fragment_recipe_evaluation_add" >
+        <argument
+            android:name="recipe"
+            app:argType="konsum.gandalf.mealmate.recipe.domain.models.Recipe" />
+        <action
+            android:id="@+id/action_recipeEvaluationAddFragment_to_recipeEvaluationFragment"
+            app:destination="@id/recipeEvaluationFragment" />
+        <argument
+            android:name="user"
+            app:argType="konsum.gandalf.mealmate.user.domain.models.User" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeEvaluationFragment"
+        android:name="konsum.gandalf.mealmate.evaluation.ui.fragments.HomeEvaluationFragment"
+        android:label="fragment_home_evaluation"
+        tools:layout="@layout/fragment_home_evaluation" />
 </navigation>
