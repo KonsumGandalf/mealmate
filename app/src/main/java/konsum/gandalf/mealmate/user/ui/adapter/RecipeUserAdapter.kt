@@ -8,9 +8,11 @@ import com.squareup.picasso.Picasso
 import konsum.gandalf.mealmate.databinding.CardRecipeOverviewBinding
 import konsum.gandalf.mealmate.recipe.domain.models.Recipe
 import konsum.gandalf.mealmate.user.ui.fragments.UserProfileFragmentDirections
+import konsum.gandalf.mealmate.utils.models.DifRat
 
 class RecipeUserAdapter(
-    private var categorys: List<Recipe> = ArrayList<Recipe>()
+    private var recipes: List<Recipe> = ArrayList<Recipe>(),
+    private var difRats: List<DifRat> = ArrayList<DifRat>()
 ) : RecyclerView.Adapter<RecipeUserAdapter.RecipeAdapterHolder>() {
 
     inner class RecipeAdapterHolder(val binding: CardRecipeOverviewBinding) :
@@ -23,12 +25,19 @@ class RecipeUserAdapter(
 
     override fun onBindViewHolder(holder: RecipeAdapterHolder, position: Int) {
         with(holder) {
-            with(categorys[position]) {
+            with(recipes[position]) {
                 binding.recipeNameCv.text = title
                 Picasso.get().load(imageUrl).into(binding.cardRecipeIv)
 
+                var difRat: DifRat? = null
+                if (difRats.isNotEmpty() && position < difRats.size) {
+                    binding.recipeRating.text = difRats[position].rating.toString()
+                    binding.recipeDifficulty.text = difRats[position].difficulty.toString()
+                    difRat = difRats[position]
+                }
+
                 binding.root.setOnClickListener {
-                    val action = UserProfileFragmentDirections.actionUserProfileFragmentToRecipeDetailFragment(this)
+                    val action = UserProfileFragmentDirections.actionUserProfileFragmentToRecipeDetailFragment(this, difRat)
                     Navigation.findNavController(binding.root).navigate(action)
                 }
             }
@@ -36,6 +45,6 @@ class RecipeUserAdapter(
     }
 
     override fun getItemCount(): Int {
-        return categorys.size
+        return recipes.size
     }
 }

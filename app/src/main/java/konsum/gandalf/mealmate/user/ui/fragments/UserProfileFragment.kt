@@ -80,11 +80,13 @@ class UserProfileFragment : Fragment() {
     }
 
     private fun registerUserRecipes() {
-        userViewModel.userRecipes.observe(viewLifecycleOwner) { recipes ->
-            recipes?.let {
+        userViewModel.evaluations.observe(viewLifecycleOwner) { evaluations ->
+            evaluations?.let { evals ->
                 binding.userProfileRecipesRv.layoutManager =
                     LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                binding.userProfileRecipesRv.adapter = RecipeUserAdapter(it)
+                binding.userProfileRecipesRv.adapter = userViewModel.userRecipes.value?.let { recipes ->
+                    RecipeUserAdapter(recipes, evals)
+                } ?: RecipeUserAdapter()
             }
         }
     }

@@ -123,7 +123,7 @@ constructor(
     ) =
         viewModelScope.launch {
             val localUser = userRepo.getCurrentUser()
-            localUser?.let { _ -> // TODO if user becomes to owner
+            localUser?.let { user ->
                 _recipe.value?.let { recipe ->
                     withContext(Dispatchers.IO) {
                         uri?.let {
@@ -138,7 +138,7 @@ constructor(
                         recipe.category = category.trim()
                         recipe.ingredients = ingredients
                         recipe.instructions = instructions
-                        recipe.owner = localUser
+                        recipe.owner = user
 
                         if (isCreateMode) {
                             recipeRepo.createRecipe(recipe)
