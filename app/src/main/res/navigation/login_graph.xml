@@ -147,11 +147,6 @@
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="konsum.gandalf.mealmate.home.ui.fragments.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
-    <fragment
         android:id="@+id/recipeDetailFragment"
         android:name="konsum.gandalf.mealmate.recipe.ui.fragments.RecipeDetailFragment"
         android:label="fragment_recipe_detail"
@@ -165,9 +160,6 @@
             app:popUpTo="@+id/main_nav_graph"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_recipeDetailFragment_to_ratingRecipeFragment"
-            app:destination="@id/ratingRecipeFragment" />
-        <action
             android:id="@+id/action_recipeDetailFragment_to_recipeEvaluationFragment"
             app:destination="@id/recipeEvaluationFragment" />
         <argument
@@ -176,11 +168,7 @@
             app:nullable="true" />
 
     </fragment>
-    <fragment
-        android:id="@+id/ratingRecipeFragment"
-        android:name="konsum.gandalf.mealmate.recipe.ui.fragments.RatingRecipeFragment"
-        android:label="fragment_rating_recipe"
-        tools:layout="@layout/fragment_rating_recipe" />
+
     <fragment
         android:id="@+id/recipeEvaluationFragment"
         android:name="konsum.gandalf.mealmate.evaluation.ui.fragments.RecipeEvaluationFragment"
