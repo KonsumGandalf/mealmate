@@ -1,10 +1,11 @@
-package konsum.gandalf.mealmate.user.ui.viewmodels
+package konsum.gandalf.mealmate.recipe.ui.viewmodels
 
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import konsum.gandalf.mealmate.recipe.domain.models.Area
 import konsum.gandalf.mealmate.recipe.domain.models.Category
 import konsum.gandalf.mealmate.recipe.domain.models.Ingredient
@@ -12,13 +13,12 @@ import konsum.gandalf.mealmate.recipe.domain.models.Recipe
 import konsum.gandalf.mealmate.recipe.domain.repository.IRecipeRepository
 import konsum.gandalf.mealmate.user.domain.repository.IUserRepository
 import konsum.gandalf.mealmate.utils.events.CustomEvent
-import konsum.gandalf.mealmate.utils.repository.IImageRepository
+import konsum.gandalf.mealmate.utils.repositories.images.IImageRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 @HiltViewModel
 class RecipeEditViewModel

@@ -35,7 +35,6 @@ class RecipeSearchFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentRecipeSearchBinding.inflate(inflater, container, false)
 
         registerAreas()

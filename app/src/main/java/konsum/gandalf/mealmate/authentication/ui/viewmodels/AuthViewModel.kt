@@ -1,4 +1,4 @@
-package konsum.gandalf.mealmate.authentication.ui.fragments
+package konsum.gandalf.mealmate.authentication.ui.viewmodels
 
 import android.app.Activity
 import android.content.Intent
@@ -29,14 +29,6 @@ class AuthViewModel @Inject constructor(private val repository: IAuthRepository)
 
     private val TAG = "AuthViewModel"
 
-    /**
-     * This is a ViewModel class and is responsible for the logic of all ui. It shall be shared with
-     * the three fragments. Only share ViewModels when the fragments share a feature or functionality
-     */
-
-    // create the auth state livedata object that will be passed to
-    // the home fragment and shall be used to control the ui i.e show authentication state
-    // control behaviour of sign in and sign up button
     private val _firebaseUser = MutableLiveData<FirebaseUser?>()
     val currentUser
         get() = _firebaseUser
@@ -48,15 +40,9 @@ class AuthViewModel @Inject constructor(private val repository: IAuthRepository)
     val configuredRequest
         get() = _signUpRequest
 
-    // create our channels that will be used to pass messages to the main ui
-    // create event channel
     private val eventsChannel = Channel<CustomEvent>()
-
-    // the messages passed to the channel shall be received as a Flowable
-    // in the ui
     val toastEventFlow = eventsChannel.receiveAsFlow()
 
-    // validate all fields first before performing any sign in operations
     fun validateCredentialsLogin(email: String, password: String) =
         viewModelScope.launch {
             when {
@@ -72,7 +58,6 @@ class AuthViewModel @Inject constructor(private val repository: IAuthRepository)
             }
         }
 
-    // validate all fields before performing any sign up operations
     fun validateCredentialsRegister(email: String, password: String, confirmPass: String) =
         viewModelScope.launch {
             when {

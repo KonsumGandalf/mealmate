@@ -24,22 +24,5 @@ data class Recipe(
     @SerializedName("ingredients")
     var ingredients: List<Ingredient> = ArrayList<Ingredient>(),
     @SerializedName(FilterFirebaseNamespace.OWNER)
-    var owner: User? = null,
-    /**
-     * Not provided by the MealDB
-     *
-     @SerializedName("totalTime")
-     val totalTime: Int = 0,
-     @SerializedName("preparationTime")
-     val preparationTime: Int = 0,
-     @SerializedName("cookTime")
-     val cookTime: Int = 0
-     */
+    var owner: User? = null
 ) : FirebaseEntity(id = recipeId)
-
-/*val servingSize: Int? = 0,
-val ingredients: ArrayList<Ingredient> = ArrayList<Ingredient>(),
-val preparationTime: Int? = 0,
-val cookTime: Int? = 0,
-val tags: ArrayList<String> = ArrayList<String>(),
-val rating: Float? = 0F,*/

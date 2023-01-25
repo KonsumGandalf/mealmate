@@ -20,12 +20,6 @@ class CategoryAdapter(
     private var categorys: List<Category> = ArrayList<Category>(),
     private var selectedData: MutableLiveData<MutableList<Category>>
 ) : RecyclerView.Adapter<CategoryAdapter.CategoryAdapterHolder>() {
-    /*private val colorArray: List<Int> = listOf(
-        context.getColor(R.color.blue_200),
-        context.getColor(R.color.green_200),
-        context.getColor(R.color.purple_200),
-        context.getColor(R.color.red_200)
-    )*/
 
     inner class CategoryAdapterHolder(val binding: CardCategoryOverviewBinding) :
         RecyclerView.ViewHolder(binding.root)

@@ -1,4 +1,4 @@
-package konsum.gandalf.mealmate.utils.constants
+package konsum.gandalf.mealmate.utils.repositories.images.constants
 
 object MealMateStaticData {
     const val ICON_LINK =

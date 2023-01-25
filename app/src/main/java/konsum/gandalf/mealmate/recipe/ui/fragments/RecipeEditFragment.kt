@@ -1,8 +1,13 @@
 package konsum.gandalf.mealmate.recipe.ui.fragments
 
 import android.Manifest
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -27,8 +32,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import konsum.gandalf.mealmate.R
 import konsum.gandalf.mealmate.databinding.FragmentRecipeEditBinding
 import konsum.gandalf.mealmate.recipe.ui.adapter.IngredientAddAdapter
-import konsum.gandalf.mealmate.user.ui.viewmodels.RecipeEditViewModel
+import konsum.gandalf.mealmate.recipe.ui.viewmodels.RecipeEditViewModel
 import konsum.gandalf.mealmate.utils.events.CustomEvent
+import konsum.gandalf.mealmate.utils.notifications.NotificationHelper.CHANNEL_ID
+import konsum.gandalf.mealmate.utils.notifications.NotificationHelper.createImageNotification
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -73,7 +80,6 @@ class RecipeEditFragment : Fragment() {
         registerIngredients()
         registerRecipe()
         binding.recipeEditProgress.progressBar.isVisible = false
-        // you can just delete a recipe if you have already created it
     }
 
     private fun initButtons() {
@@ -90,6 +96,8 @@ class RecipeEditFragment : Fragment() {
                     binding.recipeAddInstructions.text.toString(),
                     navArgs.createMode
                 )
+                val iconNotification: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.splash_panda)
+                baseManager.notify(2, createImageNotification(requireContext(), iconNotification).build())
             }
             if (!navArgs.createMode) {
                 recipeAddDelete.setOnClickListener {
@@ -262,4 +270,13 @@ class RecipeEditFragment : Fragment() {
             }
         }
     }
+
+    val baseManager: NotificationManager
+        get() {
+            val channel = NotificationChannel(CHANNEL_ID, "local Notification", NotificationManager.IMPORTANCE_HIGH)
+            val manager: NotificationManager =
+                (requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
+            manager.createNotificationChannel(channel)
+            return manager
+        }
 }

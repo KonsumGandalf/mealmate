@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import konsum.gandalf.mealmate.R
+import konsum.gandalf.mealmate.authentication.ui.viewmodels.AuthViewModel
 import konsum.gandalf.mealmate.databinding.FragmentLoginResetBinding
 import konsum.gandalf.mealmate.utils.events.CustomEvent
 import kotlinx.coroutines.launch
@@ -31,7 +32,6 @@ class LoginResetFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentLoginResetBinding.inflate(inflater, container, false)
 
         listenToChannels()

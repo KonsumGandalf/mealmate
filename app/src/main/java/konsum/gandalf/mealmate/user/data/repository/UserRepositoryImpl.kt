@@ -5,17 +5,17 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.toObject
+import java.util.UUID
+import javax.inject.Inject
 import konsum.gandalf.mealmate.authentication.domain.repository.IAuthRepository
 import konsum.gandalf.mealmate.user.domain.constants.FirebaseReferenceEnum
 import konsum.gandalf.mealmate.user.domain.models.User
 import konsum.gandalf.mealmate.user.domain.repository.IUserRepository
 import konsum.gandalf.mealmate.utils.await
-import konsum.gandalf.mealmate.utils.constants.MealMateStaticData
+import konsum.gandalf.mealmate.utils.repositories.images.constants.MealMateStaticData
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.util.UUID
-import javax.inject.Inject
 
 class UserRepositoryImpl
 @Inject

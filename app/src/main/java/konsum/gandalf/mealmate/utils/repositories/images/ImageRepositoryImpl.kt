@@ -1,11 +1,11 @@
-package konsum.gandalf.mealmate.utils.repository
+package konsum.gandalf.mealmate.utils.repositories.images
 
 import android.net.Uri
 import android.util.Log
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import konsum.gandalf.mealmate.utils.await
-import konsum.gandalf.mealmate.utils.constants.FirebaseReferenceEnum
+import konsum.gandalf.mealmate.utils.repositories.images.constants.FirebaseReferenceEnum
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

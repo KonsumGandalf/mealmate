@@ -9,19 +9,14 @@ import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
 import konsum.gandalf.mealmate.R
 import konsum.gandalf.mealmate.authentication.ui.constants.FragmentNames
+import konsum.gandalf.mealmate.authentication.ui.viewmodels.AuthViewModel
 import konsum.gandalf.mealmate.databinding.FragmentRegisterDecisionBinding
 
-/**
- * An example full-screen fragment that shows and hides the system UI (i.e. status bar and
- * navigation/system bar) with user interaction.
- */
 @AndroidEntryPoint
 class RegisterDecisionFragment : OneTapFragment() {
     private var _binding: FragmentRegisterDecisionBinding? = null
     private val viewModel by viewModels<AuthViewModel>()
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding
         get() = _binding!!
 
@@ -29,7 +24,7 @@ class RegisterDecisionFragment : OneTapFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentRegisterDecisionBinding.inflate(inflater, container, false)
         fillContent()
         registerButtons()
