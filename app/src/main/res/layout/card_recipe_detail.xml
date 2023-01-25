@@ -15,13 +15,14 @@
 
         <TextView
             android:id="@+id/recipe_detail_title"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/rokkitt_semibold"
             android:gravity="center"
+            android:maxLines="1"
             android:text="@string/text_placeholder_md"
             android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -98,8 +99,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="72dp"
             android:padding="10dp"
-            app:layout_constraintEnd_toStartOf="@+id/recipe_detail_difficulty_label"
-            app:layout_constraintStart_toEndOf="@+id/recipe_detail_rating_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recipe_detail_owner" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

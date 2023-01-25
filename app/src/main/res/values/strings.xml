@@ -216,4 +216,8 @@
     <string name="text_instructions">Instructions</string>
     <string name="text_search_recipes">Search Recipes</string>
     <string name="text_recipes_title">Recipes Title</string>
+    <string name="text_date">Created</string>
+    <string name="text_evaluate">Evaluate</string>
+    <string name="text_evaluate_helper">Share your experience to help others.</string>
+    <string name="text_comment">Comment</string>
 </resources>
