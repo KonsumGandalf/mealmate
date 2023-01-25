@@ -4,12 +4,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import konsum.gandalf.mealmate.evaluation.domain.models.EvaluationPost
 import konsum.gandalf.mealmate.evaluation.domain.repository.IEvaluationRepository
 import konsum.gandalf.mealmate.user.domain.models.User
 import konsum.gandalf.mealmate.user.domain.repository.IUserRepository
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class RecipeEvaluationViewModel

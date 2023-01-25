@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import konsum.gandalf.mealmate.evaluation.domain.repository.IEvaluationRepository
 import konsum.gandalf.mealmate.recipe.domain.models.Recipe
 import konsum.gandalf.mealmate.recipe.domain.repository.IRecipeRepository
@@ -14,7 +15,6 @@ import konsum.gandalf.mealmate.utils.helper.Helper
 import konsum.gandalf.mealmate.utils.models.DifRat
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class UserProfileViewModel

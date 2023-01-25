@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import konsum.gandalf.mealmate.R
-import konsum.gandalf.mealmate.authentication.ui.fragments.AuthViewModel
+import konsum.gandalf.mealmate.authentication.ui.viewmodels.AuthViewModel
 import konsum.gandalf.mealmate.databinding.FragmentUserProfileBinding
 import konsum.gandalf.mealmate.user.ui.adapter.RecipeUserAdapter
 import konsum.gandalf.mealmate.user.ui.viewmodels.UserProfileViewModel

@@ -2,9 +2,9 @@ package konsum.gandalf.mealmate.authentication.data.repository
 
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseUser
+import javax.inject.Inject
 import konsum.gandalf.mealmate.authentication.data.repository.firebase.IAuthenticator
 import konsum.gandalf.mealmate.authentication.domain.repository.IAuthRepository
-import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(private val authenticator: IAuthenticator) :
     IAuthRepository {

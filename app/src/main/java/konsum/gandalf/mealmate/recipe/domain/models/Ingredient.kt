@@ -11,7 +11,7 @@ data class Ingredient(
     var imageUrl: String = getImageUrl(name),
     val uniqueId: String = ""
 ) : FirebaseEntity(id = uniqueId) {
-    companion object{
+    companion object {
         fun getImageUrl(name: String): String {
             return "https://www.themealdb.com/images/ingredients/${name.replace(" ","%20")}.png"
         }

@@ -4,7 +4,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 import konsum.gandalf.mealmate.authentication.data.repository.AuthRepositoryImpl
 import konsum.gandalf.mealmate.authentication.data.repository.firebase.FirebaseAuthenticator
 import konsum.gandalf.mealmate.authentication.data.repository.firebase.IAuthenticator
@@ -20,6 +19,7 @@ import konsum.gandalf.mealmate.user.data.repository.UserRepositoryImpl
 import konsum.gandalf.mealmate.user.domain.repository.IUserRepository
 import konsum.gandalf.mealmate.utils.repositories.images.IImageRepository
 import konsum.gandalf.mealmate.utils.repositories.images.ImageRepositoryImpl
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)

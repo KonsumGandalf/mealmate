@@ -33,7 +33,6 @@ android {
     }
 
     buildFeatures {
-        // TODO enable minify in the latest version minifyEnabled true
         viewBinding true
         compose true
     }

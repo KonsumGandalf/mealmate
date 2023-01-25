@@ -20,11 +20,7 @@ class RegisterDecisionFragment : OneTapFragment() {
     private val binding
         get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentRegisterDecisionBinding.inflate(inflater, container, false)
         fillContent()
         registerButtons()

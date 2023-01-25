@@ -1,5 +1,6 @@
 package konsum.gandalf.mealmate.recipe.data.repository
 
+import javax.inject.Inject
 import konsum.gandalf.mealmate.recipe.data.api.MealDBApi
 import konsum.gandalf.mealmate.recipe.data.api.models.RecipeResponse
 import konsum.gandalf.mealmate.recipe.data.firebaseRecipe.IFirebaseRecipeRepository
@@ -13,7 +14,6 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import retrofit2.await
-import javax.inject.Inject
 
 class RecipeRepositoryImpl
 @Inject

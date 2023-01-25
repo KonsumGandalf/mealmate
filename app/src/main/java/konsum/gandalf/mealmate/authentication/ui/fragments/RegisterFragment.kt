@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
+import konsum.gandalf.mealmate.authentication.ui.viewmodels.AuthViewModel
 import konsum.gandalf.mealmate.databinding.FragmentRegisterBinding
 import konsum.gandalf.mealmate.utils.events.CustomEvent
 import kotlinx.coroutines.launch

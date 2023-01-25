@@ -2,9 +2,9 @@ package konsum.gandalf.mealmate.utils.models
 
 import android.os.Parcelable
 import com.google.firebase.database.PropertyName
-import kotlinx.parcelize.Parcelize
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 open class FirebaseEntity(

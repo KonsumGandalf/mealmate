@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
 import konsum.gandalf.mealmate.R
+import konsum.gandalf.mealmate.authentication.ui.viewmodels.AuthViewModel
 import konsum.gandalf.mealmate.databinding.FragmentLoginBinding
 import konsum.gandalf.mealmate.utils.events.CustomEvent
 import kotlinx.coroutines.launch
@@ -60,7 +61,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private fun registerObservers() {
         viewModel.currentUser.observe(viewLifecycleOwner) { user ->
             user?.let {
-                val action = LoginFragmentDirections.actionLoginFragmentToUserUpdateFragment(user.uid)
+                val action =
+                    LoginFragmentDirections.actionLoginFragmentToUserUpdateFragment(user.uid)
                 Navigation.findNavController(binding.root).navigate(action)
             }
         }

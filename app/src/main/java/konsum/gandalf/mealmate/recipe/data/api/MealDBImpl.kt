@@ -1,10 +1,10 @@
 package konsum.gandalf.mealmate.recipe.data.api
 
+import javax.inject.Inject
 import konsum.gandalf.mealmate.recipe.data.api.models.RecipeResponse
 import konsum.gandalf.mealmate.recipe.domain.models.Area
 import konsum.gandalf.mealmate.recipe.domain.models.Category
 import retrofit2.Call
-import javax.inject.Inject
 
 class MealDBImpl @Inject constructor(
     private val mealDBApi: MealDBApi
