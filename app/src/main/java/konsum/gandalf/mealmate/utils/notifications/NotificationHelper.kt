@@ -3,6 +3,7 @@ package konsum.gandalf.mealmate.utils.notifications
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import androidx.core.app.NotificationCompat
 import konsum.gandalf.mealmate.R
 import konsum.gandalf.mealmate.utils.application.MealMateApplication
@@ -10,13 +11,14 @@ import konsum.gandalf.mealmate.utils.application.MealMateApplication
 object NotificationHelper {
     const val CHANNEL_ID = "meal-mate-1"
 
-    fun createImageNotification(context: Context): NotificationCompat.Builder {
+    fun createImageNotification(context: Context, img: Bitmap): NotificationCompat.Builder {
         val startAppIntent = Intent(context, MealMateApplication::class.java)
         val pendingIntent =
             PendingIntent.getActivity(context, 0, startAppIntent, PendingIntent.FLAG_IMMUTABLE)
 
         return NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.meal_mate_icon_small)
+            .setLargeIcon(img)
             .setContentTitle("My notification")
             .setContentText(
                 "Congratulations! Your recipe for MealMate has been created and is now live on our app for others to enjoy. Bon appétit!"
