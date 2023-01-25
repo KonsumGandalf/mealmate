@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import konsum.gandalf.mealmate.R
 import konsum.gandalf.mealmate.authentication.ui.viewmodels.AuthViewModel
 import konsum.gandalf.mealmate.databinding.FragmentUserProfileBinding
-import konsum.gandalf.mealmate.user.ui.adapter.RecipeUserAdapter
+import konsum.gandalf.mealmate.recipe.ui.adapter.RecipeAdapter
 import konsum.gandalf.mealmate.user.ui.viewmodels.UserProfileViewModel
 
 @AndroidEntryPoint
@@ -28,6 +28,12 @@ class UserProfileFragment : Fragment() {
         get() = _binding!!
     private val userViewModel by viewModels<UserProfileViewModel>()
     private val authViewModel by viewModels<AuthViewModel>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        authViewModel.getCurrentUser()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,13 +45,10 @@ class UserProfileFragment : Fragment() {
         registerFirebaseAccount()
         registerUser()
         registerUserRecipes()
-        userViewModel.getRecipes()
-
         return binding.root
     }
 
     private fun registerFirebaseAccount() {
-        authViewModel.getCurrentUser()
         authViewModel.currentUser.observe(viewLifecycleOwner) { authUser ->
             userViewModel.currentUser.value.let {
                 if (authUser != null) {
@@ -84,20 +87,20 @@ class UserProfileFragment : Fragment() {
             evaluations?.let { evals ->
                 binding.userProfileRecipesRv.layoutManager =
                     LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                binding.userProfileRecipesRv.adapter = userViewModel.userRecipes.value?.let { recipes ->
-                    RecipeUserAdapter(recipes, evals)
-                } ?: RecipeUserAdapter()
+                userViewModel.userRecipes.value?.let { recipes ->
+                    binding.userProfileRecipesRv.adapter = RecipeAdapter(recipes, evals)
+                }
             }
         }
     }
 
     private fun registerChange() {
         val fadeIn = AlphaAnimation(0f, 1f)
-        fadeIn.interpolator = DecelerateInterpolator() // add this
+        fadeIn.interpolator = DecelerateInterpolator()
         fadeIn.duration = 1000
 
         val fadeOut = AlphaAnimation(1f, 0f)
-        fadeOut.interpolator = AccelerateInterpolator() // and this
+        fadeOut.interpolator = AccelerateInterpolator()
         fadeOut.startOffset = 1000
         fadeOut.duration = 1000
 
