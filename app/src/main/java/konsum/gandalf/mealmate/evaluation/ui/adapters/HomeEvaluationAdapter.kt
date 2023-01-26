@@ -5,22 +5,24 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import konsum.gandalf.mealmate.R
-import konsum.gandalf.mealmate.databinding.CardEvaluationViewBinding
+import konsum.gandalf.mealmate.databinding.CardEvaluationViewHomeBinding
 import konsum.gandalf.mealmate.evaluation.domain.models.EvaluationPost
+import konsum.gandalf.mealmate.evaluation.ui.fragments.HomeEvaluationFragmentDirections
 
-class EvaluationAdapter(
+class HomeEvaluationAdapter(
     private val context: Context,
     private var eval: List<EvaluationPost> = ArrayList<EvaluationPost>()
-) : RecyclerView.Adapter<EvaluationAdapter.EvalAdapterHolder>() {
+) : RecyclerView.Adapter<HomeEvaluationAdapter.EvalAdapterHolder>() {
 
-    inner class EvalAdapterHolder(val binding: CardEvaluationViewBinding) :
+    inner class EvalAdapterHolder(val binding: CardEvaluationViewHomeBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EvalAdapterHolder {
-        val binding = CardEvaluationViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = CardEvaluationViewHomeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return EvalAdapterHolder(binding)
     }
 
@@ -28,8 +30,8 @@ class EvaluationAdapter(
     override fun onBindViewHolder(holder: EvalAdapterHolder, position: Int) {
         with(holder.binding) {
             eval[position].apply {
-                Picasso.get().load(owner?.imageUrl).into(
-                    recipeEvaluationCardIv,
+                Picasso.get().load(recipe?.imageUrl).into(
+                    cardEvaluationIv,
                     object : com.squareup.picasso.Callback {
                         override fun onSuccess() {
                             recipeEvaluationCardProgress.isVisible = false
@@ -38,24 +40,36 @@ class EvaluationAdapter(
                         }
                     }
                 )
-                owner?.username?.let {
-                    recipeEvaluationCardUsername.text = it
+                owner?.let {
+                    recipeNameCv.text = it.username
+                    Picasso.get().load(it.imageUrl).into(
+                        recipeEvaluationCardIv,
+                        object : com.squareup.picasso.Callback {
+                            override fun onSuccess() {
+                                recipeEvaluationCardProgress.isVisible = false
+                            }
+                            override fun onError(e: java.lang.Exception?) {
+                            }
+                        }
+                    )
                 }
-                recipeEvaluationCardRating.text = "$rating"
+
+                evaluationRating.text = "$rating"
                 rating?.let {
-                    recipeEvaluationCardRating.setTextColor(getColor(it))
+                    evaluationRating.setTextColor(getColor(it))
                 }
 
-                recipeEvaluationCardDifficulty.text = "$difficulty"
+                evaluationDifficulty.text = "$difficulty"
                 difficulty?.let {
-                    recipeEvaluationCardDifficulty.setTextColor(getColor(it))
+                    evaluationDifficulty.setTextColor(getColor(5f - it))
                 }
 
-                recipeEvaluationCardCreated.text = createdAt
-                recipeEvaluationCardComment.text = comment
-                recipeEvaluationCardCreatedLabel.text = "Created"
-                recipeEvaluationCardDifficultyLabel.text = "Difficulty"
-                recipeEvaluationCardRatingLabel.text = "Rating"
+                root.setOnClickListener {
+                    val action = HomeEvaluationFragmentDirections.actionHomeEvaluationFragmentToRecipeEvaluationFragment(
+                        recipe!!
+                    )
+                    Navigation.findNavController(root).navigate(action)
+                }
             }
         }
     }

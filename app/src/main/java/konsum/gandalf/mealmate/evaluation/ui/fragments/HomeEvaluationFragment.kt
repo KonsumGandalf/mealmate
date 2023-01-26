@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import konsum.gandalf.mealmate.databinding.FragmentHomeEvaluationBinding
-import konsum.gandalf.mealmate.evaluation.ui.adapters.EvaluationAdapter
+import konsum.gandalf.mealmate.evaluation.ui.adapters.HomeEvaluationAdapter
 import konsum.gandalf.mealmate.evaluation.ui.viewmodels.HomeEvaluationViewModel
 
 @AndroidEntryPoint
@@ -39,7 +39,7 @@ class HomeEvaluationFragment : Fragment() {
             recipes?.let {
                 binding.homeEvaluationRv.layoutManager =
                     LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                binding.homeEvaluationRv.adapter = EvaluationAdapter(requireContext(), it)
+                binding.homeEvaluationRv.adapter = HomeEvaluationAdapter(requireContext(), it)
             }
         }
     }
