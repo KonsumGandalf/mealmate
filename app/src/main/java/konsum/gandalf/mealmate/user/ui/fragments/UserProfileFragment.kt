@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import konsum.gandalf.mealmate.R
 import konsum.gandalf.mealmate.authentication.ui.viewmodels.AuthViewModel
 import konsum.gandalf.mealmate.databinding.FragmentUserProfileBinding
-import konsum.gandalf.mealmate.recipe.ui.adapter.RecipeAdapter
+import konsum.gandalf.mealmate.user.ui.adapter.RecipeUserAdapter
 import konsum.gandalf.mealmate.user.ui.viewmodels.UserProfileViewModel
 
 @AndroidEntryPoint
@@ -88,7 +88,7 @@ class UserProfileFragment : Fragment() {
                 binding.userProfileRecipesRv.layoutManager =
                     LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 userViewModel.userRecipes.value?.let { recipes ->
-                    binding.userProfileRecipesRv.adapter = RecipeAdapter(recipes, evals)
+                    binding.userProfileRecipesRv.adapter = RecipeUserAdapter(recipes, evals)
                 }
             }
         }

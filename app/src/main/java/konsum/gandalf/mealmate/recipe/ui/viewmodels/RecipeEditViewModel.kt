@@ -63,7 +63,6 @@ constructor(
             }
         }
 
-    // initiated through the getOrCreateRecipe method
     private val _categories = MutableLiveData<List<Category>?>()
     val currentCategories
         get() = _categories

@@ -58,7 +58,6 @@ constructor(
             (bio.length > 250) -> {
                 eventsChannel.send(CustomEvent.ErrorCode(5))
             }
-            // TODO create getUser
             else -> {
                 updateUser(imageUri, username, fullName, bio)
             }
