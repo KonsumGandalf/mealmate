@@ -66,6 +66,7 @@ class UserProfileFragment : Fragment() {
             it?.let { user ->
                 binding.apply {
                     userProfileUsernameTv.text = user.username
+                    userProfileFullName.text = user.fullName
                     userProfileBioTv.text = user.bio
                     Picasso.get().load(user.imageUrl).into(binding.userProfileIv)
                     userProfileBtnLogout.setOnClickListener {
@@ -108,11 +109,8 @@ class UserProfileFragment : Fragment() {
             if (binding.userProfileIv.isVisible == true) {
                 it.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out_right))
                 binding.userProfileIv.isVisible = false
-                binding.userProfileFollowerLabelTv.isVisible = false
-                binding.userProfileFollowerTv.isVisible = false
-                binding.userProfileRatingLabelTv.isVisible = false
-                binding.userProfileRatingTv.isVisible = false
                 binding.userProfileUsernameTv.isVisible = false
+                binding.userProfileFullName.isVisible = false
 
                 it.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_in_left))
                 binding.userProfileBioLabelTv.isVisible = true
@@ -120,10 +118,6 @@ class UserProfileFragment : Fragment() {
             } else {
                 it.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out_right))
                 binding.userProfileIv.isVisible = true
-                binding.userProfileFollowerLabelTv.isVisible = true
-                binding.userProfileFollowerTv.isVisible = true
-                binding.userProfileRatingLabelTv.isVisible = true
-                binding.userProfileRatingTv.isVisible = true
                 binding.userProfileUsernameTv.isVisible = true
 
                 it.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_in_left))

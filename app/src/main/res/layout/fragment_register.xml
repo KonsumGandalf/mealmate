@@ -59,7 +59,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/register_ti_mail_container"
-            app:passwordToggleEnabled="true"
+            app:passwordToggleEnabled="false"
             app:startIconDrawable="@drawable/ic_twotone_vpn_key_24">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -82,7 +82,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/register_ti_password_container"
-            app:passwordToggleEnabled="true"
+            app:passwordToggleEnabled="false"
             app:startIconDrawable="@drawable/ic_twotone_vpn_key_24">
 
             <com.google.android.material.textfield.TextInputEditText

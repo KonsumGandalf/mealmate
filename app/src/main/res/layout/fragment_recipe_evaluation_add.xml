@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:fontFamily="sans-serif-medium"
-                android:text="@string/text_rating"
+                android:text="@string/text_difficulty"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@+id/recipe_evaluation_add_rating"
                 app:layout_constraintTop_toBottomOf="@+id/recipe_evaluation_add_rating" />

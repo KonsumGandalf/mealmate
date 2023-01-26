@@ -86,68 +86,35 @@
                     android:visibility="visible"
                     app:civ_border_color="#FF000000"
                     app:civ_border_width="2dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/user_profile_follower_label_tv"
-                    app:layout_constraintEnd_toStartOf="@+id/user_profile_follower_tv"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/user_profile_full_name"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/user_profile_username_tv" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/user_profile_username_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="48dp"
                     android:fontFamily="@font/rokkitt_bold"
                     android:text="@string/text_username"
                     android:textSize="@dimen/btn_font_lg"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/user_profile_iv"
-                    app:layout_constraintStart_toStartOf="@+id/user_profile_follower_tv"
+                    app:layout_constraintStart_toStartOf="@+id/user_profile_full_name"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/user_profile_follower_tv"
-                    android:layout_width="@dimen/profile_user_text_field"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/rokkitt_bold"
+                    android:id="@+id/user_profile_full_name"
+                    android:layout_width="178dp"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/rokkitt"
                     android:text="3200"
                     android:textSize="@dimen/btn_font_md"
-                    app:layout_constraintEnd_toStartOf="@+id/user_profile_rating_tv"
                     app:layout_constraintStart_toEndOf="@+id/user_profile_iv"
                     app:layout_constraintTop_toBottomOf="@+id/user_profile_username_tv" />
 
-                <TextView
-                    android:id="@+id/user_profile_follower_label_tv"
-                    android:layout_width="@dimen/profile_user_text_field"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/rokkitt_thin"
-                    android:text="Followers"
-                    android:textSize="@dimen/btn_font_md"
-                    app:layout_constraintStart_toStartOf="@+id/user_profile_follower_tv"
-                    app:layout_constraintTop_toBottomOf="@+id/user_profile_follower_tv" />
-
-
-                <TextView
-                    android:id="@+id/user_profile_rating_tv"
-                    android:layout_width="@dimen/profile_user_text_field"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/rokkitt_bold"
-                    android:text="3.8"
-                    android:textSize="@dimen/btn_font_md"
-                    app:layout_constraintStart_toStartOf="@+id/user_profile_rating_label_tv"
-                    app:layout_constraintTop_toBottomOf="@+id/user_profile_username_tv" />
-
-                <TextView
-                    android:id="@+id/user_profile_rating_label_tv"
-                    android:layout_width="@dimen/profile_user_text_field"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:fontFamily="@font/rokkitt_thin"
-                    android:text="Rating"
-                    android:textSize="@dimen/btn_font_md"
-                    app:layout_constraintBottom_toBottomOf="@+id/user_profile_follower_label_tv"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/user_profile_follower_label_tv"
-                    app:layout_constraintTop_toBottomOf="@+id/user_profile_rating_tv" />
 
                 <TextView
                     android:id="@+id/user_profile_bio_tv"
