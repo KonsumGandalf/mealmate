@@ -96,8 +96,8 @@ class RecipeEditFragment : Fragment() {
                     binding.recipeAddInstructions.text.toString(),
                     navArgs.createMode
                 )
-                val iconNotification: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.splash_panda)
-                baseManager.notify(2, createImageNotification(requireContext(), iconNotification).build())
+                onSuccessfulCreation()
+                recipeEditProgress.progressBar.isVisible = false
             }
             if (!navArgs.createMode) {
                 recipeAddDelete.setOnClickListener {
@@ -237,14 +237,22 @@ class RecipeEditFragment : Fragment() {
         }
     }
 
+    private fun onSuccessfulCreation() {
+        _imageUri = null
+        val iconNotification: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.splash_panda)
+        baseManager.notify(2, createImageNotification(requireContext(), iconNotification).build())
+        viewModel.recipe.postValue(null)
+        Navigation.findNavController(binding.root)
+            .navigate(R.id.action_recipeAddFragment_to_userProfileFragment)
+    }
+
     private fun listenToChannels() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.eventFlow.collect { event ->
                 when (event) {
                     is CustomEvent.Message -> {
                         Toast.makeText(requireContext(), event.message, Toast.LENGTH_SHORT).show()
-                        Navigation.findNavController(binding.root)
-                            .navigate(R.id.action_recipeAddFragment_to_userProfileFragment)
+                        onSuccessfulCreation()
                     }
                     is CustomEvent.Error -> {
                         Toast.makeText(requireContext(), event.error, Toast.LENGTH_SHORT).show()
