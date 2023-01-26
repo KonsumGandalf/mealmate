@@ -133,7 +133,9 @@
             android:defaultValue="true" />
         <action
             android:id="@+id/action_recipeAddFragment_to_userProfileFragment"
-            app:destination="@id/userProfileFragment" />
+            app:destination="@id/userProfileFragment"
+            app:popUpTo="@id/recipeAddFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/recipeSearchFragment"
@@ -143,7 +145,7 @@
         <action
             android:id="@+id/action_recipeSearchFragment_to_recipeDetailFragment2"
             app:destination="@id/recipeDetailFragment"
-            app:popUpTo="@+id/main_nav_graph"
+            app:popUpTo="@id/recipeDetailFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -157,11 +159,13 @@
         <action
             android:id="@+id/action_recipeDetailFragment_to_recipeAddFragment"
             app:destination="@id/recipeAddFragment"
-            app:popUpTo="@+id/main_nav_graph"
+            app:popUpTo="@id/recipeDetailFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_recipeDetailFragment_to_recipeEvaluationFragment"
-            app:destination="@id/recipeEvaluationFragment" />
+            app:destination="@id/recipeEvaluationFragment"
+            app:popUpTo="@id/recipeDetailFragment"
+            app:popUpToInclusive="true"/>
         <argument
             android:name="difRat"
             app:argType="konsum.gandalf.mealmate.utils.models.DifRat"
@@ -191,7 +195,10 @@
             app:argType="konsum.gandalf.mealmate.recipe.domain.models.Recipe" />
         <action
             android:id="@+id/action_recipeEvaluationAddFragment_to_recipeEvaluationFragment"
-            app:destination="@id/recipeEvaluationFragment" />
+            app:destination="@id/recipeEvaluationFragment"
+            app:popUpTo="@id/recipeEvaluationFragment"
+            app:popUpToInclusive="true"
+            />
         <argument
             android:name="user"
             app:argType="konsum.gandalf.mealmate.user.domain.models.User" />
@@ -200,5 +207,9 @@
         android:id="@+id/homeEvaluationFragment"
         android:name="konsum.gandalf.mealmate.evaluation.ui.fragments.HomeEvaluationFragment"
         android:label="fragment_home_evaluation"
-        tools:layout="@layout/fragment_home_evaluation" />
+        tools:layout="@layout/fragment_home_evaluation" >
+        <action
+            android:id="@+id/action_homeEvaluationFragment_to_recipeEvaluationFragment"
+            app:destination="@id/recipeEvaluationFragment" />
+    </fragment>
 </navigation>

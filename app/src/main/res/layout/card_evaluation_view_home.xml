@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="380dp"
+    android:layout_height="400dp"
+    android:layout_margin="15dp"
+    android:backgroundTint="@color/yellow_soft"
+    app:cardCornerRadius="30dp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/card_recipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progressBar4"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:indeterminateTint="@color/blue_200"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/card_evaluation_iv"
+            android:layout_width="471dp"
+            android:layout_height="427dp"
+            android:layout_marginBottom="50dp"
+            android:contentDescription="@string/dummy_content"
+            app:layout_constraintBottom_toTopOf="@+id/evaluation_difficulty"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/recipe_name_cv"
+            android:layout_width="304dp"
+            android:layout_height="63dp"
+            android:layout_marginBottom="9dp"
+            android:background="@drawable/shape_round_rectangle"
+            android:fontFamily="@font/krona_one"
+            android:gravity="center"
+            android:padding="3dp"
+            android:paddingHorizontal="30dp"
+            android:text="@string/text_placeholder_md"
+            app:layout_constraintBottom_toBottomOf="@+id/card_evaluation_iv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/recipe_evaluation_card_progress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:indeterminateTint="@color/icon_gmail_background"
+            app:layout_constraintBottom_toBottomOf="@+id/recipe_evaluation_card_iv"
+            app:layout_constraintEnd_toEndOf="@+id/recipe_evaluation_card_iv"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/recipe_evaluation_card_iv"
+            app:layout_constraintTop_toTopOf="@+id/recipe_evaluation_card_iv"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/recipe_evaluation_card_iv"
+            android:layout_width="54dp"
+            android:layout_height="59dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="252dp"
+            android:src="@drawable/splash_panda"
+            android:visibility="visible"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/evaluation_difficulty_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:fontFamily="@font/rokkitt"
+            android:text="@string/text_difficulty"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/evaluation_difficulty" />
+
+        <TextView
+            android:id="@+id/evaluation_rating_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/rokkitt"
+            android:text="@string/text_rating"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.849"
+            app:layout_constraintStart_toEndOf="@+id/evaluation_difficulty_label" />
+
+        <TextView
+            android:id="@+id/evaluation_difficulty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/rokkitt_bold"
+            android:text="@string/text_null"
+            android:textSize="@dimen/text_lg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_evaluation_iv" />
+
+        <TextView
+            android:id="@+id/evaluation_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/rokkitt_bold"
+            android:text="@string/text_null"
+            android:textSize="@dimen/text_lg"
+            app:layout_constraintBottom_toTopOf="@+id/evaluation_rating_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.87"
+            app:layout_constraintStart_toEndOf="@+id/evaluation_difficulty"
+            app:layout_constraintTop_toBottomOf="@+id/card_evaluation_iv"
+            app:layout_constraintVertical_bias="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

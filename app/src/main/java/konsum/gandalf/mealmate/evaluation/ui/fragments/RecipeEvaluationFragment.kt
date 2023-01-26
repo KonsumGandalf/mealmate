@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import konsum.gandalf.mealmate.databinding.FragmentRecipeEvaluationBinding
-import konsum.gandalf.mealmate.evaluation.ui.adapters.EvaluationAdapter
+import konsum.gandalf.mealmate.evaluation.ui.adapters.RecipeEvaluationAdapter
 import konsum.gandalf.mealmate.evaluation.ui.viewmodels.RecipeEvaluationViewModel
 import konsum.gandalf.mealmate.user.domain.models.User
 
@@ -82,7 +82,7 @@ class RecipeEvaluationFragment : Fragment() {
             recipes?.let {
                 binding.recipeEvaluationRv.layoutManager =
                     LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                binding.recipeEvaluationRv.adapter = EvaluationAdapter(requireContext(), it)
+                binding.recipeEvaluationRv.adapter = RecipeEvaluationAdapter(requireContext(), it)
             }
         }
     }

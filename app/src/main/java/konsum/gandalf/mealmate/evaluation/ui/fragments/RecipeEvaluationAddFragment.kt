@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import konsum.gandalf.mealmate.databinding.FragmentRecipeEvaluationAddBinding
 import konsum.gandalf.mealmate.evaluation.ui.viewmodels.RecipeEvaluationAddViewModel
@@ -36,14 +37,21 @@ class RecipeEvaluationAddFragment : Fragment() {
         _binding = FragmentRecipeEvaluationAddBinding.inflate(inflater, container, false)
         initButton()
         listenToChannels()
+        initContent()
         return binding.root
+    }
+
+    private fun initContent() {
+        with(binding){
+            Picasso.get().load(navArgs.recipe.imageUrl).into(recipeEvaluationAddIv)
+        }
     }
 
     private fun initButton() {
         with(binding) {
             recipeEvaluationAddBtn.setOnClickListener {
                 viewModel.validateEvaluation(
-                    navArgs.recipe.recipeId,
+                    navArgs.recipe,
                     recipeEvaluationAddRating.rating,
                     (recipeEvaluationAddDifficulty.progress * .5f),
                     recipeEvaluationAddComment.text.toString(),

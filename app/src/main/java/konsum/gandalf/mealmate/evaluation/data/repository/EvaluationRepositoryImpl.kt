@@ -61,7 +61,7 @@ class EvaluationRepositoryImpl(
         withContext(ioDispatchers) {
             val filteredList = ArrayList<EvaluationPost>()
             evaluationCollection
-                .whereEqualTo(FirebaseReferenceEnum.RECIPE_ID, recipeId)
+                .whereEqualTo("${FirebaseReferenceEnum.RECIPE}.recipeId", recipeId)
                 .get()
                 .addOnSuccessListener { documents ->
                     for (document in documents) {
