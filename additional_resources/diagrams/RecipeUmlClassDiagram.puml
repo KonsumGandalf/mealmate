@@ -1,0 +1,231 @@
+@startuml
+!define DARKBLUE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+class Message {
+    String message
+}
+
+class ErrorCode{
+    Int code
+}
+
+ class Error{
+    String error
+}
+
+class CustomEvent {
+}
+CustomEvent "1" --> Message: > inner class
+CustomEvent "1" --> ErrorCode: > inner class
+CustomEvent "1" --> Error: > inner class
+
+entity FirebaseEntity {
+    String id
+    String createdAt
+}
+
+entity User <<Serializable>> {
+    String username
+    String fullName
+    String uid
+    String firebaseMail
+    String imageUrl
+    String bio
+}
+
+entity EvaluationPost <<Serializable>> {
+    Float rating
+    Float difficulty
+    String comment
+    String postId
+    User owner
+    Recipe recipe
+}
+
+entity Recipe <<Serializable>> {
+    String title
+    String category
+    String area
+    String instructions
+    String imageUrl
+    User owner
+    List<Ingredient> ingredients
+}
+
+entity Area {
+    String name
+}
+
+entity Category{
+    Int id
+    String name
+    String imageUrl
+    String description
+}
+
+entity Ingredient {
+    String name
+    String measure
+    String imageUrl
+}
+
+User --|> FirebaseEntity
+Recipe --|> FirebaseEntity
+EvaluationPost --|> FirebaseEntity
+
+EvaluationPost "1" o-- "0..*" User : < writes
+EvaluationPost "1" o-- "0..*" Recipe : > describes
+Recipe "1" o-- "0..*" User: < creates
+Recipe "1" *-- "0..*" Ingredient: > contains
+Recipe "1" *-- "0..*" Area: > part of
+Recipe "1" *-- "0..*" Category: > part of
+
+class Firebase{
+    FirebaseAuth auth
+}
+entity FirebaseUser {}
+Firebase -> FirebaseUser
+
+interface IImageRepository{
+    +uploadImg(uid: String, imgUri: Uri): String
+}
+class ImageRepositoryImpl{}
+ImageRepositoryImpl ..|> IImageRepository
+
+
+interface IAuthenticator{
+    +signInWithEmailPassword(): FirebaseUser
+    +signUpWithEmailPassword(): FirebaseUser
+    +signOut(): FirebaseUser?
+    +getUser(): FirebaseUser?
+    +sendPasswordReset()
+    +signingWithCredential(): FirebaseUser?
+}
+
+class FirebaseAuthenticator{}
+FirebaseAuthenticator ..|> IAuthenticator
+FirebaseAuthenticator --> Firebase
+
+interface IAuthRepository{
+    +signInWithEmailPassword(email: String, password: String): FirebaseUser
+    +signUpWithEmailPassword(email: String, password: String): FirebaseUser
+    +signOut(): FirebaseUser?
+    +getUser(): FirebaseUser?
+    +sendPasswordReset(email: String): boolean
+    +signingWithCredential(credential: AuthCredential): FirebaseUser?
+}
+
+class AuthRepositoryImpl{}
+AuthRepositoryImpl ..|> IAuthRepository
+AuthRepositoryImpl *--> IAuthenticator
+
+class AuthViewModel{}
+AuthViewModel *--> IAuthRepository
+RegisterFragment --> AuthViewModel
+
+class LoginDecisionFragment
+class RegisterDecisionFragment
+abstract class OneTapFragment{}
+OneTapFragment ..|> LoginDecisionFragment
+OneTapFragment ..|> RegisterDecisionFragment
+OneTapFragment *--> AuthViewModel
+
+LoginDecisionFragment *--> AuthViewModel
+LoginFragment *--> AuthViewModel
+
+RegisterDecisionFragment *--> AuthViewModel
+RegisterFragment *--> AuthViewModel
+
+LoginResetFragment *--> AuthViewModel
+
+class WelcomeFragment{}
+
+interface IUserRepository{
+    +getCurrentUser(): User?
+    +signOut(): User?
+    +updateUser(user: User): User?
+    +createUser(): User?
+    +deleteUser(uid: String): User?
+    +getUser(uid: String): User?
+}
+
+class UserRepositoryImpl{
+}
+UserRepositoryImpl ..|> IUserRepository
+UserRepositoryImpl *--> User
+
+class UserProfileViewModel{}
+UserProfileViewModel *--> IUserRepository
+class UserProfileFragment{}
+UserProfileFragment *--> UserProfileViewModel
+UserProfileFragment *--> AuthViewModel
+
+class UserUpdateViewModel{}
+UserUpdateViewModel *--> IUserRepository
+UserUpdateViewModel *--> IImageRepository
+class UserUpdateFragment{}
+UserUpdateFragment *--> UserUpdateViewModel
+
+
+interface IEvaluationRepository{
+    +createEvaluation(evaluation: EvaluationPost): EvaluationPost
+    +getEvaluations(): List<EvaluationPost>
+    +getEvaluations(recipeId: String): List<EvaluationPost>
+}
+
+class EvaluationRepositoryImpl{}
+EvaluationRepositoryImpl ..|> IEvaluationRepository
+EvaluationRepositoryImpl --> EvaluationPost
+
+class HomeEvaluationViewModel{}
+HomeEvaluationViewModel *--> IEvaluationRepository
+class HomeEvaluationFragment{}
+HomeEvaluationFragment *--> HomeEvaluationViewModel
+
+class RecipeEvaluationAddViewModel{}
+RecipeEvaluationAddViewModel *--> IEvaluationRepository
+class RecipeEvaluationAddFragment{}
+RecipeEvaluationAddFragment *--> RecipeEvaluationAddViewModel
+
+class RecipeEvaluationViewModel{}
+RecipeEvaluationViewModel *--> IEvaluationRepository
+RecipeEvaluationViewModel *--> IUserRepository
+class RecipeEvaluationFragment{}
+RecipeEvaluationFragment *--> RecipeEvaluationViewModel
+
+interface MealDBApi{}
+class MealDBImpl{}
+MealDBImpl ..|> MealDBApi
+MealDBImpl ..|> Retrofit2
+MealDBImpl *--> RecipeResponse
+
+interface FirebaseRecipeRepository{}
+class FirebaseRecipeRepositoryImpl{}
+FirebaseRecipeRepositoryImpl *--> FirebaseRecipeRepository
+FirebaseRecipeRepositoryImpl *--> Recipe
+
+interface IRecipeRepository{}
+class RecipeRepositoryImpl{}
+RecipeRepositoryImpl ..|> FirebaseRecipeRepository
+RecipeRepositoryImpl ..|> MealDBApi
+RecipeRepositoryImpl *--> Recipe
+
+RecipeDetailViewModel *--> IRecipeRepository
+RecipeDetailFragment *--> RecipeDetailViewModel
+
+RecipeEditViewModel *--> IRecipeRepository
+RecipeEditViewModel *--> IImageRepository
+RecipeEditViewModel *--> IUserRepository
+RecipeEditFragment *--> RecipeEditViewModel
+
+RecipeSearchResultViewModel *--> IRecipeRepository
+RecipeSearchResultViewModel *--> IEvaluationRepository
+RecipeSearchViewModel *--> IRecipeRepository
+RecipeSearchViewModel *--> IEvaluationRepository
+
+RecipeSearchFragment *--> RecipeSearchViewModel
+RecipeSearchFragment *--> RecipeSearchResultViewModel
+
+
+@enduml

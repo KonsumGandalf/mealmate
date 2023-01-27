@@ -24,7 +24,7 @@ import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import konsum.gandalf.mealmate.R
 import konsum.gandalf.mealmate.databinding.FragmentUserUpdateBinding
-import konsum.gandalf.mealmate.user.ui.viewmodels.UserViewModel
+import konsum.gandalf.mealmate.user.ui.viewmodels.UserUpdateViewModel
 import konsum.gandalf.mealmate.utils.events.CustomEvent
 import kotlinx.coroutines.launch
 
@@ -35,7 +35,7 @@ class UserUpdateFragment : Fragment() {
     private val binding
         get() = _binding!!
 
-    private val userViewModel: UserViewModel by activityViewModels()
+    private val userViewModel: UserUpdateViewModel by activityViewModels()
     private val navArgs: UserUpdateFragmentArgs by navArgs()
 
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
