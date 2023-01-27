@@ -11,7 +11,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://asteo.netlify.app/">
+  <a href="https://github.com/KonsumGandalf">
     <img src="https://firebasestorage.googleapis.com/v0/b/udemykotlin-3fdd4.appspot.com/o/meal_mate_icon.svg?alt=media&token=215baf6e-4bd2-4582-a4c1-91f632f9deb0" alt="Logo" width="300" height="300">
   </a>
 
@@ -36,19 +36,17 @@
         <li><a href="#how-do-i-use-mealmate">How do I use MealMate?</a></li>
       </ul>
     </li>
-    <li>
-      <a href="#installation">Installation</a>
-      <ul>
-        <li><a href="#usage">Usage</a></li>
-      </ul>
-    </li>
-    <li><a href="#license">License</a></li>
+    <li><a href="#uml-modeling">Uml Modeling</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#license">License</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
 
+
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -71,6 +69,7 @@ The teaching professor was <a href="https://github.com/ddrohan">Dave Drohan.
 * [TheMealDB](https://www.themealdb.com/)
 * [Ktlint](https://github.com/JLLeitschuh/ktlint-gradle)
 * [Retrofit](https://square.github.io/retrofit/)
+* [Planuml](https://plantuml.com/en/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -94,7 +93,30 @@ If you want to edit a recipe of other creator you can do so, but just by using i
 Finally, you can also evaluate your favorite recipes and track the ratings of othersin the evaluation page.
 
 Enjoy your cooking with Mealmate!
+    
+## UML Modeling
 
+The following UML-Diagram class diagram tries to describe the different types of objects within a system and the types of static relationships that exist between them. It also illustrates the operations and attributes of the classes. <br>
+<img src="additional_resources/diagrams/RecipeUmlClassDiagram.png" alt="Class diagram">
+    
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+<!-- CONTACT -->
+## Contact
+
+David Schmidt - [Instagram]: @[_life_of_david](https://www.instagram.com/_life_of_david/)
+
+David Schmidt - [LinkedIn]: @[David Schmidt](https://www.linkedin.com/in/david-schmidt-09b69b1b6)
+
+Project Link: [Asteo] (https://github.com/users/KonsumGandalf/projects/6)
+    
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
