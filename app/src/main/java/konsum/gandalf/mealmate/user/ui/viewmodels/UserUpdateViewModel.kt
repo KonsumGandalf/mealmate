@@ -17,7 +17,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class UserViewModel
+class UserUpdateViewModel
 @Inject
 constructor(
     private val repository: IUserRepository,

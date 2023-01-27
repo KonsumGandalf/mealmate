@@ -3,7 +3,6 @@ package konsum.gandalf.mealmate.user.domain.repository
 import konsum.gandalf.mealmate.user.domain.models.User
 
 interface IUserRepository {
-
     fun getCurrentUser(): User?
     fun signOut(): User?
     suspend fun updateUser(user: User): User?

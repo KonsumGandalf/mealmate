@@ -15,7 +15,7 @@ import konsum.gandalf.mealmate.utils.events.CustomEvent
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-open class OneTapFragment : Fragment() {
+abstract class OneTapFragment : Fragment() {
 
     val REQUEST_CODE_SIGNING = 78921
     private val viewModel by viewModels<AuthViewModel>()
