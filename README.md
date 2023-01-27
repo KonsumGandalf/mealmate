@@ -97,6 +97,8 @@ Enjoy your cooking with MealMate!
 ## UML Modeling
 
 The following UML-Diagram class diagram tries to describe the different types of objects within a system and the types of static relationships that exist between them. It also illustrates the operations and attributes of the classes. <br>
+    
+    
 <img src="additional_resources/diagrams/RecipeUmlClassDiagram.png" alt="Class diagram">
     
 <!-- LICENSE -->
