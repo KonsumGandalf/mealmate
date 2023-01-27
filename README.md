@@ -1,4 +1,4 @@
-# mealmate
+# MealMate
 
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -80,11 +80,11 @@ The teaching professor was <a href="https://github.com/ddrohan">Dave Drohan.
 <!-- GETTING STARTED -->
 ### What is MealMate?
 
-Mealmate is a recipe app designed to help users plan, prepare and enjoy delicious meals at home. With an extensive database of recipes, users can search for meal ideas based on ingredients, dietary restrictions, and cooking time. The app offers step-by-step instructions and a detailed list of ingredients for each recipe, making it easy for users to follow along. Mealmate also includes features such as a meal planning calendar, a shopping list generator, and the ability to save and organize favorite recipes. Whether you're a beginner cook or a seasoned pro, Mealmate is the perfect companion for creating delicious meals at home.
+MealMate is a recipe app designed to help users plan, prepare and enjoy delicious meals at home. With an extensive database of recipes, users can search for meal ideas based on ingredients, dietary restrictions, and cooking time. The app offers step-by-step instructions and a detailed list of ingredients for each recipe, making it easy for users to follow along. MealMate also includes features such as a meal planning calendar, a shopping list generator, and the ability to save and organize favorite recipes. Whether you're a beginner cook or a seasoned pro, MealMate is the perfect companion for creating delicious meals at home.
 
 ### How do I use MealMate?
 
-To use Mealmate, first, download the app.
+To use MealMate, first, download the app.
 
 Once you have the app installed, create an account or sign in if you already have one.
 To search for a recipe, use the search bar at the top of the screen and enter as keyword the recipe name. You can also browse recipes by category, such as breakfast, lunch, dinner, or dessert, or areas like american.
@@ -92,7 +92,7 @@ When you find a recipe that you want to make, tap on it to view the instructions
 If you want to edit a recipe of other creator you can do so, but just by using it as a bluepause.
 Finally, you can also evaluate your favorite recipes and track the ratings of othersin the evaluation page.
 
-Enjoy your cooking with Mealmate!
+Enjoy your cooking with MealMate!
     
 ## UML Modeling
 
@@ -102,7 +102,7 @@ The following UML-Diagram class diagram tries to describe the different types of
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
